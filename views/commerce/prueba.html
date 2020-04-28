@@ -22,16 +22,23 @@
             <div class="navbar-fixed">
                 <nav class="nav-primario">
                     <div class="nav-wrapper">
-                        <a href="" class=" brand-logo left">
+                        <a href="" class=" brand-logo center">
                             <img src="../../resources/img/commerce/Logo.png" width="220" height="60" alt="" class="">
                         </a>
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         <div class= "container">
                             <ul class="left hide-on-med-and-down">
-                                <li><a href="" class="menu-text">Inicio</a></li>
-                                <li><a href="" class="menu-text">Sucursales</a></li>
                                 <li><a href="menu.html" class="menu-text">Menú</a></li>
+                                <li><a href="" class="menu-text">Sucursales</a></li>
                                 <li><a href="" class="menu-text">Promociones</a></li>
+                            </ul>
+                            <ul class="right hide-on-med-and-down">
+                                <li>
+                                    <form action="" class="form-buscar">
+                                        <input type="text" name="" id="" placeholder="Buscar">
+                                        <a href=""><i class="material-icons">search</i></a>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div> 
@@ -108,11 +115,10 @@
                                         <i class="material-icons right">send</i>
                                       </button>
                                 </form>
-                            </div>
-                            
+                            </div> 
                         </div>
-                        <div class="col s12 m8">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d62019.927480745595!2d-89.25900612089845!3d13.703577599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2ssv!4v1587487330981!5m2!1ses-419!2ssv" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="mapa"></iframe> 
+                        <div class="col s12 m7">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d62019.927480745595!2d-89.25900612089845!3d13.703577599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2ssv!4v1587487330981!5m2!1ses-419!2ssv" width="800" height="500" frameborder="10" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="mapa"></iframe>
                         </div>
                     </div>
                 </div>
@@ -142,7 +148,7 @@
 
             <!-- Inicio de la sección nestros proyectos-->
             <section>
-                <h3 class="centrar-texto">Nuestros proyectos</h3>
+                <h3 class="center">Nuestros proyectos</h3>
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -150,7 +156,7 @@
                                 <div class="card-image">
                                     <img src="../../resources/img/commerce/coffeecard.jpg">
                                     <div class="valign-wrapper fondo-negro">
-                                        <span class="card-title centrar-texto">The Coffee Cup Card</span>
+                                        <span class="card-title">The Coffee Cup Card</span>
                                     </div>
                                 </div>
                             </div>             
@@ -160,7 +166,7 @@
                                 <div class="card-image">
                                     <img src="../../resources/img/commerce/alianzas.jpg">
                                     <div class="valign-wrapper fondo-negro">
-                                        <span class="card-title centrar-texto">Alianzas</span>
+                                        <span class="card-title">Alianzas</span>
                                     </div>
                                 </div>
                             </div>    
@@ -170,7 +176,7 @@
                                 <div class="card-image">
                                     <img src="../../resources/img/commerce/responsabilidad.jpg">
                                     <div class="valign-wrapper fondo-negro">
-                                        <span class="card-title centrar-texto">RSE</span>
+                                        <span class="card-title">RSE</span>
                                     </div>
                                 </div>
                             </div>    
@@ -180,7 +186,7 @@
                                 <div class="card-image">
                                     <img src="../../resources/img/commerce/curiosidades.jpg">
                                     <div class="valign-wrapper fondo-negro">
-                                        <span class="card-title centrar-texto">Curiosidades del café</span>
+                                        <span class="card-title">Curiosidades del café</span>
                                     </div>
                                 </div>
                             </div>
@@ -189,27 +195,34 @@
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
                 </div>
-            </section>
-            
-            
+            </section> 
         </main>
 
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col s12 m4">
-                        <h5 class="white-text centrar-texto">Dirección principal</h5>
+                    <div class="col s12 m4 center">
+                        <h5 class="white-text">Dirección principal</h5>
                         <i class="material-icons small">directions_car</i>
                         <p>Km 13 1/2, Autopista <br> Comalapa, San Marcos</p>
                     </div>
-                    <div class="col s12 m4">
-                        <h5 class="white-text centrar-texto">Contáctanos</h5>
-                        <p><i class="material-icons">telephone</i>+503 2507-1300</p>
-                        <p><i class="material-icons">email</i>info@qualitygrains.com.sv</p>
+                    <div class="col s12 m4 center">
+                        <h5 class="white-text">Contáctanos</h5>
+                        <div class="flex">
+                            <i class="material-icons small margin-5">phone</i>
+                            <p class="margin-5">+503 2507-1300</p>
+                        </div>
+                        <div class="flex">
+                            <i class="material-icons small margin-5">email</i>
+                            <p class="margin-5">info@qualitygrains.com.sv</p>
+                        </div>
                     </div>
-                    <div class="col s12 m4">
-                        <h5 class="white-text centrar-texto">Redes Sociales</h5>
-                        <p>The Coffee Cup</p>
+                    <div class="col s12 m4 center">
+                        <h5 class="white-text">Redes Sociales</h5>
+                        <a href="https://www.facebook.com/thecoffeecupsv/"><img class="margin-5" src="../../resources/img/commerce/facebook.png" alt=""></a>
+                        <a href="https://twitter.com/thecoffeecup_sv/"><img class="margin-5" src="../../resources/img/commerce/twitter.png" alt=""></a>
+                        <a href="https://www.instagram.com/thecoffeecup_sv/"><img class="margin-5" src="../../resources/img/commerce/instagram.png" alt=""></a>
+                        <p>The Coffee Cup Sv</p>
                     </div>
                 </div>
             </div>
