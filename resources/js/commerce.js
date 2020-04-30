@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems,{
-        hover: true
-    });
+    var instances = M.Dropdown.init(elems);
+    
     var elems = document.querySelectorAll('.slider');
     var instances = M.Slider.init(elems,{
         indicators:false,
@@ -10,30 +9,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
+
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
 });
 
 
-var swiper = new Swiper('.swiper-container', {
+var swiper = new Swiper('.swiper-container.proyectos', {
     autoheight:true,
-    slidesPerView: 3,
     spaceBetween: 0,
-    // init: false,
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     },
+    navigation:{
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
     breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
+      320:{
+        slidesPerView:1
       },
-      768: {
-        slidesPerView: 4,
-        spaceBetween: 40,
+      425:{
+        slidesPerView:2
       },
       1024: {
         slidesPerView: 3,
-        spaceBetween: 0,
       },
     }
   });

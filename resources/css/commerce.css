@@ -10,14 +10,30 @@ body{
     font-family: 'Poppins Regular';
 }  
 /*--------------------  Utilidades ------------------*/
-.container {
-    margin: 0 auto;
-    max-width: 1380px;
-    width: 90%;
+.container{
+    width: 95%;
+}
+@media only screen and (min-width: 601px){
+    .container{
+        width: 90%;
+    }
 }
 .input-field .prefix {
     right: 0rem;
 }
+.ftf-medium{
+    font-family: 'Poppins Medium';
+}
+.margin-0{
+    margin: 0;
+}
+.margin-10{
+    margin: 40px auto;
+}
+.padd-10{
+    padding: 10px;
+}
+
 /*--------------------  Navegacion ------------------*/
 .nav-primario{
     background-color: #2a2a2a ;
@@ -39,11 +55,8 @@ nav ul li{
 .texto-nav-secundario{
     color: #FF4A4A;
 }
-.form-buscar{
-    display: flex;
-}
-.form-buscar input[type="text"]{
-    margin-top: 8px;
+.input-field input[type=search]{
+    display: inline;
     color: white;
 }
 
@@ -58,12 +71,63 @@ nav ul li{
 .mapa{
     margin-left: 0;
     margin-top: 40px;
+    width: 100%;
+    height: 500px;
 }
 
 /*--------------------  Nuestro secreto ------------------*/
 .fondo-rojo{
     background-color: #FF4A4A;
-    padding: 2rem 0 1rem;
+    padding: 1.5rem 0;
+}
+.parrafo{
+    margin-top: 40px;
+    line-height: 2;
+    font-size: 16px;
+}
+/*--------------------  Nuestros proyectos ------------------*/
+.swiper-pagination{
+    position: static;
+    margin: 20px 0;
+    color: yellow;
+}
+:root{
+    --swiper-navigation-size: 28px;
+    --swiper-theme-color: #F0C227;
+}
+.swiper-button-prev, .swiper-button-next{
+    top: auto;
+    bottom: 20px;
+}
+.swiper-button-next{
+    right: 400px;
+}
+.swiper-button-prev{
+    left: 400px;
+}
+@media only screen and (min-width: 320px) {
+    .swiper-button-prev{
+        left: 60px;
+    }
+    .swiper-button-next{
+        right: 60px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .swiper-button-prev{
+        left: 160px;
+    }
+    .swiper-button-next{
+        right: 160px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .swiper-button-prev{
+        left: 360px;
+    }
+    .swiper-button-next{
+        right: 360px;
+    }
 }
 /*--------------------  Footer ------------------*/
 .page-footer{
@@ -75,6 +139,14 @@ nav ul li{
 }
 .margin-5{
     margin: 10px;
+}
+/*-------------------- Modal Clientes ------------------*/
+.cabecera{
+    background-color: #FF4A4A;
+    color: white;
+}
+.modal-cliente{
+    width: 80%;
 }
 
 /*-------------------- Página Menú ------------------*/

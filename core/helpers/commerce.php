@@ -1,13 +1,14 @@
 <?php
+
 /**
  *
  */
 class Commerce
 {
-  
-  public static function headerTemplate()
-  {
-    print('<!DOCTYPE html>
+
+    public static function headerTemplate()
+    {
+        print('<!DOCTYPE html>
     <html lang="es">
     <head>
         <!-- Se especifica la codificación de caracteres para el documento -->
@@ -15,164 +16,192 @@ class Commerce
         <!-- Se indica al navegador que la página web está optimizada para dispositivos móviles -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Título del documento -->
-        <title>Kamiltik | </title>
+        <title>Kamiltik | Inicio</title>
         <!-- Importación de archivos CSS -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
+        <link rel="stylesheet" href="../../resources/css/swiper.css">
         <link rel="stylesheet" href="../../resources/css/materialize.css">
-        <link rel="stylesheet" href="../../resources/css/style.css">
+        <link rel="stylesheet" href="../../resources/css/commerce.css">
         <!-- Llamada a un archivo tipo icono -->
-        <link rel="shortcut icon" href="" type="image/x-icon"> 
+        <!--<link rel="shortcut icon" href="" type="image/x-icon">--> 
     </head>
     <body>
         <!-- Encabezado del documento -->
         <header>
             <!-- Barra de Navegación -->
             <div class="navbar-fixed">
-                <nav>
+                <nav class="nav-primario">
                     <div class="nav-wrapper">
-                        <a href="index.php" class="logo-cuzcatlan brand-logo margin-logo">
+                        <!-- Logo -->
+                        <a href="index.php" class=" brand-logo center">
                             <img src="../../resources/img/commerce/Logo.png" width="220" height="60" alt="" class="">
                         </a>
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                        <div class="container margin-left">
+                        <!-- Enlaces del menú -->
+                        <div class= "container">
                             <ul class="left hide-on-med-and-down">
-                                <li><a href="products.php" class="menu-text">Productos</a></li>
-                                <li><a href="news.php" class="menu-text">Noticias</a></li>
-                                <li><a href="contact.php" class="menu-text">Contáctanos</a></li>
+                                <li><a href="menu.php" class="menu-text">Menú</a></li>
+                                <li><a href="" class="menu-text">Sucursales</a></li>
+                                <li><a href="" class="menu-text">Promociones</a></li>
                             </ul>
                             <ul class="right hide-on-med-and-down">
-                                <li><a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">shopping_cart</i></a></li>
-                                <li><h5>|</h5></li>
-                                <li><a href="sign_in.php" class="menu-text">Iniciar sesión</a></li>
-                                <li><a href="sign_up.php" class="menu-text">Registrarse</a></li>
+                                <li>
+                                    <!--<form action="" class="form-buscar">
+                                        <input type="text" name="" id="" placeholder="Buscar">
+                                        <a href=""><i class="material-icons">search</i></a>
+                                    </form>-->
+                                    <form>
+                                        <div class="input-field ">
+                                          <input id="search" type="search" placeholder="Buscar" required>
+                                          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                          <i class="material-icons">close</i>
+                                        </div>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div> 
                 </nav>
             </div>
-            <!-- Navegación lateral responsive -->
-            <ul class="sidenav" id="mobile-demo">
-                <li>
-                    <div class="row">
-                        <div class="col s12 margin center-align">
-                            <h4 class="logo-cuzcatlan">Cuzcatlán</h5>
-                        </div>
-                    </div>
-                </li>
-                <li><a href="sign_in.php" class="menu-text">Iniciar sesión</a></li>
-                <li><a href="sign_up.php" class="menu-text">Registrarse</a></li>
-                <li><a href="shopping_cart.php" class="menu-text">Mi carrito</a></li>
-                <li><a href="products.php" class="menu-text">Productos</a></li>
-                <li><a href="news.php" class="menu-text">Noticias</a></li>
-                <li><a href="contact.php" class="menu-text">Contáctanos</a></li>
-            </ul>
-            <!-- Navegación lateral del carrito -->
-            <ul id="slide-out" class="sidenav carrito"> 
-                <li>
-                    <div class="container gen">
-                        <div class="row">
-                            <div class="col s8">
-                                <h5 class="margin">Carrito de compra</h5>
-                            </div>
-                            <div class="col s4 margin center-align">
-                                <a href=""><i class="material-icons right">close</i></a>
-                            </div>
-                        </div>
-                    </div>
-                </li>               
-                <li><div class="divider"></div></li>
-                <li>
-                    <div class="container gen">
-                        <table class="highlight responsive-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Nombre</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio</th>
-                                </tr>
-                            </thead>    
-                            <tbody>
-                                <tr>
-                                    <td><img src="../../resources/img/commerce/productos/artesanias-casa-la-abuela-2.jpg" alt="" width="80" height="50"></td>
-                                    <td>Pintura de madera con montañas</td>
-                                    <td><input id="number" type="number" value="1"></td>
-                                    <td><h6>$12</h6></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../resources/img/commerce/productos/artesanias-casa-la-abuela-2.jpg" alt="" width="80" height="50"></td>
-                                    <td>Pintura de madera con montañas</td>
-                                    <td><input id="number" type="number" value="1"></td>
-                                    <td><h6>$12</h6></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../resources/img/commerce/productos/artesanias-casa-la-abuela-2.jpg" alt="" width="80" height="50"></td>
-                                    <td>Pintura de madera con montañas</td>
-                                    <td><input id="number" type="number" value="1"></td>
-                                    <td><h6>$12</h6></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </li>
-                <li>
-                    <a class="waves-effect waves-light btn-small" href="shopping_cart.php">Ver todo</a>
-                </li>
-            </ul>
-        </header>');
-  }
+            
+            <!-- Final de la Barra de Navegación -->
 
-  public static function footerTemplate(){
-    print(' 
-        <footer class="page-footer">
+            <!--  Barra de Navegación Secundario -->
+            <nav class="nav-secundario hide-on-med-and-down">
+                <div class="nav-wrapper">
+                    <ul>
+                        <li><a href="#modal1" class="texto-nav-secundario modal-trigger"><i class="material-icons">group</i>Regístrate como cliente</a></li>
+                        <li><a href="" class="texto-nav-secundario"><i class="material-icons">domain</i>Buscar sucursal más cercana</a></li>
+                        <li><a href="noticias.php" class="texto-nav-secundario"><i class="material-icons">chrome_reader_mode
+                        </i>Noticias</a></li>
+                        <li><a href="" class="texto-nav-secundario"><i class="material-icons">message</i>Contáctanos</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Final de la Barra de Navegación secundaria-->
+            <!-- Estructura del modal -->
+            <div id="modal1" class="modal modal-cliente">
+                <div class="cabecera padd-10">
+                    <h6 class="margin-0">Datos personales</h6>
+                </div>
+                <div class="modal-content">
+                    <div class="row margin-0">
+                        <div class="col s12 m4 hide-on-med-and-down">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="../../resources/img/commerce/notebook-1.png">
+                                    <div class="valign-wrapper fondo-negro">
+                                        <span class="card-title">Se parte de The Coffee Cup</span>
+                                    </div>
+                                </div>
+                            </div>     
+                        </div>
+                        <div class="col s12 l8 ">
+                            <div class="row">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <input id="nombre" type="text" class="validate">
+                                            <label for="nombre">Nombre</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="fecha" type="date" class="validate">
+                                                <label for="fecha">Fecha de nacimiento</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="apellido" type="text" class="validate">
+                                            <label for="apellido">Apellido</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <select>
+                                                <option value="" disabled selected>Seleccionar producto</option>
+                                                    <option value="1">Option 1</option>
+                                                    <option value="2">Option 2</option>
+                                                    <option value="3">Option 3</option>
+                                                </select>
+                                            <label for="">Producto favorito</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="email" type="email" class="validate">
+                                                <label for="email">Correo electrónico</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <select>
+                                                <option value="" disabled selected>Seleccionar producto</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label for="">Producto favorito</label>
+                                        </div>
+                                        <div class="col s12">
+                                            <p class="center">
+                                            <label>
+                                                <input type="checkbox" />
+                                                <span>Aceptos los términos y condiciones</span>
+                                            </label>
+                                            </p> 
+                                        </div>
+                                        <div class="col s12 center">
+                                            <button class="btn waves-effect waves-light" type="submit" name="action">Registrarme</button>   
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    <main>');
+    }
+
+    public static function footerTemplate()
+    {
+        print('
+    </main>
+    <!-- Pie de página -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m4 center">
+                    <h5 class="white-text ftf-medium">Dirección principal</h5>
+                    <i class="material-icons small">directions_car</i>
+                    <p>Km 13 1/2, Autopista <br> Comalapa, San Marcos</p>
+                </div>
+                <div class="col s12 m4 center">
+                    <h5 class="white-text ftf-medium">Contáctanos</h5>
+                    <div class="flex">
+                        <i class="material-icons small margin-5">phone</i>
+                        <p class="margin-5">+503 2507-1300</p>
+                    </div>
+                    <div class="flex">
+                        <i class="material-icons small margin-5">email</i>
+                        <p class="margin-5">info@qualitygrains.com.sv</p>
+                    </div>
+                </div>
+                <div class="col s12 m4 center">
+                    <h5 class="white-text ftf-medium">Redes Sociales</h5>
+                    <a href="https://www.facebook.com/thecoffeecupsv/"><img class="margin-5" src="../../resources/img/commerce/facebook.png" alt=""></a>
+                    <a href="https://twitter.com/thecoffeecup_sv/"><img class="margin-5" src="../../resources/img/commerce/twitter.png" alt=""></a>
+                    <a href="https://www.instagram.com/thecoffeecup_sv/"><img class="margin-5" src="../../resources/img/commerce/instagram.png" alt=""></a>
+                    <p>The Coffee Cup Sv</p>
+                </div>
+            </div>
+        </div>
+        <!-- Barra del copyrigth -->
+        <div class="footer-copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Síguenos en nuestras redes sociales</h5>
-                        <div class="row margin">
-                            <div class="col s12 m6 center-align">
-                                <a href="https://www.facebook.com/">
-                                    <img src="../../resources/img/commerce/iconos/facebook.png" alt="Facebook">
-                                    <p class="white-text">Tienda Cuzcatlán</p>
-                                </a>
-                            </div>
-                            <div class="col s12 m6 center-align">
-                                <a href="https://www.instagram.com/">
-                                    <img src="../../resources/img/commerce/iconos/instagram.png" alt="Instagram" >
-                                    <p class="white-text">@cuzcatlán.sv</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Menú inferior</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="about_us.php">¿Quiénes somos?</a></li>
-                            <li><a class="grey-text text-lighten-3" href="shopping_cart.php">Carrito</a></li>
-                            <li><a class="grey-text text-lighten-3" href="my_account.php">Mi cuenta</a></li>
-                            <li><a class="grey-text text-lighten-3" href="payment.php">Completar transacción</a></li>
-                            <li><a class="grey-text text-lighten-3" href="restore_password.php">Restablecer contraseña</a></li>
-                        </ul>
-                    </div>
-                </div>
+            © 2020 Derechos reservados por The Coffee Cup
+            <a class="grey-text text-lighten-4 right" href="#!">Términos y condiciones</a>
             </div>
-            <div class="footer-copyright">
-                <div class="container">
-                © 2020 Derechos reservados por Cuzcatlán
-                <a class="grey-text text-lighten-4 right" href="#!">Términos y condiciones</a>
-                </div>
-            </div>
-        </footer>
-            <!-- Importación de archivos JavaScript al final del documento para una carga optimizada -->
-            <script src="../../resources/js/jquery-3.4.1.js" type="text/javascript"></script>
-            <script src="../../resources/js/materialize.js" type="text/javascript"></script>
-            <script src="../../resources/js/swiper.js" type="text/javascript" ></script> 
-            <script src="../../resources/js/commerce.js" type="text/javascript"></script>
-            </body>
-        </html>');
-  }
+        </div>
+    </footer>
+        <!-- Importación de archivos JavaScript al final del documento para una carga optimizada -->
+        <script src="../../resources/js/materialize.js" type="text/javascript"></script>
+        <script src="../../resources/js/swiper.js" type="text/javascript" ></script> 
+        <script src="../../resources/js/commerce.js" type="text/javascript"></script>
+    </body>
+    </html>');
+    }
 }
-
-
- ?>
