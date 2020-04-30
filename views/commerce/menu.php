@@ -4,6 +4,7 @@ Commerce::headerTemplate();
 ?>
 </header>
 <main>
+<!-- Contenido principal -->
     <!-- Sección del Slider -->
     <section>
         <div class="slider">
