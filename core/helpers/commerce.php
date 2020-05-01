@@ -43,7 +43,7 @@ class Commerce
                             <ul class="left hide-on-med-and-down">
                                 <li><a href="menu.php" class="menu-text">Menú</a></li>
                                 <li><a href="sucursales.php" class="menu-text">Sucursales</a></li>
-                                <li><a href="quienesSomos.php" class="menu-text">Promociones</a></li>
+                                <li><a href="promociones.php" class="menu-text">Promociones</a></li>
                             </ul>
                             <ul class="right hide-on-med-and-down">
                                 <li>
@@ -65,6 +65,18 @@ class Commerce
                 </nav>
             </div>
             
+            <ul class="sidenav" id="mobile-demo">
+                <li><a class="sidenav-close" href=""><i class="material-icons right">close</i></a></li>
+                <li><a href="menu.php">Menú</a></li>
+                <li><a href="sucursales.php">Sucursales</a></li>
+                <li><a href="quienesSomos.php">Promociones</a></li>
+                <li><div class="divider"></div></li>
+                <li><a href="#modal1" class="modal-trigger">Regístrate como cliente</a></li>
+                <li><a href="index.php">Buscar sucursal más cercana</a></li>
+                <li><a href="noticias.php">Noticias</a></li>
+                <li><a href="contacto.php">Contáctanos</a></li>
+            </ul>
+            
             <!-- Final de la Barra de Navegación -->
 
             <!--  Barra de Navegación Secundario -->
@@ -72,7 +84,7 @@ class Commerce
                 <div class="nav-wrapper">
                     <ul>
                         <li><a href="#modal1" class="texto-nav-secundario modal-trigger"><i class="material-icons">group</i>Regístrate como cliente</a></li>
-                        <li><a href="" class="texto-nav-secundario"><i class="material-icons">domain</i>Buscar sucursal más cercana</a></li>
+                        <li><a href="index.php" class="texto-nav-secundario"><i class="material-icons">domain</i>Buscar sucursal más cercana</a></li>
                         <li><a href="noticias.php" class="texto-nav-secundario"><i class="material-icons">chrome_reader_mode
                         </i>Noticias</a></li>
                         <li><a href="contacto.php" class="texto-nav-secundario"><i class="material-icons">message</i>Contáctanos</a></li>

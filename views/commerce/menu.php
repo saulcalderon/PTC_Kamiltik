@@ -30,7 +30,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto1.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Bebidas frías sin café</span>
+                                <span class="card-title static center">Bebidas frías sin café</span>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto2.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Bebidas calientes con Espresso</span>
+                                <span class="card-title static center">Bebidas calientes con Espresso</span>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto3.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Bebidas frías con Espresso</span>
+                                <span class="card-title static center">Bebidas frías con Espresso</span>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto4.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Bebidas calientes sin café</span>
+                                <span class="card-title static center">Bebidas calientes sin café</span>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto5.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Delicorner</span>
+                                <span class="card-title static center">Delicorner</span>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto6.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Postres</span>
+                                <span class="card-title static center">Postres</span>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto7.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Sugar free</span>
+                                <span class="card-title static center">Sugar free</span>
                             </div>
                         </div>
                     </div>
@@ -98,9 +98,9 @@ Commerce::headerTemplate();
                 <div class="col s12 m4">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../../resources/img/commerce/producto8.jpg">
+                            <img src="../../resources/img/commerce/producto8.png">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Delivery <br> The Coffee Cup</span>
+                                <span class="card-title static center">Delivery <br> The Coffee Cup</span>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/producto9.jpg">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title center">Para llevar</span>
+                                <span class="card-title static center">Para llevar</span>
                             </div>
                         </div>
                     </div>
