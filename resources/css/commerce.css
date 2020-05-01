@@ -329,3 +329,8 @@ div.col.s6.pv li{
 div.row.QS img{
     width: 500px; padding-top: 1%;
 }
+/* Alinear con flexbox*/
+.justify{
+    display: flex;
+    justify-content: center;
+}

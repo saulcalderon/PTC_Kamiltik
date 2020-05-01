@@ -20,40 +20,46 @@ Commerce::headerTemplate();
         </div>
     </section>
     <!-- Finalización Sección del Slider -->
-    <!-- Sección del menú -->
+    <!-- Sección del menú  (categorias)-->
     <section>
         <div class="container">
-            <h1>Nuestro productos</h1>
+            <h1 class="center">Nuestro productos</h1>
             <div class="row">
                 <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="../../resources/img/commerce/producto1.jpg">
-                            <div class="valign-wrapper fondo-negro">
-                                <span class="card-title static center">Bebidas frías sin café</span>
+                    <a href="productos.php">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../resources/img/commerce/producto1.jpg">
+                                <div class="valign-wrapper fondo-negro">
+                                    <span class="card-title static center">Bebidas frías sin café</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="../../resources/img/commerce/producto2.jpg">
-                            <div class="valign-wrapper fondo-negro">
-                                <span class="card-title static center">Bebidas calientes con Espresso</span>
+                    <a href="productos.php">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../resources/img/commerce/producto2.jpg">
+                                <div class="valign-wrapper fondo-negro">
+                                    <span class="card-title static center">Bebidas calientes con Espresso</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="../../resources/img/commerce/producto3.jpg">
-                            <div class="valign-wrapper fondo-negro">
-                                <span class="card-title static center">Bebidas frías con Espresso</span>
+                    <a href="productos.php">>
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../resources/img/commerce/producto3.jpg">
+                                <div class="valign-wrapper fondo-negro">
+                                    <span class="card-title static center">Bebidas frías con Espresso</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col s12 m4">
                     <div class="card">
