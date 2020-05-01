@@ -2,6 +2,11 @@
 require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate();
 ?>
+
+<div class="cabecera center">
+    <h1 class="margin-0 padd-10 white-text">Sucursales</h1>
+</div>
+
 <div class="row">
     <div class="col s12 center">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d62019.927480745595!2d-89.25900612089845!3d13.703577599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2ssv!4v1587487330981!5m2!1ses-419!2ssv" width="800" height="500" frameborder="10" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="mapa responsive-img"></iframe>
