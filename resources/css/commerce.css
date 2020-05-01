@@ -321,6 +321,9 @@ div.col.s6.pv li{
     padding-top: 0.9%;
 }
 
-div.row.QS img{
-    width: 500px; padding-top: 1%;
+/* Principios, valores y objetivos */
+
+.quienessomos{
+    font-weight: bold;
 }
+
