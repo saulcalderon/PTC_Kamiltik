@@ -15,11 +15,11 @@ Commerce::headerTemplate();
 
 <!-- Misión y Visión -->
 <div class="row MV">
-    <div class="col s6 center">
+    <div class="col s12 l6 m6 center">
         <h1>Visión</h1>
         <p>"Ser el Coffee Shop salvadoreño preferido a nivel internacional por su calidad de café gourmet y su servicio personalizado."</p>
     </div>
-    <div class="col s6 center"> 
+    <div class="col s12 l6 m6 center"> 
         <h1>Misión</h1>
         <p>"Posicionarnos como la mejor cadena de café Gourmet más admirada y representativa de los salvadoreños a nivel global."</p>
     </div>
