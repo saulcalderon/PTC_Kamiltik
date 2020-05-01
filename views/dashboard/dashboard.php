@@ -38,70 +38,23 @@ Dashboard::headerTemplate('Dashboard','Dashboard');
 
     <!--barras-->
     <div class="row wow fadeIn">
-
-      <!--Grid column-->
-      <div class="col-md-9 mb-4">
-
-        <!--Card-->
-        <div class="card">
-
-          <!--Card content-->
-          <div class="card-body">
-
-            <canvas id="myChart">lineas</canvas>
-
+        <div class="col-md-9 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <canvas id="myChart">lineas</canvas>
+            </div>
           </div>
-
         </div>
-        <!--/.Card-->
-
-      </div>
-
-
-      <!--Grid column-->
-      <div class="col-md-3 mb-5">
-
-        <!--Card-->
-        <div class="card m-4">
-
-          <!-- Card header -->
-          <div class="card-header text-center">
-            Pie chart
-          </div>
-
-          <!--Card content-->
-          <div class="card-body">
-
-            <canvas id="pieChart"></canvas>
-
-          </div>
-
-        </div>
-        <!--/.Card-->
-
-
-        <!--Card content-->
-
-
-      </div>
-      <!--/.Card-->
-
-
+      <!--grafico de pie-->
+		<div class="col-md-3 mb-5">
+			<div class="card m-2">
+				<div class="card-body">
+					<canvas id="pieChart"></canvas>
+				</div>
+			</div>
+		</div>
     </div>
-
-  </div>
-  <!--Grid column-->
-
-  </div>
-  <!--Grid row-->
-
-
-  <!--/.Card-->
-
-  </div>
-  <!--Grid column-->
-
-  </div>
+</div>
 
 
   <!--Grid row-->
@@ -246,5 +199,5 @@ Dashboard::headerTemplate('Dashboard','Dashboard');
 </main>
 <!--Main layout-->
 <?php
-Dashboard::footerTemplate('pt-4');
+Dashboard::footerTemplate('pt-4','principal.js');
 ?>

@@ -14,14 +14,14 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
       <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-        <button type="button" class="btn btn-success btn-rounded">Success</button>
+        <button type="button" class="btn btn-success btn-lg my-0 p" data-toggle="modal" data-target="#modalContactForm">Success</button>
         </h4>
 
         <form class="d-flex justify-content-center">
           <!-- Default input -->
 
           <input type="search" placeholder="Que estas buscando" aria-label="Search" class="form-control">
-          <button class="btn btn-dark btn-sm my-0 p" type="submit">
+          <button class="btn btn-dark btn-lg my-0 p" type="submit">
             <i class="fas fa-search"></i>
           </button>
 

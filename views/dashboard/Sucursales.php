@@ -14,7 +14,110 @@ Dashboard::headerTemplate('Sucursales','Sucursales');
       <!--Card content-->
       <div class="card-body d-sm-flex justify-content-between">
 
-        <h4 class="mb-2 mb-sm-0 pt-1">
+	  	<h4 class="mb-2 mb-sm-0 pt-1">
+			<button type="button" class="btn btn-success btn-lg my-0 p" data-toggle="modal" data-target="#btnagregar">Agregar Sucursal</button>
+			<div class="modal fade" id="btnagregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                      aria-hidden="true">
+                      <!--encabezado del modal-->  
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content p-4">
+                          <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Agregar Surcursal</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <!--contenido del modal-->
+                          <section class="mb-4">
+                              <div class="row">
+                                  <div class="col-md-12 mb-md-0 mb-8">
+                                      <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Nombre de la sucursal</label>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="email" name="email" class="form-control">
+                                                      <label for="email" class="">Teléfono</label>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+
+                                            <!--Grid row-->
+                                              <div class="row">
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Dirección</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+													<div class="md-form mb-0">
+														<input type="text" id="name" name="name" class="form-control">
+														<label for="name" class="">Celular</label>
+													</div>
+                                                  </div>
+                                              </div>
+
+                                              </div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="md-form mb-0">
+														<div class="input-group">
+															<div class="custom-file">
+																<input type="file" class="custom-file-input" id="inputGroupFile01"
+																aria-describedby="inputGroupFileAddon01">
+																<label class="custom-file-label" for="inputGroupFile01">Imagen</label>
+															</div>
+														</div>
+													</div>
+												</div>
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-2">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Sucursal favorita</option>
+                                                      <option value="1">Sucursal 1</option>
+                                                      <option value="2">Sucursal 2</option>
+                                                      <option value="3">Sucursal 3</option>
+                                                      <option value="4">Sucursal 4</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+											  </div>
+											  
+											
+											<div class="col-md-6">
+                                                  <div class="md-form mb-0">
+													<div class="md-form mb-0">
+														<input type="text" id="name" name="name" class="form-control">
+														<label for="name" class="">Celular</label>
+													</div>
+                                                  </div>
+                                              </div>
+											</div>
+										</div>
+									</form>
+								</div>
+									
+							</section>
+							<div class="modal-footer d-flex justify-content-center">
+										<button class="btn btn-unique">Agregar Sucursal <i class="fas fa-paper-plane-o ml-1"></i></button>
+									</div>
+											</div>
+										</div>
+									</div>
+								
+							</a>
         </h4>
 
         <form class="d-flex justify-content-center">
@@ -74,35 +177,104 @@ Dashboard::headerTemplate('Sucursales','Sucursales');
                       <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                       aria-hidden="true">
                       <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
+                      <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content p-4">
                           <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Estado del pedido</h4>
+                            <h4 class="modal-title w-100 font-weight-bold">Modoficar Surcursal</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
                           <!--contenido del modal-->
+                          <section class="mb-4">
+                              <div class="row">
+                                  <div class="col-md-12 mb-md-0 mb-8">
+                                      <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Nombre de la sucursal</label>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="email" name="email" class="form-control">
+                                                      <label for="email" class="">Teléfono</label>
+                                                  </div>
+                                              </div>
 
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="inputGroupSelect01">Opciones</label>
+                                          </div>
+
+                                            <!--Grid row-->
+                                              <div class="row">
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Dirección</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+													<div class="md-form mb-0">
+														<input type="text" id="name" name="name" class="form-control">
+														<label for="name" class="">Celular</label>
+													</div>
+                                                  </div>
+                                              </div>
+
+                                              </div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="md-form mb-0">
+														<div class="input-group">
+															<div class="custom-file">
+																<input type="file" class="custom-file-input" id="inputGroupFile01"
+																aria-describedby="inputGroupFileAddon01">
+																<label class="custom-file-label" for="inputGroupFile01">Imagen</label>
+															</div>
+														</div>
+													</div>
+												</div>
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-2">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Sucursal favorita</option>
+                                                      <option value="1">Sucursal 1</option>
+                                                      <option value="2">Sucursal 2</option>
+                                                      <option value="3">Sucursal 3</option>
+                                                      <option value="4">Sucursal 4</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+											  </div>
+											  
+											
+											<div class="col-md-6">
+                                                  <div class="md-form mb-0">
+													<div class="md-form mb-0">
+														<input type="text" id="name" name="name" class="form-control">
+														<label for="name" class="">Celular</label>
+													</div>
+                                                  </div>
+                                              </div>
+											</div>
+										</div>
+									</form>
+								</div>
+									
+							</section>
+							<div class="modal-footer d-flex justify-content-center">
+                              <button class="btn btn-unique">Modificar Sucursal<i class="fas fa-paper-plane-o ml-1"></i></button>
                             </div>
-                            <select class="browser-default custom-select" id="inputGroupSelect01">
-                              <option selected>Escoge...</option>
-                              <option value="1">Empleado</option>
-                              <option value="2">Gerente</option>
-                              <option value="3">Motorista</option>
-                            </select>
-                          </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-                          </div>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
+                           	 </div>
+                          		</div>
+                        	</div>
+                    	</div>
                     </a>
                   </td>
                   <!--termina el modal-->

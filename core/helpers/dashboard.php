@@ -36,7 +36,7 @@ class Dashboard
               <!-- Users Guides -->
               <a class="navbar-nav waves-effect mr-4" href="#">
                 <strong class="white-text">
-                  <p class="h3">'.$title2.'</p>
+                  <p class="h3 text-dark" >'.$title2.'</p>
                 </strong>
               </a>
         
@@ -139,12 +139,6 @@ class Dashboard
         <div class="footer-copyright py-3">
           <a href="#" target="_blank"> 2020 Copyright © The Coffe Cup</a>
         </div>
-        <!--/.Copyright-->
-      
-      
-      
-     
-      
       <!-- JQuery -->
       <script type="text/javascript" src="../../resources/Js/jquery-3.4.1.min.js"></script>
       <!-- Bootstrap tooltips -->
@@ -155,6 +149,8 @@ class Dashboard
       <script type="text/javascript" src="../../resources/Js/mdb.min.js"></script>
       <!-- Initializations -->
       <script type="text/javascript" src="../../resources/Js/dashboard.js"></script>
+      <!-- algo -->
+
 
           </footer> 
         </body>

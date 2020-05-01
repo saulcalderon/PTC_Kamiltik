@@ -73,7 +73,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
                         aria-hidden="true">
 
                             <!--contenido del modal-->
-                            <div class="modal-dialog"  role="document">
+                            <div class="modal-dialog modal-lg"  role="document">
                               <div class="modal-content p-4">
                                 <div class="modal-header text-center">
                                   <h4 class="modal-title w-100 font-weight-bold">Modificacion de clientes</h4>
@@ -188,7 +188,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
                         <div class="modal fade" id="modalContactForm1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                         aria-hidden="true">
                         <!--encabezado del modal-->  
-                        <div class="modal-dialog"  role="document">
+                        <div class="modal-dialog modal-lg"  role="document">
                           <div class="modal-content p-4">
                             <div class="modal-header text-center">
                               <h4 class="modal-title w-100 font-weight-bold">Seguro de lo que haces?</h4>

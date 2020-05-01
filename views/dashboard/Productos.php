@@ -69,11 +69,11 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Disponible</td>
                     <td> 
                       <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"></a>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a>
                       <div class="modal fade justify-content-center" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                       aria-hidden="true">
                       <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
+                      <div class="modal-dialog .modal-lg" role="document">
                         <div class="modal-content p-4">
                           <div class="modal-header text-center">
                             <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
@@ -162,7 +162,7 @@ Dashboard::headerTemplate('Productos','Productos');
                       <div class="modal fade" id="modalContactForm1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                       aria-hidden="true">
                       <!--encabezado del modal-->  
-                      <div class="modal-dialog"  role="document">
+                      <div class="modal-dialog "  role="document">
                         <div class="modal-content p-4">
                           <div class="modal-header text-center">
                             <h4 class="modal-title w-100 font-weight-bold">Seguro de lo que haces?</h4>
@@ -199,7 +199,7 @@ Dashboard::headerTemplate('Productos','Productos');
 
                     <td>
                        <!--boton para mostrar el modal-->
-                       <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                        <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                        aria-hidden="true">
                       
@@ -218,7 +218,7 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Disponible</td>
 
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -233,7 +233,7 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Disponible</td>
 
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -248,7 +248,7 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Disponible</td>
 
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -263,7 +263,7 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Disponible</td>
 
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -278,7 +278,7 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Disponible</td>
 
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
