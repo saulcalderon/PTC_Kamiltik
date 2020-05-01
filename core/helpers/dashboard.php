@@ -4,7 +4,7 @@
 */
 class Dashboard
 {
-    public static function headerTemplate()
+    public static function headerTemplate($title,$title2)
     {
         ini_set('date.timezone', 'America/El_Salvador');
         print('
@@ -14,7 +14,7 @@ class Dashboard
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>The Coffe Cup | Gestión</title>
+        <title>The Coffe Cup | '.$title.'</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
         <!-- Bootstrap core CSS -->
@@ -26,7 +26,6 @@ class Dashboard
         
         <link href="../../resources/css/style.css" rel="stylesheet" type="text/css">
         
-        
         <head>
         
         
@@ -37,7 +36,7 @@ class Dashboard
               <!-- Users Guides -->
               <a class="navbar-nav waves-effect mr-4" href="#">
                 <strong class="white-text">
-                  <p class="h3">Manuales</p>
+                  <p class="h3">'.$title2.'</p>
                 </strong>
               </a>
         
@@ -104,22 +103,22 @@ class Dashboard
               <!-- Sidebar -->
         
               <div class="list-group list-group-flush py-3">
-                <a href="#" class="list-group-item waves-effect mb-2 active">
+                <a href="dashboard.php" class="list-group-item waves-effect mb-2 active">
                   <i class="fas fa-chart-pie mr-3"></i>Dashboard
                 </a>
-                <a href="#" class="list-group-item waves-effect mb-2 fondo white-text">
+                <a href="facturacion.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-money-bill-alt mr-3"></i>Facturación</a>
-                <a href="#" class="list-group-item waves-effect mb-2 fondo white-text">
+                <a href="Productos.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-coffee mr-3"></i>Productos</a>
-                <a href="#" class="list-group-item waves-effect mb-2 fondo white-text">
+                <a href="Sucursales.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-map mr-3"></i>Sucursales</a>
-                <a href="#" class="list-group-item waves-effect mb-2 fondo white-text">
+                <a href="Proveedores.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-shopping-cart mr-3"></i>Proveedores</a>
-                <a href="#" class="list-group-item waves-effect mb-2 fondo white-text">
+                <a href="Entradas.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-newspaper mr-3"></i>Entradas</a>
-                <a href="#" class="list-group-item waves-effect mb-2 fondo white-text">
+                <a href="Clientes.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-users mr-3"></i>Clientes</a> 
-                <a href="#" class="list-group-item waves-effect mb-2 fondo white-text">
+                <a href="Usuarios.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-user mr-3"></i>Usuarios</a>
               </div>
         
@@ -130,11 +129,11 @@ class Dashboard
 
     }
 
-    public static function footerTemplate($controller)
+    public static function footerTemplate($fixed)
     {
         print('
         <!--Footer-->
-        <footer class="page-footer text-center font-small rgba-black-strong mt-4 wow fadeIn">
+        <footer class="page-footer text-center font-small rgba-black-strong mt-4 wow fadeIn '.$fixed.'">
       
         <!--Copyright-->
         <div class="footer-copyright py-3">
@@ -142,9 +141,9 @@ class Dashboard
         </div>
         <!--/.Copyright-->
       
-      </footer>
       
-      </body>
+      
+     
       
       <!-- JQuery -->
       <script type="text/javascript" src="../../resources/Js/jquery-3.4.1.min.js"></script>
@@ -156,7 +155,9 @@ class Dashboard
       <script type="text/javascript" src="../../resources/Js/mdb.min.js"></script>
       <!-- Initializations -->
       <script type="text/javascript" src="../../resources/Js/dashboard.js"></script>
-      
+
+          </footer> 
+        </body>
       </html>
         ');
     }
