@@ -3,16 +3,20 @@ require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate();
 ?>
 <!-- Contenido principal del documento -->
+
+<!-- Apartado tema -->
 <div class="cabecera center">
     <h1 class="margin-0 padd-10 white-text">Contacto</h1>
 </div>
+
+<!-- Apartado tabs -->
 <ul id="tabs-swipe-demo" class="tabs center">
     <li class="tab col s3"><a href="#test-swipe-1">Ayúdanos a mejorar</a></li>
     <li class="tab col s3"><a href="#test-swipe-2">Adquiere un franquicia</a></li>
     <li class="tab col s3"><a href="#test-swipe-3">Otros servicios</a></li>
 </ul>   
 
-<!-- Primera parte (Ayudanós a mejorar) -->
+<!-- Apartado primera parte (Ayudanós a mejorar) -->
 <div id="test-swipe-1">
     <div class="row">
         <div class="col l12 AAM"></div>
@@ -48,7 +52,7 @@ Commerce::headerTemplate();
     </div>
 </div>
 
-<!-- Adquiere una franquicia -->
+<!-- Apartado adquiere una franquicia -->
 <div id="test-swipe-2">
     <div class="row">
         <div class="col l6 s12">
@@ -73,7 +77,7 @@ Commerce::headerTemplate();
     </div>
 </div>
 
-<!-- Otros servicios -->
+<!-- Apartado otros servicios -->
 <div id="test-swipe-3">
 <div class="row">
         <div class="col l6 s12">
@@ -90,7 +94,7 @@ Commerce::headerTemplate();
             <div class="card col 16 s10">
                 <div class="card-content">
                     <span class="card-title">Una experiencia inolvidable</span>
-                    <p>Un evento inolvidable merece el mejor sabor 100% salvadoreño. The Coffee Cup, te invitamos a solicitar más información a: thecoffeecup@qualitygrains.com.sv</p>
+                    <p>Un evento inolvidable merece el mejor sabor 100% salvadoreño. The Coffee Cup, te invitamos a solicitar más información a: thecoffeecup</p>
                 </div>
             </div>
             <div class="col s1"></div>

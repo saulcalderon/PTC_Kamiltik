@@ -140,6 +140,9 @@ nav ul li{
 .margin-5{
     margin: 10px;
 }
+div.footer-copyright.sub{
+    background-color: #2A2A2A;
+}
 /*-------------------- Modal Clientes ------------------*/
 .cabecera{
     background-color: #FF4A4A;
@@ -171,13 +174,9 @@ nav ul li{
 
 /*---------------------------------------------------*/
 
-div.footer-copyright.sub{
-    background-color: #2A2A2A;
-}
+/*----------------- Main de contacto ----------------*/
 
-/* Main de contacto */
-
-/* Navegación */
+/*---------------- Navegación del tab ---------------*/
 ul#tabs-swipe-demo.tabs.center{
     background-color: #2A2A2A;
 }
@@ -195,7 +194,7 @@ ul#tabs-swipe-demo.tabs.center a:hover{
     background-color: #FF4A4A;
 }
 
-/* Ayúdanos a mejorar */
+/*------------- Apartado ayúdanos a mejorar ----------------*/
 .l12.AAM{
     margin-bottom: 2%;
 }
@@ -204,14 +203,13 @@ ul#tabs-swipe-demo.tabs.center a:hover{
     margin-top: 2%;
 }
 
-/* Botón */
 a.waves-effect.waves-light.btn{
     background-color: #F3BA00;
     border-radius: 0.5em;
     margin-top: 5%;
 }
 
-/* Adentro adquiere franquicia */
+/*----------- Apartado de adquiere franquicia ---------------*/
 
 .franquiciaimagen{
     margin-bottom: 4%;
@@ -221,7 +219,7 @@ a.waves-effect.waves-light.btn{
     margin-bottom: 2%;
 }
 
-/* Adentro Otros Servicios */
+/*--------------- Apartado de otros Servicios ---------------*/
 
 .OSimagen{
     margin-bottom: 3%;
@@ -231,23 +229,15 @@ a.waves-effect.waves-light.btn{
     margin-bottom: 20%;
 }
 
-/* Sucursales */
+/*----------------------- Sucursales ------------------------*/
 
-p.Parrafo{
-    color: white;
-}
-
-p.Tema{
-    color: #FF4A4A;
-}
-
-/* Mapa */
+/*------------------- Mapa sucursales -----------------------*/
 
 iframe.mapa{
     margin-top: 1%;
 }
 
-/* Cards de sucuarsales */
+/*------------------- Cards de sucursales -------------------*/
 
 div.card.borde{
     border-radius: 1em;
@@ -266,7 +256,7 @@ span.card-title.borde{
     color: white;
 }
 
-/* Cards reaveal */
+/*------ Cards reaveal (Lo que esta adentro de los cards) ----*/
 
 div.card-reveal.color{
     background-color: #303030;
@@ -280,9 +270,17 @@ i.salir{
     color: #FF4A4A;
 }
 
-/* ¿Quienes somos */
+p.Parrafo{
+    color: white;
+}
 
-/* Imagen y ¿Quiénes somos? */
+p.Tema{
+    color: #FF4A4A;
+}
+
+/*----------------------- ¿Quiénes somos? ----------------------*/
+
+/*--------------------- Imagen y ¿Quiénes somos? ---------------*/
 
 p.IQS{
     padding-left: 10%; 
@@ -290,7 +288,7 @@ p.IQS{
     text-align: left;
 }
 
-/* Misión y Visión */
+/*------------------------- Misión y Visión --------------------*/
 
 div.row.MV{
     background-color: #FF4A4A; 
@@ -320,7 +318,7 @@ div.col.s6.pv li{
     padding-top: 0.9%;
 }
 
-/* Principios, valores y objetivos */
+/*-------------- Principios, valores y objetivos -----------------*/
 
 .quienessomos{
     font-weight: bold;
