@@ -16,6 +16,175 @@ Dashboard::headerTemplate('Productos','Productos');
       <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
+			<button type="button" class="btn btn-success btn-lg my-0 p" data-toggle="modal" data-target="#btnagregar">Agregar producto</button>
+			<div class="modal fade justify-content-center" id="btnagregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                      aria-hidden="true">
+                      <!--encabezado del modal-->  
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content p-4">
+                          <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Agregar Productos</h4>
+                            
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                            <!--contenido del modal-->
+							<section class="mb-4">
+                              <div class="row">
+                                  <!--Grid column-->
+                                  <div class="col-md-12 mb-md-0 mb-8">
+                                      <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                                          <!--Grid row-->
+                                          <div class="row">
+
+                                              <!--Grid column-->
+                                              <div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Nombre del producto</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-4">
+											  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Sucursal</option>
+                                                      <option value="1">Disponible</option>
+                                                      <option value="2">Inactivo</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+                                              	</div>
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<div class="input-group mb-3">
+															<select class="browser-default custom-select" id="inputGroupSelect01">
+															<option selected>Proveedor</option>
+															<option value="1">Disponible</option>
+															<option value="2">Inactivo</option>
+															</select>
+														</div>
+													</div>
+												</div>
+                                          </div>
+
+                                            <!--Grid row-->
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Descrpcion</label>
+                                                  </div>
+                                              </div>
+												<div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Estado del producto</option>
+                                                      <option value="1">Administrador</option>
+                                                      <option value="2">Gerente</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Estado de distribucion</option>
+                                                      <option value="1">Administrador</option>
+                                                      <option value="2">Gerente</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+											  </div>
+
+                                              </div>
+                                              
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Precio</label>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Categoria</option>
+                                                      <option value="1">Administrador</option>
+                                                      <option value="2">Gerente</option>
+                                                    </select>
+                                                  </div>
+												  </div>
+											</div>
+                                              
+
+                                              </div>
+
+
+                                          <!--Grid row-->
+                                          <div class="row">
+										  
+											<div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                	<div class="input-group">
+                                                    	<div class="custom-file">
+                                                      		<input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                     		 aria-describedby="inputGroupFileAddon01">
+                                                    	  	<label class="custom-file-label" for="inputGroupFile01">Imagen</label>
+                                                    	</div>
+                                                    </div>
+                                                </div>
+											</div>
+											<div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                	<div class="input-group">
+                                                    	<div class="custom-file">
+                                                      		<input type="file" class="custom-file-input" id="inputGroupFile02"
+                                                     		 aria-describedby="inputGroupFileAddon01">
+                                                    	  	<label class="custom-file-label" for="inputGroupFile02">Imagen</label>
+                                                    	</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											</div>
+											<div class="row">
+											<div class="col-md-12">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Cantidad</label>
+                                                  </div>
+                                              </div>
+											</div>
+
+											
+                                      </form>
+
+                                  </div>
+
+                              </div>
+
+                            </section>
+
+
+                              <div class="modal-footer d-flex justify-content-center">
+                              <button class="btn btn-unique">Agregar producto<i class="fas fa-paper-plane-o ml-1"></i></button>
+                            </div>
+                            </div>
+
+                          	</div>
+                        </div>
+                    
+                      </a>
         </h4>
 
         <form class="d-flex justify-content-center">
@@ -73,87 +242,170 @@ Dashboard::headerTemplate('Productos','Productos');
                       <div class="modal fade justify-content-center" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                       aria-hidden="true">
                       <!--encabezado del modal-->  
-                      <div class="modal-dialog .modal-lg" role="document">
+                      <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content p-4">
                           <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+                            <h4 class="modal-title w-100 font-weight-bold">Modificar Productos</h4>
                             
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <!--contenido del modal-->
-                          <div class="md-form input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text md-addon" id="material-addon1"></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Nombre del producto" aria-label="Username" aria-describedby="material-addon1">
-                          </div>
+                            <!--contenido del modal-->
+							<section class="mb-4">
+                              <div class="row">
+                                  <!--Grid column-->
+                                  <div class="col-md-12 mb-md-0 mb-8">
+                                      <form id="contact-form" name="contact-form" action="mail.php" method="POST">
 
-                            <!-- Material input -->
-                            <div class="md-form">
-                              <input type="number" id="numberExample" class="form-control">
-                              <label for="numberExample">Coloque la existencia</label>
-                            </div>
+                                          <!--Grid row-->
+                                          <div class="row">
 
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Opciones</label>
-                              </div>
-                              <select class="browser-default custom-select" id="inputGroupSelect01">
-                                <option selected>Descuentos...</option>
-                                <option value="1">10%</option>
-                                <option value="2">20%</option>
-                                <option value="3">30%</option>
-                                <option value="4">40%</option>
-                                <option value="5">50%</option>
-                                <option value="6">60%</option>
-                                <option value="7">70%</option>
-                                <option value="8">80%</option>
-                                <option value="9">90%</option>
-                              </select>
+                                              <!--Grid column-->
+                                              <div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Nombre del producto</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
 
-                              <div class="md-form input-group mb-3">
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                <label for="numberExample">Precio C/U</label>
-                                <div class="input-group-append">
-                                  <span class="input-group-text md-addon"></span>
-                                </div>
-                              </div>
-                          
-                              <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <label class="input-group-text" for="inputGroupSelect01">Opciones</label>
-                                </div>
-                                <select class="browser-default custom-select" id="inputGroupSelect01">
-                                  <option selected>Estado...</option>
-                                  <option value="1">En Stock</option>
-                                  <option value="2">Pocas Unidades</option>
-                                  <option value="3">Agotado</option>
-                                </select>
-                              </div>
-                          <hr>
+                                              <!--Grid column-->
+                                              <div class="col-md-4">
+											  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Sucursal</option>
+                                                      <option value="1">Disponible</option>
+                                                      <option value="2">Inactivo</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+                                              	</div>
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<div class="input-group mb-3">
+															<select class="browser-default custom-select" id="inputGroupSelect01">
+															<option selected>Proveedor</option>
+															<option value="1">Disponible</option>
+															<option value="2">Inactivo</option>
+															</select>
+														</div>
+													</div>
+												</div>
+                                          </div>
+
+                                            <!--Grid row-->
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Descrpcion</label>
+                                                  </div>
+                                              </div>
+												<div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Estado del producto</option>
+                                                      <option value="1">Administrador</option>
+                                                      <option value="2">Gerente</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-4">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Estado de distribucion</option>
+                                                      <option value="1">Administrador</option>
+                                                      <option value="2">Gerente</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+											  </div>
+
+                                              </div>
                                               
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="inputGroupSelect01">Opciones</label>
-                            </div>
-                            <select class="browser-default custom-select" id="inputGroupSelect01">
-                              <option selected>Tipo de Producto...</option>
-                              <option value="1">Biciletas</option>
-                              <option value="2">Caminadoras</option>
-                              <option value="3">PESAS</option>
-                            </select>
-                          </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-unique ">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-                          </div>
-                          </div>
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Precio</label>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Categoria</option>
+                                                      <option value="1">Administrador</option>
+                                                      <option value="2">Gerente</option>
+                                                    </select>
+                                                  </div>
+												  </div>
+											</div>
+                                              
 
+                                              </div>
+
+
+                                          <!--Grid row-->
+                                          <div class="row">
+										  
+											<div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                	<div class="input-group">
+                                                    	<div class="custom-file">
+                                                      		<input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                     		 aria-describedby="inputGroupFileAddon01">
+                                                    	  	<label class="custom-file-label" for="inputGroupFile01">Imagen</label>
+                                                    	</div>
+                                                    </div>
+                                                </div>
+											</div>
+											<div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                	<div class="input-group">
+                                                    	<div class="custom-file">
+                                                      		<input type="file" class="custom-file-input" id="inputGroupFile02"
+                                                     		 aria-describedby="inputGroupFileAddon01">
+                                                    	  	<label class="custom-file-label" for="inputGroupFile02">Imagen</label>
+                                                    	</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											</div>
+											<div class="row">
+											<div class="col-md-12">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Precio</label>
+                                                  </div>
+                                              </div>
+											</div>	  
+											
+                                      </form>
+
+                                  </div>
+
+                              </div>
+
+                            </section>
+
+
+                              <div class="modal-footer d-flex justify-content-center">
+                              <button class="btn btn-unique">Modificar productos<i class="fas fa-paper-plane-o ml-1"></i></button>
+                            </div>
+                            </div>
+
+                          	</div>
                         </div>
-                      </div>
-                    </div>
-                    </a>
+                    
+                      </a>
                   </td>
                   <!--termina el modal-->
                   <td>

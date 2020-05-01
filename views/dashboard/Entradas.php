@@ -16,6 +16,92 @@ Dashboard::headerTemplate('Entradas','Entradas');
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
+          <button type="button" class="btn btn-success btn-lg my-0 p" data-toggle="modal" data-target="#btnagregar">Agregar Entradas</button>
+		  <div class="modal fade" id="btnagregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+
+                            <!--contenido del modal-->
+                            <div class="modal-dialog"  role="document">
+                              <div class="modal-content p-4">
+                                <div class="modal-header text-center">
+                                  <h4 class="modal-title w-100 font-weight-bold">Agregar entradas</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <!--contenido del modal-->
+                                <section class="mb-4">
+                              <div class="row">
+                                  <!--Grid column-->
+                                  <div class="col-md-12 mb-md-0 mb-8">
+                                      <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                                          <!--Grid row-->
+                                          <div class="row">
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Titulo</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>Tipo de entrada</option>
+                                                      <option value="1">Cafe caliente</option>
+                                                      <option value="2">Cafe frio</option>
+                                                      <option value="2">Postre</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+                                              </div>
+
+                                              <div class="col-md-12">
+                                                  <div class="md-form mb-0">
+                                                  <div class="input-group mb-3">
+                                                    <select class="browser-default custom-select" id="inputGroupSelect01">
+                                                      <option selected>estado</option>
+                                                      <option value="1">Cafe caliente</option>
+                                                      <option value="2">Cafe frio</option>
+                                                      <option value="2">Postre</option>
+                                                    </select>
+                                                  </div>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+
+                                            <!--Grid row-->
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <div class="md-form mb-0">
+                                                    <div class="md-form">
+                                                      <textarea id="form7" class="md-textarea form-control" rows="3"></textarea>
+                                                      <label for="form7">Descripcion</label>
+                                                    </div>
+                                                  </div>
+                                                </div>                                   
+                                              </div>
+                                      </form>
+
+                                  </div>
+
+                              </div>
+
+                            </section>
+                                  <div class="modal-footer d-flex justify-content-center">
+                                  <button class="btn btn-unique">Agregar entrada <i class="fas fa-paper-plane-o ml-1"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          </a>
           </h4>
 
           <form class="d-flex justify-content-center">
@@ -146,10 +232,8 @@ Dashboard::headerTemplate('Entradas','Entradas');
 
                             </section>
                                   <div class="modal-footer d-flex justify-content-center">
-                                  <button class="btn btn-unique">Agregar entrada <i class="fas fa-paper-plane-o ml-1"></i></button>
+                                  <button class="btn btn-unique">Modificar entrada <i class="fas fa-paper-plane-o ml-1"></i></button>
                                 </div>
-                                </div>
-    
                               </div>
                             </div>
                           </div>
