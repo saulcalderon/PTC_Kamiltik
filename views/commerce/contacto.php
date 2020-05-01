@@ -10,7 +10,7 @@ Commerce::headerTemplate();
     <li class="tab col s3"><a href="#test-swipe-1">Ayúdanos a mejorar</a></li>
     <li class="tab col s3"><a href="#test-swipe-2">Adquiere un franquicia</a></li>
     <li class="tab col s3"><a href="#test-swipe-3">Otros servicios</a></li>
-</ul>
+</ul>   
 
 <!-- Primera parte (Ayudanós a mejorar) -->
 <div id="test-swipe-1">
@@ -65,7 +65,7 @@ Commerce::headerTemplate();
             <div class="card col 16 s10">
                 <div class="card-content">
                     <span class="card-title">Emprende una franquicia</span>
-                    <p>Una forma de iniciar tu emprendimiento es a través de una franquicia The Coffee Cup. Una franquicia es un modelo de negocio de éxito. Con el sistema de franquicia se cuenta con asesoramiento desde el primer día, una capacitación integral de 3 meses, donde se le enseña la operación y se le brinda un apoyo completo durante y después de la apertura. Entrenamos a todo el equipo de franquicias, baristas, junior, supervisores y encargas de tiendas, garantizando que los productos y el servicio sean estandarizado en todos los The Coffee Cup de la región.Emprendedor si deseas obtener más detalles sobre las franquicias The Coffee Cup, te invitamos a solicitar más información a: thecoffeecup@qualitygrains.com.sv</p>
+                    <p>Una forma de iniciar tu emprendimiento es a través de una franquicia The Coffee Cup. Una franquicia es un modelo de negocio de éxito. Con el sistema de franquicia se cuenta con asesoramiento desde el primer día, una capacitación integral de 3 meses, donde se le enseña la operación y se le brinda un apoyo completo durante y después de la apertura. Entrenamos a todo el equipo de franquicias, baristas, junior, supervisores y encargas de tiendas, garantizando que los productos y el servicio sean estandarizado en todos los The Coffee Cup de la región.Emprendedor si deseas obtener más detalles sobre las franquicias The Coffee Cup, te invitamos a solicitar más información a: thecoffeecup@qualitygrains</p>
                 </div>
             </div>
             <div class="col s1"></div>

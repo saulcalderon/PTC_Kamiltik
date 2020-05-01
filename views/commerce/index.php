@@ -56,9 +56,7 @@ Commerce::headerTemplate();
                                 <label class="ftf-medium">Ciudad</label>
                             </div>
                         </div>
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
+                        <button class="btn btn-large waves-effect waves-light red" type="submit" name="action">Buscar sucursal</button>
                     </form>
                 </div>
             </div>

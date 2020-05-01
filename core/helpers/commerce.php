@@ -68,7 +68,7 @@ class Commerce
                 <li><a class="sidenav-close" href=""><i class="material-icons right">close</i></a></li>
                 <li><a href="menu.php">Menú</a></li>
                 <li><a href="sucursales.php">Sucursales</a></li>
-                <li><a href="quienesSomos.php">Promociones</a></li>
+                <li><a href="promociones.php">Promociones</a></li>
                 <li><div class="divider"></div></li>
                 <li><a href="#modal1" class="modal-trigger">Regístrate como cliente</a></li>
                 <li><a href="index.php">Buscar sucursal más cercana</a></li>
