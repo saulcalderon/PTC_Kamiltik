@@ -22,7 +22,6 @@ class Commerce
         <link rel="stylesheet" href="../../resources/css/swiper.css">
         <link rel="stylesheet" href="../../resources/css/materialize.css">
         <link rel="stylesheet" href="../../resources/css/commerce.css">
-        <link rel="stylesheet" type="text/css" href="../../resources/css/contacto.css">
         <!-- Llamada a un archivo tipo icono -->
         <!--<link rel="shortcut icon" href="" type="image/x-icon">--> 
     </head>
