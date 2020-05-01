@@ -1,0 +1,70 @@
+body{
+  overflow-x: hidden;
+}
+
+
+footer{
+  width: 100%;
+}
+.coffe-color{
+  background-color: #FF3547;
+}
+
+.a-special{
+  text-decoration: none;
+  color: white;
+}
+
+a.special:hover{
+  transition: 05s;
+}
+
+
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 1000px;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 650px;
+  }
+}
+
+.rgba-gradient {
+  background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(9, 2, 17, 0.4) 100%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(9, 2, 17, 0.4) 100%));
+  background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(9, 2, 17, 0.4) 100%);
+}
+
+.card {
+  background-color: rgba(126, 123, 215, 0.2);
+}
+
+.md-form label {
+  color: #ffffff;
+}
+
+h6 {
+  line-height: 1.7;
+}
+
+.back-img{
+  background-image: url('../img/coffee.png'); 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  background-position: center center;
+}

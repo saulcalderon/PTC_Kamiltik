@@ -1,121 +1,147 @@
 <!DOCTYPE html>
-<html lang="es">
-  
-    <title>Index | Profitz</title>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Coffe cup | Inicio</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="../../resources/Css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../resources/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="../../resources/Css/mdb.min.css" rel="stylesheet">
+  <link href="../../resources/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="../../resources/Css/style.min.css" rel="stylesheet">
+  <link href="../../resources/css/style.min.css" rel="stylesheet">
   <!---->
-  <link href="../../resources/Css/index.css" rel="stylesheet" type="text/css"> 
-  <head>
-    
+  <link href="../../resources/css/index.css" rel="stylesheet" type="text/css">
+</head>
 
+<body>
 
-
-
-  </head>
-
-  
-  <body>
-    
-      <div class="modal-dialog text-center col-md-12 h-100  w-100 p-3">
-        <div class="col-sm-12 ">
-          <div class="modal-content">
-
-            <div class="card">
-
-              <h5 class="card-header info-color white-text text-center  py-4">
-                <strong>Sign in</strong>
-              </h5>
-
-              <!--Card content-->
-              <div class="card-body px-lg-5 pt-0">
-
-                <!-- Form -->
-                <form class="text-center" style="color: #757575;" action="#!">
-
-                  <!-- Email -->
+  <header>
+    <!-- Full Container -->
+    <div class="view back-img">
+      <!-- Mask -->
+      <div class="mask rgba-gradient align-items-center">
+        <!-- Content -->
+        <div class="container">
+          <div class="row mt-5">
+            <!--Login Form-->
+            <div class="col-md-6 col-xl-5 mb-4">
+              <!--Form-->
+              <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                <div>
+                  <img src="../../resources/img/logo_coffe_cup.png" alt="" class="card-img-top">
+                </div>
+                <div class="card-body">
+                  <!--Header-->
+                  <div class="text-center">
+                    <h5 class="white-text">Inicia sesión para administrar el sitio</h5>
+                    <hr class="hr-light">
+                  </div>
+                  <!--Body-->
                   <div class="md-form">
-                    <input type="email" id="materialLoginFormEmail" class="form-control">
-                    <label for="materialLoginFormEmail">E-mail</label>
+                    <i class="fas fa-envelope prefix white-text active"></i>
+                    <input type="email" class="white-text form-control">
+                    <label class="active">Tu correo electrónico</label>
                   </div>
-
-                  <!-- Password -->
                   <div class="md-form">
-                    <input type="password" id="materialLoginFormPassword" class="form-control">
-                    <label for="materialLoginFormPassword">Contrasena</label>
+                    <i class="fas fa-lock prefix white-text active"></i>
+                    <input type="password" class="white-text form-control">
+                    <label class="active">Contraseña</label>
                   </div>
-
-                  <div class="d-flex justify-content-around">
-                    <div>
-                      <!-- Remember me -->
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
-                        <label class="form-check-label" for="materialLoginFormRemember">Recordar</label>
-                      </div>
-                    </div>
-                    <div>
-                      <!-- Forgot password -->
-                      <a href="RecuPass.html">Olvidaste tus credenciales?</a>
-                    </div>
+                  <div class="text-center mt-4">
+                      <a href="dashboard.php" class="btn coffe-color btn-lg active white-text" role="button" aria-pressed="true">Iniciar Sesión</a>
                   </div>
-
-                  <!-- Sign in button -->
-                  <a href="dashboard.php"><button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="button">Sign in</button></a>
-
-                  <!-- Register -->
-                  <p>Not a member?
-                    <a href="Register.html">Registrate</a>
-                  </p>
-
-                  <!-- Social login -->
-                  <p>Nuestras redes.</p>
-                  <a type="button" class="btn-floating btn-fb btn-sm">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a type="button" class="btn-floating btn-tw btn-sm">
-                    <i class="fab fa-twitter"></i>
-                  </a>
-                  <a type="button" class="btn-floating btn-li btn-sm">
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                  <a type="button" class="btn-floating btn-git btn-sm">
-                    <i class="fab fa-github"></i>
-                  </a>
-
-                </form>
-                <!-- Form -->
-
+                </div>
               </div>
-
+              <!--/.Form-->
             </div>
-        
+            <!--Back Link-->
+            <div class="col-md-6 mb-5 mt-md-0 mt-5 ml-auto white-text text-center text-md-left align-self-end">
+              <div class="row yellow-text">
+                <div class="col-md-1">
+                  <i class="fas fa-arrow-left fa-lg"></i>
+                </div>
+                <div class="col-md-6">
+                  <p class="h4">Volver al sitio público</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-      </div>  
-        <!-- Default form login -->
-     </body>
+      </div>
+      <!-- Mask-->
+    </div>
+    <!-- Full Container -->
+  </header>
 
-    <footer>  
-      <script type="text/javascript" src="../../resources/Js/dashboard.js" ></script>
-      <!-- JQuery -->
-      <script type="text/javascript" src="../../resources/Js/jquery-3.4.1.min.js"></script>
-      <!-- Bootstrap tooltips -->
-      <script type="text/javascript" src="../../resources/Js/popper.min.js"></script>
-      <!-- Bootstrap core JavaScript -->
-      <script type="text/javascript" src="../../resources/Js/bootstrap.min.js"></script>
-      <!-- MDB core JavaScript -->
-      <script type="text/javascript" src="../../resources/Js/mdb.min.js"></script>
-      <!-- Initializations -->
+  <footer class="z-depth-2">
+    <div class="row coffe-color white-text text-center">
+      <div class="col-md-4 mt-2">
+        <p>Dirección Principal</p>
+        <i class="fas fa-car"></i>
+        <p>km 13 1/2, Autopista
+          Comalapa, San Marcos</p>
+      </div>
 
-    </footer>
- 
+      <div class="col-md-4 mt-2">
+        <p>Contáctanos</p>
+
+        <div class="row ml-auto">
+          <div class="col-md-4">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="col-md-6">
+            <p>+503 2507-1300</p>
+          </div>
+        </div>
+
+        <div class="row ml-auto">
+          <div class="col-md-4">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="col-md-6">
+            <p>info@qualitygrains.com.sv</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mt-2">
+        <p>Redes Sociales</p>
+        <div>
+          <a href="#" type="button" class="btn-floating btn-fb btn-lg a-special">
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a href="#" type="button" class="btn-floating btn-tw btn-lg a-special">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" type="button" class="btn-floating btn-fb btn-lg a-special">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+        <p>The Coffe Cup Sv</p>
+      </div>
+    </div>
+    <div class="row font-small rgba-black-strong py-3 text-center">
+      <div class="col-md-12">
+        <a href="#" target="_blank" class="a-special"> 2020 Copyright © The Coffe Cup</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+<!-- JQuery -->
+<script type="text/javascript" src="../../resources/js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="../../resources/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="../../resources/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../../resources/js/mdb.min.js"></script>
+<!-- Initializations -->
+<script type="text/javascript" src="../../resources/js/dashboard.js"></script>
+
 </html>
-
-
-
