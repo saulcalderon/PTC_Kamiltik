@@ -162,10 +162,9 @@ nav ul li{
 
 .card .card-image .card-title {
     display: block;
-    
     word-break: break-word;
 }
-.static{
+.card-image .card-title.static{
     position: static;
 }
 
@@ -327,3 +326,6 @@ div.col.s6.pv li{
     font-weight: bold;
 }
 
+div.row.QS img{
+    width: 500px; padding-top: 1%;
+}
