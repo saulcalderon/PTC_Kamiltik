@@ -2,14 +2,16 @@
 require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate();
 ?>
+<!-- Contenido --> 
 <section>
     <div class="cabecera center">
         <h1 class="margin-0 padd-10 white-text">Noticias</h1>
     </div>
+    <!-- Cartas para las categorías de entradas -->
     <div class="container margin-10"> 
         <div class="row"> 
             <div class="col s12 m4">
-                <a href="quienes-somos.php">
+                <a href="quienes_somos.php">
                     <div class="card">
                         <div class="card-image">
                             <img src="../../resources/img/commerce/leyla.png">
@@ -53,7 +55,7 @@ Commerce::headerTemplate();
         </div>
     </div>
 </section>
-
+<!-- Final de noticias -->
 <?php
 Commerce::FooterTemplate();
 ?>

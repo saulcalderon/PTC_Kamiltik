@@ -63,7 +63,7 @@ class Commerce
                     </div> 
                 </nav>
             </div>
-            
+            <!-- Navegación en pantallas medianas y pequeñas -->
             <ul class="sidenav" id="mobile-demo">
                 <li><a class="sidenav-close" href=""><i class="material-icons right">close</i></a></li>
                 <li><a href="menu.php">Menú</a></li>
@@ -108,6 +108,7 @@ class Commerce
                                 </div>
                             </div>     
                         </div>
+                        <!-- Formulario para registro de cliente -->
                         <div class="col s12 l8 ">
                             <div class="row">
                                 <form class="col s12">

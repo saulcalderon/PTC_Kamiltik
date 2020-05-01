@@ -26,6 +26,7 @@ Commerce::headerTemplate();
             <h1 class="center">Nuestro productos</h1>
             <div class="row">
                 <div class="col s12 m4">
+                    <!-- Link para acceder la menú de la tienda -->
                     <a href="productos.php">
                         <div class="card">
                             <div class="card-image">
@@ -124,6 +125,7 @@ Commerce::headerTemplate();
             </div>
         </div>
     </section>
+    <!-- Final del menú -->
 <?php
 Commerce::FooterTemplate();
 ?>

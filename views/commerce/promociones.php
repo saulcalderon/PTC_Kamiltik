@@ -2,10 +2,12 @@
 require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate();
 ?>
+<!-- Contenido -->
 <section>
     <div class="cabecera center">
         <h1 class="margin-0 padd-10 white-text">Promociones</h1>
     </div>
+    <!-- Cards con información al hacer click -->
     <div class="container margin-10">
         <div class="row">
             <div class="col s12 m6 l4">
@@ -64,6 +66,7 @@ Commerce::headerTemplate();
         </div>
     </div>
 </section>
+<!-- Final de promociones -->
 <?php
 Commerce::FooterTemplate();
 ?>
