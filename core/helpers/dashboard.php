@@ -97,13 +97,13 @@ class Dashboard
         
               <!--Logo-->
               <div class="logo-wrapper waves-effect waves-light py-4 my-1">
-                <a href="#"><img src="http://www.thecoffeecup.com.sv/img/logo/logo_nav.png" class="img-fluid flex-center"></a>
+                <a href="dashboard.php"><img src="../../resources/img/logo_coffe_cup.png" class="img-fluid flex-center"></a>
               </div>
         
               <!-- Sidebar -->
         
               <div class="list-group list-group-flush py-3">
-                <a href="dashboard.php" class="list-group-item waves-effect mb-2 active">
+                <a href="dashboard.php" class="list-group-item waves-effect mb-2 fondo white-text">
                   <i class="fas fa-chart-pie mr-3"></i>Dashboard
                 </a>
                 <a href="facturacion.php" class="list-group-item waves-effect mb-2 fondo white-text">
