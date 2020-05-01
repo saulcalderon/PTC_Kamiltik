@@ -178,7 +178,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
                       <td>Escalon</td>
                       <td> 
                         <!--boton para mostrar el modal-->
-                        <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"></a>
+                        <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a>
                         <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                         aria-hidden="true">
 
@@ -333,7 +333,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
 
                       <td>
                          <!--boton para mostrar el modal-->
-                         <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"></a>
+                         <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a>
                       </td>
                       <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                     </tr>
@@ -347,7 +347,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
                       <td>Escalon</td>
 
                       <td> <!--boton para mostrar el modal-->
-                        <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                        <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                         </a></td>
                       <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                     </tr>
@@ -361,8 +361,8 @@ Dashboard::headerTemplate('Clientes','Clientes');
                       <td>Escalon</td>
 
                       <td> <!--boton para mostrar el modal-->
-                        <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"></a></td>
-                      <td><a class="btn-floating btn-sm btn-danger"><i class="fas fa-minus"></i></a></td>
+                        <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a></td>
+                      <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></td>
                     </tr>
                     <tr>
                       <th scope="row">5</th>
@@ -374,7 +374,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
                       <td>Escalon</td>
 
                       <td> <!--boton para mostrar el modal-->
-                        <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                        <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                         </td>
                       <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                     </tr>
@@ -388,7 +388,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
                       <td>Escalon</td>
 
                       <td> <!--boton para mostrar el modal-->
-                        <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"> 
+                        <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"> 
                       </a></td>
                       <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                     </tr>
@@ -402,7 +402,7 @@ Dashboard::headerTemplate('Clientes','Clientes');
                       <td>Escalon</td>
 
                       <td> <!--boton para mostrar el modal-->
-                        <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                        <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                       </a></td>
                       <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                     </tr>
@@ -433,5 +433,5 @@ Dashboard::headerTemplate('Clientes','Clientes');
 
  
   <?php
-Dashboard::footerTemplate('fixed-bottom');
+Dashboard::footerTemplate('pt-4');
 ?>

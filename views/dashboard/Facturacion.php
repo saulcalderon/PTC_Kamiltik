@@ -30,6 +30,7 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
       <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
+		<button type="button" class="btn btn-success btn-lg my-0 p" data-toggle="modal" data-target="#modalContactForm">Realizar factura</button>
         </h4>
 
         <form class="d-flex justify-content-center">
@@ -68,8 +69,8 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="col">Entregado</th>
                     <th scope="col">Cambio</th>
                     <th scope="col">Total</th>
-                    <th scope="col">boton 1</th>
-                    <th scope="col">boton 2</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,7 +85,7 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="row">$20</th>
                     <td> 
                       <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"></a>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a>
                       <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                       aria-hidden="true">
                       <!--encabezado del modal-->  
@@ -193,10 +194,10 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="row">$20</th>
                     <td>
                        <!--boton para mostrar el modal-->
-                       <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                      </a>
                     </td>
-                    <td><a class="btn-floating btn-sm btn-danger "><i class="fas fa-minus"></i></a></td>
+                    <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
@@ -208,53 +209,9 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="row">$20</th>
                     <th scope="row">$20</th>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
-                      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                      <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <!--contenido del modal-->
-                          <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                              <i class="fas fa-user prefix grey-text"></i>
-                              <input type="text" id="form34" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form34">Your name</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-envelope prefix grey-text"></i>
-                              <input type="email" id="form29" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form29">Your email</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-tag prefix grey-text"></i>
-                              <input type="text" id="form32" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form32">Subject</label>
-                            </div>
-                    
-                            <div class="md-form">
-                              <i class="fas fa-pencil prefix grey-text"></i>
-                              <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
-                              <label data-error="wrong" data-success="right" for="form8">Your message</label>
-                            </div>
-                    
-                          </div>
-                          <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
-                    <td><a class="btn-floating btn-sm btn-danger "><i class="fas fa-minus"></i></a></td>
+                    <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
@@ -266,12 +223,9 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="row">$20</th>
                     <th scope="row">$20</th>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
-                      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
-                    <td><a class="btn-floating btn-sm btn-danger"><i class="fas fa-minus"></i></a></td>
+                    <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
@@ -283,53 +237,9 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="row">$20</th>
                     <th scope="row">$20</th>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
-                      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                      <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <!--contenido del modal-->
-                          <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                              <i class="fas fa-user prefix grey-text"></i>
-                              <input type="text" id="form34" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form34">Your name</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-envelope prefix grey-text"></i>
-                              <input type="email" id="form29" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form29">Your email</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-tag prefix grey-text"></i>
-                              <input type="text" id="form32" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form32">Subject</label>
-                            </div>
-                    
-                            <div class="md-form">
-                              <i class="fas fa-pencil prefix grey-text"></i>
-                              <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
-                              <label data-error="wrong" data-success="right" for="form8">Your message</label>
-                            </div>
-                    
-                          </div>
-                          <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
-                    <td><a class="btn-floating btn-sm btn-danger "><i class="fas fa-minus"></i></a></td>
+                    <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></td>
                   </tr>
                   <tr>
                     <th scope="row">6</th>
@@ -341,53 +251,9 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="row">$20</th>
                     <th scope="row">$20</th>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
-                      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                      <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <!--contenido del modal-->
-                          <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                              <i class="fas fa-user prefix grey-text"></i>
-                              <input type="text" id="form34" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form34">Your name</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-envelope prefix grey-text"></i>
-                              <input type="email" id="form29" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form29">Your email</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-tag prefix grey-text"></i>
-                              <input type="text" id="form32" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form32">Subject</label>
-                            </div>
-                    
-                            <div class="md-form">
-                              <i class="fas fa-pencil prefix grey-text"></i>
-                              <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
-                              <label data-error="wrong" data-success="right" for="form8">Your message</label>
-                            </div>
-                    
-                          </div>
-                          <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
-                    <td><a class="btn-floating btn-sm btn-danger "><i class="fas fa-minus"></i></a></td>
+                    <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></td>
                   </tr>
                   <tr>
                     <th scope="row">7</th>
@@ -399,53 +265,9 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
                     <th scope="row">$20</th>
                     <th scope="row">$20</th>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
-                      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                      <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <!--contenido del modal-->
-                          <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                              <i class="fas fa-user prefix grey-text"></i>
-                              <input type="text" id="form34" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form34">Your name</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-envelope prefix grey-text"></i>
-                              <input type="email" id="form29" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form29">Your email</label>
-                            </div>
-                    
-                            <div class="md-form mb-5">
-                              <i class="fas fa-tag prefix grey-text"></i>
-                              <input type="text" id="form32" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form32">Subject</label>
-                            </div>
-                    
-                            <div class="md-form">
-                              <i class="fas fa-pencil prefix grey-text"></i>
-                              <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
-                              <label data-error="wrong" data-success="right" for="form8">Your message</label>
-                            </div>
-                    
-                          </div>
-                          <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
-                    <td><a class="btn-floating btn-sm btn-danger "><i class="fas fa-minus"></i></a></td>
+                    <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></td>
                   </tr>
                 </tbody>
               </table>
@@ -473,5 +295,5 @@ Dashboard::headerTemplate('Facturacion','Facturacion');
   <!--Main layout-->
 
 <?php
-Dashboard::footerTemplate('fixed-bottom');
+Dashboard::footerTemplate('pt-4');
 ?>

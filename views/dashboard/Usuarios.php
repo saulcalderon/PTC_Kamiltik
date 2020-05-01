@@ -178,8 +178,8 @@ Dashboard::headerTemplate('Usuarios','Usuario');
                       <th scope="col">Imagen</th>
                       <th scope="col">estado</th>
                       <th scope="col">Cargo</th>
-                      <th scope="col">Modificar</th>
-                      <th scope="col">Desactivar</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -471,5 +471,5 @@ Dashboard::headerTemplate('Usuarios','Usuario');
   </main>
 
   <?php
-Dashboard::footerTemplate('fixed-bottom');
+Dashboard::footerTemplate('pt-4');
 ?>

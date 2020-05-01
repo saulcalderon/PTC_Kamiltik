@@ -14,8 +14,102 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
       <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-        <button type="button" class="btn btn-success btn-lg my-0 p" data-toggle="modal" data-target="#modalContactForm">Success</button>
-        </h4>
+        	<button type="button" class="btn btn-success btn-lg my-0 p" data-toggle="modal" data-target="#modalContactForm">agregar proveedor</button>
+			<div class="modal fade" id="btnagregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                      aria-hidden="true">
+                      <!--encabezado del modal-->  
+                      <div class="modal-dialog modal-lg"  role="document">
+                              <div class="modal-content p-4">
+                                <div class="modal-header text-center">
+                                  <h4 class="modal-title w-100 font-weight-bold">Agregar proveedores</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <!--contenido del modal-->
+                                <section class="mb-4">
+                              <div class="row">
+                                  <!--Grid column-->
+                                  <div class="col-md-12 mb-md-0 mb-8">
+                                      <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                                          <!--Grid row-->
+                                          <div class="row">
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Nombre del proveedor</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="email" name="email" class="form-control">
+                                                      <label for="email" class="">Teléfono</label>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+
+                                            <!--Grid row-->
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Empresa</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Celular</label>
+                                                  </div>
+                                              </div>
+
+                                              </div>
+                                              <!--Grid row-->
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Dirección</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Correo electronico</label>
+                                                  </div>
+                                              </div>
+
+                                              </div>
+                                      </form>
+
+                                  </div>
+
+                              </div>
+
+                            </section>
+                                  	<div class="modal-footer d-flex justify-content-center">
+                                  		<button class="btn btn-unique">Agregar proveedor<i class="fas fa-paper-plane-o ml-1"></i></button>
+                               		</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+		</h4>
 
         <form class="d-flex justify-content-center">
           <!-- Default input -->
@@ -52,8 +146,8 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <th scope="col">Telefono</th>
                     <th scope="col">Celular</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Desactivar</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -66,44 +160,103 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <td>2257-7777</td> 
                     <td>info@Quality.org</td>
                     <td>                      <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"></a>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a>
                       <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                       aria-hidden="true">
                       <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content p-4">
-                          <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Modificar</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <!--contenido del modal-->
-                          
-                            <div class="md-form mb-5">
-                              <div class="btn btn-primary btn-sm float-left">
-                                <input type="file">
-                              </div>
-                              <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Seleccione la imagen">
-                              </div>
-                            </div>
+                      <div class="modal-dialog modal-lg"  role="document">
+                              <div class="modal-content p-4">
+                                <div class="modal-header text-center">
+                                  <h4 class="modal-title w-100 font-weight-bold">Modificacion de proveedores</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <!--contenido del modal-->
+                                <section class="mb-4">
+                              <div class="row">
+                                  <!--Grid column-->
+                                  <div class="col-md-12 mb-md-0 mb-8">
+                                      <form id="contact-form" name="contact-form" action="mail.php" method="POST">
 
-                            <div class="md-form mb-5">
-                              <i class="grey-text"></i>
-                              <input type="email" id="form29" class="form-control validate">
-                              <label data-error="wrong" data-success="right" for="form29">Nombre de la marca</label>
+                                          <!--Grid row-->
+                                          <div class="row">
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Nombre del proveedor</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="email" name="email" class="form-control">
+                                                      <label for="email" class="">Teléfono</label>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+
+                                            <!--Grid row-->
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Empresa</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Celular</label>
+                                                  </div>
+                                              </div>
+
+                                              </div>
+                                              <!--Grid row-->
+                                              <div class="row">
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Dirección</label>
+                                                  </div>
+                                              </div>
+                                              <!--Grid column-->
+
+                                              <!--Grid column-->
+                                              <div class="col-md-6">
+                                                  <div class="md-form mb-0">
+                                                      <input type="text" id="name" name="name" class="form-control">
+                                                      <label for="name" class="">Correo electronico</label>
+                                                  </div>
+                                              </div>
+
+                                              </div>
+                                      </form>
+
+                                  </div>
+
+                              </div>
+
+                            </section>
+                                  <div class="modal-footer d-flex justify-content-center">
+                                  <button class="btn btn-unique">Modificar proveedor <i class="fas fa-paper-plane-o ml-1"></i></button>
+                                </div>
+                                </div>
+    
                             </div>
-                    
                           </div>
-                          <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    </a></td>  
+                          </a>
+                  </td>  
                   <!--termina el modal-->
                     <td> <!--boton para mostrar el modal-->
                       <a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a>
@@ -144,7 +297,7 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <td>info@Quality.org</td>
                     <td>
                        <!--boton para mostrar el modal-->
-                       <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm"></a>
+                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a>
                     </td>
                     <td> <a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -159,23 +312,7 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <td>info@Quality.org</td>
 
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
-                      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                      <!--encabezado del modal-->  
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <!--contenido del modal-->
-
-                        </div>
-                      </div>
-                    </div>
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td> <a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -188,10 +325,7 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <td>2257-7777</td> 
                     <td>info@Quality.org</td>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
-                      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td> <a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -205,7 +339,7 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <td>info@Quality.org</td>
 
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td> <a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -218,7 +352,7 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <td>2257-7777</td> 
                     <td>info@Quality.org</td>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td> <a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -231,7 +365,7 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
                     <td>2257-7777</td> 
                     <td>info@Quality.org</td>
                     <td> <!--boton para mostrar el modal-->
-                      <a href="" class="btn-floating btn-sm btn-success fas fa-plus" data-toggle="modal" data-target="#modalContactForm">
+                      <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
                     </a></td>
                     <td> <a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
                   </tr>
@@ -261,6 +395,6 @@ Dashboard::headerTemplate('Proveedores','Proveedores');
   </main>
 
   <?php
-Dashboard::footerTemplate('fixed-bottom');
+Dashboard::footerTemplate('pt-4');
 ?>
 

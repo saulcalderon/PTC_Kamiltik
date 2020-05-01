@@ -60,17 +60,17 @@ Dashboard::headerTemplate('Productos','Productos');
                                                   </div>
                                                   </div>
                                               	</div>
-												<div class="col-md-4">
-													<div class="md-form mb-0">
-														<div class="input-group mb-3">
-															<select class="browser-default custom-select" id="inputGroupSelect01">
-															<option selected>Proveedor</option>
-															<option value="1">Disponible</option>
-															<option value="2">Inactivo</option>
-															</select>
-														</div>
-													</div>
-												</div>
+                                      <div class="col-md-4">
+                                        <div class="md-form mb-0">
+                                          <div class="input-group mb-3">
+                                            <select class="browser-default custom-select" id="inputGroupSelect01">
+                                            <option selected>Proveedor</option>
+                                            <option value="1">Disponible</option>
+                                            <option value="2">Inactivo</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
                                           </div>
 
                                             <!--Grid row-->
@@ -82,7 +82,7 @@ Dashboard::headerTemplate('Productos','Productos');
                                                       <label for="name" class="">Descrpcion</label>
                                                   </div>
                                               </div>
-												<div class="col-md-4">
+											                  	<div class="col-md-4">
                                                   <div class="md-form mb-0">
                                                   <div class="input-group mb-3">
                                                     <select class="browser-default custom-select" id="inputGroupSelect01">
@@ -103,7 +103,7 @@ Dashboard::headerTemplate('Productos','Productos');
                                                     </select>
                                                   </div>
                                                   </div>
-											  </div>
+											                         </div>
 
                                               </div>
                                               
@@ -124,8 +124,8 @@ Dashboard::headerTemplate('Productos','Productos');
                                                       <option value="2">Gerente</option>
                                                     </select>
                                                   </div>
-												  </div>
-											</div>
+                                                </div>
+                                            </div>
                                               
 
                                               </div>
@@ -134,7 +134,7 @@ Dashboard::headerTemplate('Productos','Productos');
                                           <!--Grid row-->
                                           <div class="row">
 										  
-											<div class="col-md-6">
+											                      <div class="col-md-6">
                                                 <div class="md-form mb-0">
                                                 	<div class="input-group">
                                                     	<div class="custom-file">
@@ -144,8 +144,8 @@ Dashboard::headerTemplate('Productos','Productos');
                                                     	</div>
                                                     </div>
                                                 </div>
-											</div>
-											<div class="col-md-6">
+                                            </div>
+                                            <div class="col-md-6">
                                                 <div class="md-form mb-0">
                                                 	<div class="input-group">
                                                     	<div class="custom-file">
@@ -156,9 +156,9 @@ Dashboard::headerTemplate('Productos','Productos');
                                                     </div>
                                                 </div>
                                             </div>
-											</div>
-											<div class="row">
-											<div class="col-md-12">
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-12">
                                                   <div class="md-form mb-0">
                                                       <input type="text" id="name" name="name" class="form-control">
                                                       <label for="name" class="">Cantidad</label>
@@ -218,12 +218,14 @@ Dashboard::headerTemplate('Productos','Productos');
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripcion</th>
-                    <th scope="col">Precio</th>
+					<th scope="col">Precio</th>
+					<th scope="col">imagen</th>
                     <th scope="col">Fecha registro</th>
                     <th scope="col">Sucursal</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Desactivar</th>
+					<th scope="col">Estado</th>
+					<th scope="col">Cantidad</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -235,7 +237,8 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Imagen</td>
                     <td>12/03/2020</td>
                     <td>Altos la Escalon</td>
-                    <td>Disponible</td>
+					<td>Disponible</td>
+					<td>20</td>
                     <td> 
                       <!--boton para mostrar el modal-->
                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"></a>
@@ -447,14 +450,12 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Imagen</td>
                     <td>12/03/2020</td>
                     <td>Altos la Escalon</td>
-                    <td>Disponible</td>
+					<td>Disponible</td>
+					<td>20</td>
 
                     <td>
                        <!--boton para mostrar el modal-->
-                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
-                       <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                       aria-hidden="true">
-                      
+                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm"> 
                      </a>
                     </td>
                     <td><a href="" class="btn-floating btn-sm btn-danger fas fa-minus" data-toggle="modal" data-target="#modalContactForm1"></a></td>
@@ -467,7 +468,8 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Imagen</td>
                     <td>12/03/2020</td>
                     <td>Altos la Escalon</td>
-                    <td>Disponible</td>
+					<td>Disponible</td>
+					<td>20</td>
 
                     <td> <!--boton para mostrar el modal-->
                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
@@ -482,7 +484,8 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Imagen</td>
                     <td>12/03/2020</td>
                     <td>Altos la Escalon</td>
-                    <td>Disponible</td>
+					<td>Disponible</td>
+					<td>20</td>
 
                     <td> <!--boton para mostrar el modal-->
                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
@@ -497,7 +500,8 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Imagen</td>
                     <td>12/03/2020</td>
                     <td>Altos la Escalon</td>
-                    <td>Disponible</td>
+					<td>Disponible</td>
+					<td>20</td>
 
                     <td> <!--boton para mostrar el modal-->
                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
@@ -512,7 +516,8 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Imagen</td>
                     <td>12/03/2020</td>
                     <td>Altos la Escalon</td>
-                    <td>Disponible</td>
+					<td>Disponible</td>
+					<td>20</td>
 
                     <td> <!--boton para mostrar el modal-->
                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
@@ -527,7 +532,8 @@ Dashboard::headerTemplate('Productos','Productos');
                     <td>Imagen</td>
                     <td>12/03/2020</td>
                     <td>Altos la Escalon</td>
-                    <td>Disponible</td>
+					<td>Disponible</td>
+					<td>20</td>
 
                     <td> <!--boton para mostrar el modal-->
                       <a href="" class="btn-floating btn-sm btn-success fas fa-pen" data-toggle="modal" data-target="#modalContactForm">
@@ -560,7 +566,7 @@ Dashboard::headerTemplate('Productos','Productos');
   <!--Main layout-->
 
   <?php
-Dashboard::footerTemplate('fixed-bottom');
+Dashboard::footerTemplate('pt-4');
 ?>
 
 

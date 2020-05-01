@@ -199,5 +199,5 @@ Dashboard::headerTemplate('Dashboard','Dashboard');
 </main>
 <!--Main layout-->
 <?php
-Dashboard::footerTemplate('pt-4','principal.js');
+Dashboard::footerTemplate('pt-4');
 ?>
