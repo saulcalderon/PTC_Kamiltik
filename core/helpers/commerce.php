@@ -22,6 +22,7 @@ class Commerce
         <link rel="stylesheet" href="../../resources/css/swiper.css">
         <link rel="stylesheet" href="../../resources/css/materialize.css">
         <link rel="stylesheet" href="../../resources/css/commerce.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/contacto.css">
         <!-- Llamada a un archivo tipo icono -->
         <!--<link rel="shortcut icon" href="" type="image/x-icon">--> 
     </head>
@@ -41,8 +42,8 @@ class Commerce
                         <div class= "container">
                             <ul class="left hide-on-med-and-down">
                                 <li><a href="menu.php" class="menu-text">Menú</a></li>
-                                <li><a href="" class="menu-text">Sucursales</a></li>
-                                <li><a href="" class="menu-text">Promociones</a></li>
+                                <li><a href="sucursales.php" class="menu-text">Sucursales</a></li>
+                                <li><a href="quienesSomos.php" class="menu-text">Promociones</a></li>
                             </ul>
                             <ul class="right hide-on-med-and-down">
                                 <li>
@@ -74,7 +75,7 @@ class Commerce
                         <li><a href="" class="texto-nav-secundario"><i class="material-icons">domain</i>Buscar sucursal más cercana</a></li>
                         <li><a href="noticias.php" class="texto-nav-secundario"><i class="material-icons">chrome_reader_mode
                         </i>Noticias</a></li>
-                        <li><a href="" class="texto-nav-secundario"><i class="material-icons">message</i>Contáctanos</a></li>
+                        <li><a href="contacto.php" class="texto-nav-secundario"><i class="material-icons">message</i>Contáctanos</a></li>
                     </ul>
                 </div>
             </nav>
@@ -190,7 +191,7 @@ class Commerce
             </div>
         </div>
         <!-- Barra del copyrigth -->
-        <div class="footer-copyright">
+        <div class="footer-copyright sub">
             <div class="container">
             © 2020 Derechos reservados por The Coffee Cup
             <a class="grey-text text-lighten-4 right" href="#!">Términos y condiciones</a>

@@ -162,6 +162,18 @@ nav ul li{
 
 .card .card-image .card-title {
     display: block;
-    position: static;
+    
     word-break: break-word;
+}
+.static{
+    position: static;
+}
+.fondo{
+    border: 0.1em solid #303030; 
+    width: 100%; 
+    text-align: center; 
+    border-top-left-radius: 1em; 
+    border-top-right-radius: 1em; 
+    background-color: #303030; 
+    
 }
