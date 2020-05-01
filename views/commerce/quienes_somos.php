@@ -2,9 +2,12 @@
 require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate();
 ?>
+
+<!-- ¿Quienes somos? -->
 <div class="cabecera center">
     <h1 class="margin-0 padd-10 white-text">¿Quiénes somos?</h1>
 </div>
+
 <!-- Imagen y ¿Quiénes somos? -->
 <img src="../../resources/img/commerce/Fondo_QuienesSomos.png" class="responsive-img">
 <div class="center">
