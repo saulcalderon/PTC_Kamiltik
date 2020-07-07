@@ -51,7 +51,7 @@ Commerce::headerTemplate();
                     </a>
                 </div>
                 <div class="col s12 m4">
-                    <a href="productos.php">>
+                    <a href="productos.php">
                         <div class="card">
                             <div class="card-image">
                                 <img src="../../resources/img/commerce/producto3.jpg">

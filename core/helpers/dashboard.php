@@ -1,170 +1,176 @@
 <?php
-/**
-*	Clase para definir la plantilla de las páginas web del sitio privado.
+/*
+*	Clase utilizada como plantilla del diseño del sitio privado
 */
 class Dashboard
 {
-    public static function headerTemplate($title,$title2)
+    /*
+    *   Método para imprimir la plantilla del encabezado.
+    *
+    *   Parámetros
+    *   $titulo: título de la página web.
+    *
+    *   Retorno: null.
+    */
+    public static function headerTemplate($titulo)
     {
-        ini_set('date.timezone', 'America/El_Salvador');
+        // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en las páginas web.
+        session_start();
         print('
-        <!DOCTYPE html>
-        <html lang="en">
-        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>The Coffe Cup | '.$title.'</title>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-        <!-- Bootstrap core CSS -->
-        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="../../resources/css/mdb.min.css" rel="stylesheet">
-        <!-- Your custom styles (optional) -->
-        <link href="../../resources/css/style.min.css" rel="stylesheet">
-        
-        <link href="../../resources/css/style.css" rel="stylesheet" type="text/css">
-        
-        <head>
-        
-        
-          <!-- Navbar -->
-          <nav class="navbar fixed-top navbar-expand-lg navbar-light danger-color scrolling-navbar">
-            <div class="container-fluid">
-        
-              <!-- Users Guides -->
-              <a class="navbar-nav waves-effect mr-4" href="#">
-                <strong class="white-text">
-                  <p class="h3">'.$title2.'</p>
-                </strong>
-              </a>
-        
-              <!-- Collapse and Toggler -->
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-        
-              <!-- Links (Website and Name and user type) -->
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-                <!-- Left side -->
-                <ul class="navbar-nav mr-auto">
-                  <!--con el atriburo active se qeuda seleccionado-->
-                  <li class="nav-item ">
-                    <a class="nav-link waves-effect white-text" href="#">Ir al sitio público</a>
-                    <!-- <span class="sr-only">(current)</span>-->
-                  </li>
-                </ul>
-        
-                <!-- Right side -->
-                <ul class="navbar-nav nav-flex-icons">
-                  <li class="nav-item mr-3">
-                    <div>
-                      <a href="#" class="white-text h5">Nombre</a>
-                    </div>
-                    <div>
-                      <a href="#" class="white-text h5">Cargo</a>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#"><img
-                        src="https://icons-for-free.com/iconfiles/png/512/headset+male+man+support+user+young+icon-1320196267025138334.png"
-                        alt="" width="60px" height="60" class=""></a>
-                  </li>
-                  <li class="nav-item ml-4">
-                    <a href="index.html" class="nav-link waves-effect white-text">
-                      <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-        
-            </div>
-          </nav>
-        </head>
-        
-        
-        <body class="grey lighten-3">
-        
-        
-          <!--Main Navigation-->
-          <header>
-        
-            <!-- Sidebar -->
-            <div class="sidebar-fixed position-fixed fondo">
-        
-              <!--Logo-->
-              <div class="logo-wrapper waves-effect waves-light py-4 my-1">
-                <a href="dashboard.php"><img src="../../resources/img/logo_coffe_cup.png" class="img-fluid flex-center"></a>
-              </div>
-        
-              <!-- Sidebar -->
-        
-              <div class="list-group list-group-flush py-3">
-                <a href="dashboard.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-chart-pie mr-3"></i>Dashboard
-                </a>
-                <a href="facturacion.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-money-bill-alt mr-3"></i>Facturación</a>
-                <a href="Productos.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-coffee mr-3"></i>Productos</a>
-                <a href="Sucursales.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-map mr-3"></i>Sucursales</a>
-                <a href="Proveedores.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-shopping-cart mr-3"></i>Proveedores</a>
-                <a href="Entradas.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-newspaper mr-3"></i>Entradas</a>
-                <a href="Clientes.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-users mr-3"></i>Clientes</a> 
-                <a href="Usuarios.php" class="list-group-item waves-effect mb-2 fondo white-text">
-                  <i class="fas fa-user mr-3"></i>Usuarios</a>
-              </div>
-        
-            </div>
-        
-          </header>
+            <!DOCTYPE html>
+            <html lang="es">
+                <head>
+                    <meta charset="utf-8">
+                    <title>Cuzcatlan - ' . $titulo . '</title>
+                    <!--<link type="image/png" rel="icon" href="../../resources/img/logo.png"/>-->
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.css"/>
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/material-icons.css"/>
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css"/>
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                </head>
+                <body>
         ');
-
+        // Se obtiene el nombre del archivo de la página web actual o URL.
+        $filename = basename($_SERVER['PHP_SELF']);
+        //Validación de usuario al mantener sesión abierta
+        // Se comprueba si existe una sesión de administrador para mostrar el menú de opciones, de lo contrario se muestra un menú vacío.
+        if (isset($_SESSION['id_usuario'])) {
+            // Se verifica si la página web actual es diferente a la de Iniciar sesión y a register.php (Crear primer usuario) para no iniciar sesión otra vez, de lo contrario se direcciona a main.php
+            if ($filename != 'index.php' && $filename != 'register.php') {
+                // Se llama al método que contiene el código de las cajas de dialogo (modals).
+                self::modals();
+                // Se imprime el código HTML para el encabezado del documento con el menú de opciones.
+                print('
+                <header class="h-normal">
+                    <nav class="rose-m">
+                        <div class="nav wrapper">
+                            <div class="container">
+                                <a href="" class="brand-logo center">Cuzcatlán</a>
+                                <a href="#" data-target="slide-out" class="sidenav-trigger"><i
+                                        class="material-icons">menu</i></a>
+                                        <ul class="right hide-on-med-and-down">
+                                        <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">verified_user</i>Cuenta: <b>' . $_SESSION['alias_usuario'] . '</b></a></li>
+                                    </ul>
+                                    <ul id="dropdown" class="dropdown-content">
+                                        <li><a href="#" onclick="openModalProfile()"><i class="material-icons">face</i>Editar perfil</a></li>
+                                        <li><a href="#password-modal" class="modal-trigger"><i class="material-icons">lock</i>Cambiar clave</a></li>
+                                        <li><a href="#" onclick="signOff()"><i class="material-icons">clear</i>Salir</a></li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <ul class="sidenav sidenav-fixed black" id="slide-out">
+                        <li>
+                            <div class="user-view">
+                                <div class="background ">
+                                    <img src="" alt="" class="responsive-img">
+                                </div>
+                                <a href="#" onclick="openModalProfile()">
+                                    <!--<img src="../../resources/img/dashboard/img12-1.jpg" alt="" class="circle +">-->
+                                </a>
+                                <span class="white-text name">' . $_SESSION['alias_usuario'] . '</span>
+                                <span class="white-text">Miembro de Cuzcatlán</span>
+                                <hr class= "cuzcatlan-color">
+                            </div>
+                        </li>
+                        <li>
+                            <a href="main.php" class="white-text"><i class="material-icons white-text">dashboard</i>Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="usuarios.php" class="white-text"><i class="material-icons white-text">person</i>Usuarios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="clientes.php" class="white-text"><i class="material-icons white-text">people</i>Clientes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="white-text"><i class="material-icons white-text">insert_chart</i>Analíticas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="productos.php" class="white-text"><i class="material-icons white-text">shop</i>Productos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="categorias.php" class="white-text"><i class="material-icons white-text">shop</i>Categorias Productos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="noticias.php" class="white-text"><i class="material-icons white-text">event_note</i>Noticias
+                            </a>
+                        </li>
+                        <li>
+                            <a href="factura.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="proveedores.php" class="white-text"><i class="material-icons white-text">local_shipping
+                                </i>Proveedores
+                            </a>
+                        </li>
+                    </ul>
+                </header>
+                <main class="m-normal">
+                ');
+            } else {
+                header('location: main.php');
+            }
+        } else {
+            // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a register.php (Crear primer usuario) para direccionar a index.php, de lo contrario se muestra un menú vacío.
+            if ($filename != 'index.php' && $filename != 'register.php') {
+                header('location: index.php');
+            } else {
+                // Se imprime el código HTML para el encabezado del documento con un menú vacío cuando sea iniciar sesión o registrar el primer usuario.
+                print('
+                    <main>
+                        <img class="img-center" src="../../resources/img/logo2.png" alt="">
+                ');
+            }
+        }
     }
 
-    public static function footerTemplate($fixed)
+    /*
+    *   Método para imprimir la plantilla del pie.
+    *
+    *   Parámetros: $controller (nombre del archivo que sirve como controlador de la página web).
+    *
+    *   Retorno: ninguno.
+    */
+    public static function footerTemplate($controller)
     {
+        // Se imprime el código HTML para el pie del documento.
         print('
-        <!--Footer-->
-        <footer class="page-footer text-center font-small rgba-black-strong mt-4 wow fadeIn '.$fixed.'">
-      
-        <!--Copyright-->
-        <div class="footer-copyright py-3">
-          <a href="#" target="_blank"> 2020 Copyright © The Coffe Cup</a>
-        </div>
-        <!--/.Copyright-->
-      
-      
-      
-     
-      
-      <!-- JQuery -->
-      <script type="text/javascript" src="../../resources/Js/jquery-3.4.1.min.js"></script>
-      <!-- Bootstrap tooltips -->
-      <script type="text/javascript" src="../../resources/Js/popper.min.js"></script>
-      <!-- Bootstrap core JavaScript -->
-      <script type="text/javascript" src="../../resources/Js/bootstrap.min.js"></script>
-      <!-- MDB core JavaScript -->
-      <script type="text/javascript" src="../../resources/Js/mdb.min.js"></script>
-      <!-- Initializations -->
-      <script type="text/javascript" src="../../resources/Js/dashboard.js"></script>
-
-          </footer> 
-        </body>
-      </html>
+                </main>
+                <footer class="">
+                    <h6></h6>
+                </footer>
+                <script type="text/javascript" src="../../resources/js/jquery-3.4.1.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/materialize.js"></script>
+                <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+                <script type="text/javascript" src="../../core/helpers/components.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/initialization.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>
+                <script type="text/javascript" src="../../resources/js/pagination.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/'
+            . $controller . '"></script> 
+            
+                
+                </body>
+            </html>
         ');
     }
 
+    /*
+    *   Método para imprimir las cajas de dialogo (modals) de editar pefil y cambiar contraseña.
+    */
     private function modals()
     {
+        // Se imprime el código HTML de las cajas de dialogo (modals).
         print('
+            <!-- Componente Modal para mostrar el formulario de editar perfil -->
             <div id="profile-modal" class="modal">
                 <div class="modal-content">
                     <h4 class="center-align">Editar perfil</h4>
@@ -186,9 +192,9 @@ class Dashboard
                                 <label for="correo_perfil">Correo</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">person_pin</i>
+                                <i class="material-icons prefix">phone</i>
                                 <input id="alias_perfil" type="text" name="alias_perfil" class="validate" required/>
-                                <label for="alias_perfil">Alias</label>
+                                <label for="alias_perfil">Telefono</label>
                             </div>
                         </div>
                         <div class="row center-align">
@@ -199,6 +205,7 @@ class Dashboard
                 </div>
             </div>
 
+            <!-- Componente Modal para mostrar el formulario de cambiar contraseña -->
             <div id="password-modal" class="modal">
                 <div class="modal-content">
                     <h4 class="center-align">Cambiar contraseña</h4>
@@ -243,4 +250,3 @@ class Dashboard
         ');
     }
 }
-?>
