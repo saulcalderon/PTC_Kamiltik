@@ -1,5 +1,7 @@
 // Constantes para establecer las rutas y parámetros de comunicación con la API.
-const API_NOTICIAS = '../../core/api/dashboard/noticias.php?action=';
+const API_NOTICIAS = '../../core/api/dashboard/entradas.php?action=';
+
+const API_CATEGORIAS = '../../core/api/dashboard/categorias.php?action=readAll';
 
 // Método que se ejecuta cuando el documento está listo.
 $(document).ready(function () {
@@ -19,15 +21,17 @@ function fillTable(dataset) {
         //console.log(row.id_estado + ' estado de la noticia ' + icon);
         content += `
             <tr>
-                <td>${row.id_noticia}</td>
+                <td>${row.id_entrada}</td>
                 <!--<td><img src="../../resources/img/productos/${row.id_imagen}" class="materialboxed" height="100"></td>-->
+                <td>${row.autor}</td>
                 <td>${row.titulo}</td>
                 <td>${row.contenido}</td>
                 <td>${row.fecha_registro}</td>
                 <td><i class="material-icons">${icon}</i></td>
+                <td>${row.categoria}</td>
                 <td>
-                    <a href="#" onclick="openUpdateModal(${row.id_noticia})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="openDeleteDialog(${row.id_noticia})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
+                    <a href="#" onclick="openUpdateModal(${row.id_entrada})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
+                    <a href="#" onclick="openDeleteDialog(${row.id_entrada})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
         `;
@@ -55,7 +59,9 @@ function openCreateModal() {
     // Se abre la caja de dialogo (modal) que contiene el formulario.
     $('#save-modal').modal('open');
     // Se asigna el título para la caja de dialogo (modal).
-    $('#modal-title').text('Crear Noticia');
+    $('#modal-title').text('Crear Entrada');
+    // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
+    fillSelect( API_CATEGORIAS, 'categoria_entrada', null );
 
     // Se establece el campo de tipo archivo como obligatorio.
     //$( '#archivo_producto' ).prop( 'required', true );
@@ -76,7 +82,7 @@ function openUpdateModal(id) {
             dataType: 'json',
             url: API_NOTICIAS + 'readOne',
             data: {
-                id_noticia: id
+                id_entrada: id
             },
             type: 'post'
         })
@@ -84,10 +90,12 @@ function openUpdateModal(id) {
             // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
             if (response.status) {
                 // Se inicializan los campos del formulario con los datos del registro seleccionado previamente.
-                $('#id_noticia').val(response.dataset.id_noticia);
+                $('#id_entrada').val(response.dataset.id_entrada);
                 $('#titulo').val(response.dataset.titulo);
+                $('#autor').val(response.dataset.autor);
                 $('#contenido').val(response.dataset.contenido);
                 $('#fecha').val(response.dataset.fecha_registro);
+                fillSelect( API_CATEGORIAS, 'categoria_entrada', response.dataset.categoria );
                 (response.dataset.id_estado ) ? $('#estado').prop('checked', true): $('#estado').prop('checked', false);
                 
                 // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
@@ -111,7 +119,7 @@ $('#save-form').submit(function (event) {
     event.preventDefault();
     // Se llama a la función que crea o actualiza un registro. Se encuentra en el archivo components.js
     // Se comprueba si el id del registro esta asignado en el formulario para actualizar, de lo contrario se crea un registro.
-    if ($('#id_noticia').val()) {
+    if ($('#id_entrada').val()) {
         saveRow(API_NOTICIAS, 'update', this, 'save-modal');
     } else {
         saveRow(API_NOTICIAS, 'create', this, 'save-modal');
@@ -122,7 +130,7 @@ $('#save-form').submit(function (event) {
 function openDeleteDialog(id) {
     // Se declara e inicializa un objeto con el id del registro que será borrado.
     let identifier = {
-        id_noticia: id
+        id_entrada: id
     };
     confirmDelete(API_NOTICIAS, identifier);
 }

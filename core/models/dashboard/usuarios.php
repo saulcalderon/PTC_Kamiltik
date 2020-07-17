@@ -13,6 +13,7 @@ class Usuarios extends Validator
     private $clave = null;
     private $fechaNacimiento = null;
     private $idCargo = null;
+    private $idEstado = true;
 
     /*
     *   Métodos para asignar valores a los atributos.
@@ -59,7 +60,7 @@ class Usuarios extends Validator
 
     public function setFechaNacimiento($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
+        if ($this->validateDate($value)) {
             $this->fechaNacimiento = $value;
             return true;
         } else {
@@ -93,6 +94,16 @@ class Usuarios extends Validator
             $this->idCargo = $value;
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public function setIdEstado($value){
+        if($this->validateBoolean($value)){
+            $this->idEstado = $value;
+            return true;
+        }
+        else{
             return false;
         }
     }
@@ -140,15 +151,19 @@ class Usuarios extends Validator
         return $this->clave;
     }
 
+    public function getIdEstado(){
+        return $this->idEstado;
+    }
+
     /*
     *   Métodos para gestionar la cuenta del usuario.
     */
     public function checkCorreo($correo)
     {
-        $sql = 'SELECT id_administrador, nombre, apellido FROM administrador WHERE correo = ?';
+        $sql = 'SELECT id_usuario, nombre, apellido FROM usuarios WHERE correo = ?';
         $params = array($correo);
         if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['id_administrador'];
+            $this->id = $data['id_usuario'];
             $this->nombres = $data['nombre'];
             $this->apellidos = $data['apellido'];
             $this->correo = $correo;
@@ -160,7 +175,8 @@ class Usuarios extends Validator
 
     public function checkPassword($password)
     {
-        $sql = 'SELECT clave FROM administrador WHERE id_administrador = ?';
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = 'SELECT clave FROM usuarios WHERE id_usuario = ?';
         $params = array($this->id);
         $data = Database::getRow($sql, $params);
         if (password_verify($password, $data['clave'])) {
@@ -173,16 +189,16 @@ class Usuarios extends Validator
     public function changePassword()
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE administrador SET clave = ? WHERE id_administrador = ?';
+        $sql = 'UPDATE usuarios SET clave = ? WHERE id_usuario = ?';
         $params = array($hash, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function editProfile()
     {
-        $sql = 'UPDATE administrador
+        $sql = 'UPDATE usuarios
                 SET nombre = ?, apellido = ?, correo = ?, telefono = ?
-                WHERE id_administrador = ?';
+                WHERE id_usuario = ?';
         $params = array($this->nombres, $this->apellidos, $this->correo, $this->telefono, $this->id);
         return Database::executeRow($sql, $params);
     }
@@ -192,8 +208,8 @@ class Usuarios extends Validator
     */
     public function searchUsuarios($value)
     {
-        $sql = 'SELECT id_administrador, nombre, apellido, correo, telefono, id_cargo
-                FROM administrador
+        $sql = 'SELECT id_usuario, nombre, apellido, correo, telefono, id_tipo_usuario, fecha_nacimiento, id_estado
+                FROM usuarios
                 WHERE apellido ILIKE ? OR nombre ILIKE ?
                 ORDER BY apellido';
         $params = array("%$value%", "%$value%");
@@ -202,18 +218,19 @@ class Usuarios extends Validator
 
     public function createUsuario()
     {
+        
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO administrador(nombre, apellido, correo, telefono, clave, id_cargo)
-                VALUES(?, ?, ?, ?, ?,?)';
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->telefono, $hash, 1);
+        $sql = 'INSERT INTO usuarios(nombre, apellido, correo, telefono, clave, fecha_nacimiento, id_tipo_usuario, id_estado)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombres, $this->apellidos, $this->correo, $this->telefono, $hash, $this->fechaNacimiento, 1, $this->idEstado);
         return Database::executeRow($sql, $params);
     }
 
     public function readAllUsuarios()
     {
-        $sql = 'SELECT id_administrador, nombre, apellido, correo, telefono, id_cargo
-                FROM administrador
+        $sql = 'SELECT id_usuario, nombre, apellido, correo, telefono, id_tipo_usuario as id_cargo, id_estado
+                FROM usuarios
                 ORDER BY apellido';
         $params = null;
         return Database::getRows($sql, $params);
@@ -221,26 +238,26 @@ class Usuarios extends Validator
 
     public function readOneUsuario()
     {
-        $sql = 'SELECT id_administrador, nombre, apellido, correo, telefono, id_cargo
-                FROM administrador
-                WHERE id_administrador = ?';
+        $sql = 'SELECT id_usuario, nombre, apellido, correo, telefono, id_tipo_usuario, id_estado, fecha_nacimiento
+                FROM usuarios
+                WHERE id_usuario = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function updateUsuario()
     {
-        $sql = 'UPDATE administrador
-                SET nombre = ?, apellido = ?, telefono = ?
-                WHERE id_administrador = ?';
-        $params = array($this->nombres, $this->apellidos, $this->telefono, $this->id);
+        $sql = 'UPDATE usuarios
+                SET nombre = ?, apellido = ?, telefono = ?, id_estado = ?, fecha_nacimiento = ?
+                WHERE id_usuario = ?';
+        $params = array($this->nombres, $this->apellidos, $this->telefono, $this->idEstado, $this->fechaNacimiento, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteUsuario()
     {
-        $sql = 'DELETE FROM administrador
-                WHERE id_administrador = ?';
+        $sql = 'DELETE FROM usuarios
+                WHERE id_usuario = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

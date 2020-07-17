@@ -16,7 +16,7 @@ function checkUsuarios() {
             // Se obtiene la ruta del documento en el servidor web.
             let current = window.location.pathname;
             // Se comprueba si la página web actual es register.php, de lo contrario seria index.php
-            if (current == '/cuzcatlan-ecommerce/views/dashboard/register.php') {
+            if (current == '/PTC_Kamiltik/views/dashboard/register.php') {
                 // Si ya existe un usuario registrado se envía a iniciar sesión, de lo contrario se pide crear el primero.
                 if (response.status) {
                     sweetAlert(3, response.message, 'index.php');
@@ -94,10 +94,10 @@ function openModalProfile() {
             // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
             if (response.status) {
                 // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
-                $('#nombres_perfil').val(response.dataset.nombres_usuario);
-                $('#apellidos_perfil').val(response.dataset.apellidos_usuario);
-                $('#correo_perfil').val(response.dataset.correo_usuario);
-                $('#alias_perfil').val(response.dataset.alias_usuario);
+                $('#nombres_perfil').val(response.dataset.nombre);
+                $('#apellidos_perfil').val(response.dataset.apellido);
+                $('#correo_perfil').val(response.dataset.correo);
+                $('#telefono_perfil').val(response.dataset.telefono);
                 // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 M.updateTextFields();
             } else {

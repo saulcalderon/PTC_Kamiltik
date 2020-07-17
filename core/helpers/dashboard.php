@@ -21,7 +21,7 @@ class Dashboard
             <html lang="es">
                 <head>
                     <meta charset="utf-8">
-                    <title>Cuzcatlan - ' . $titulo . '</title>
+                    <title>The Coffe cup - ' . $titulo . '</title>
                     <!--<link type="image/png" rel="icon" href="../../resources/img/logo.png"/>-->
                     <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.css"/>
                     <link type="text/css" rel="stylesheet" href="../../resources/css/material-icons.css"/>
@@ -43,16 +43,16 @@ class Dashboard
                 // Se imprime el código HTML para el encabezado del documento con el menú de opciones.
                 print('
                 <header class="h-normal">
-                    <nav class="rose-m">
+                    <nav class="cuzcatlan-color">
                         <div class="nav wrapper">
                             <div class="container">
-                                <a href="" class="brand-logo center">Cuzcatlán</a>
+                                <a href="" class="brand-logo center">The Coffe cup</a>
                                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                                         class="material-icons">menu</i></a>
                                         <ul class="right hide-on-med-and-down">
                                         <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">verified_user</i>Cuenta: <b>' . $_SESSION['alias_usuario'] . '</b></a></li>
                                     </ul>
-                                    <ul id="dropdown" class="dropdown-content">
+                                    <ul id="dropdown" class="dropdown-content"> 
                                         <li><a href="#" onclick="openModalProfile()"><i class="material-icons">face</i>Editar perfil</a></li>
                                         <li><a href="#password-modal" class="modal-trigger"><i class="material-icons">lock</i>Cambiar clave</a></li>
                                         <li><a href="#" onclick="signOff()"><i class="material-icons">clear</i>Salir</a></li>
@@ -60,17 +60,17 @@ class Dashboard
                             </div>
                         </div>
                     </nav>
-                    <ul class="sidenav sidenav-fixed black" id="slide-out">
+                    <ul class="sidenav sidenav-fixed black-cuzcatlan" id="slide-out">
                         <li>
                             <div class="user-view">
                                 <div class="background ">
                                     <img src="" alt="" class="responsive-img">
                                 </div>
                                 <a href="#" onclick="openModalProfile()">
-                                    <!--<img src="../../resources/img/dashboard/img12-1.jpg" alt="" class="circle +">-->
+                                    <img src="../../resources/img/logo_coffe_cup.png" alt="" width="255px">
                                 </a>
                                 <span class="white-text name">' . $_SESSION['alias_usuario'] . '</span>
-                                <span class="white-text">Miembro de Cuzcatlán</span>
+                                <span class="white-text">Miembro en The Coffe Cup</span>
                                 <hr class= "cuzcatlan-color">
                             </div>
                         </li>
@@ -99,7 +99,7 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="noticias.php" class="white-text"><i class="material-icons white-text">event_note</i>Noticias
+                            <a href="entradas.php" class="white-text"><i class="material-icons white-text">event_note</i>Entradas
                             </a>
                         </li>
                         <li>
@@ -126,7 +126,7 @@ class Dashboard
                 // Se imprime el código HTML para el encabezado del documento con un menú vacío cuando sea iniciar sesión o registrar el primer usuario.
                 print('
                     <main>
-                        <img class="img-center" src="../../resources/img/logo2.png" alt="">
+                        <img class="img-center" src="../../resources/img/logo_coffe_cup.png" alt="" width="100px">
                 ');
             }
         }
@@ -193,8 +193,8 @@ class Dashboard
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">phone</i>
-                                <input id="alias_perfil" type="text" name="alias_perfil" class="validate" required/>
-                                <label for="alias_perfil">Telefono</label>
+                                <input id="telefono_perfil" type="text" name="telefono_perfil" class="validate" required/>
+                                <label for="telefono_perfil">Telefono</label>
                             </div>
                         </div>
                         <div class="row center-align">

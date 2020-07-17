@@ -13,16 +13,18 @@ function fillTable(dataset) {
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.forEach(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        (row.id_estado ) ? icon = 'visibility': icon = 'visibility_off';
         content += `
             <tr>
                 <td>${row.apellido}</td>
                 <td>${row.nombre}</td>
                 <td>${row.correo}</td>
                 <td>${row.telefono}</td>
-                <td>${row.id_cargo}</td>
+                <!--<td>${row.id_cargo}</td>-->
+                <td><i class="material-icons">${icon}</i></td>
                 <td>
-                    <a href="#" onclick="openUpdateModal(${row.id_administrador})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="openDeleteDialog(${row.id_administrador})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
+                    <a href="#" onclick="openUpdateModal(${row.id_usuario})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
+                    <a href="#" onclick="openDeleteDialog(${row.id_usuario})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
         `;
@@ -81,11 +83,13 @@ function openUpdateModal(id) {
             // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
             if (response.status) {
                 // Se inicializan los campos del formulario con los datos del registro seleccionado previamente.
-                $('#id_administrador').val(response.dataset.id_administrador);
+                $('#id_usuario').val(response.dataset.id_usuario);
                 $('#nombre').val(response.dataset.nombre);
                 $('#apellido').val(response.dataset.apellido);
                 $('#correo').val(response.dataset.correo);
                 $('#telefono').val(response.dataset.telefono);
+                $('#fecha').val(response.dataset.fecha_nacimiento);
+                (response.dataset.id_estado ) ? $('#estado').prop('checked', true): $('#estado').prop('checked', false);
                 // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 M.updateTextFields();
             } else {
@@ -107,7 +111,7 @@ $('#save-form').submit(function (event) {
     event.preventDefault();
     // Se llama a la función que crea o actualiza un registro. Se encuentra en el archivo components.js
     // Se comprueba si el id del registro esta asignado en el formulario para actualizar, de lo contrario se crea un registro.
-    if ($('#id_administrador').val()) {
+    if ($('#id_usuario').val()) {
         saveRow(API_USUARIOS, 'update', this, 'save-modal');
     } else {
         saveRow(API_USUARIOS, 'create', this, 'save-modal');

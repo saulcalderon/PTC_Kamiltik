@@ -112,8 +112,8 @@ class Categorias extends Validator
 
     public function readAllCategorias()
     {
-        $sql = 'SELECT id_categoria_producto, categoria_producto 
-                FROM categoria_producto';
+        $sql = 'SELECT id_tipo_entrada, tipo_entrada
+                FROM tipo_entrada';
         $params = null;
         return Database::getRows($sql, $params);
     }

@@ -17,10 +17,10 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'dbcuzcatlan2';
+        $database = 'dbcoffecup';
         $username = 'postgres';
         // Cambiar dependiendo del usuario de la pc.
-        $password = 'Lula12';
+        $password = 'viernes';
         // Se controlan las excepciones al momento de establecer conexión con el servidor de base de datos.
         try {
             // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
@@ -39,7 +39,7 @@ class Database
     public static function grafico(){
 
         $server = 'localhost';
-        $database = 'dbcuzcatlan';
+        $database = 'dbcoffecup';
         $username = 'postgres';
         // Cambiar dependiendo del usuario de la pc.
         $password = 'viernes';

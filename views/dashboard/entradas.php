@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboard.php');
-Dashboard::headerTemplate('Administrar noticias');
+Dashboard::headerTemplate('Administrar entradas');
 ?>
 <div class="padd-15">
     <div class="row">
@@ -25,10 +25,12 @@ Dashboard::headerTemplate('Administrar noticias');
             <tr>
                 <th>ID</th>
                 <!--<th>IMAGEN</th>-->
+                <th>AUTORES</th>
                 <th>TÍTULO</th>
                 <th>CONTENIDO</th>
                 <th>FECHA</th>
                 <th>ESTADO</th>
+                <th>CATEGORIA</th>
                 <th>ACCIÓN</th>
                 <!--<th><a class="tooltipped waves-effect waves-light modal-trigger" data-position="left" data-tooltip="Agregar Producto" href="#modal2"><i class="material-icons green-text text- accent-4">add_box</i></a></th>
                 <th><a class="tooltipped waves-effect waves-light modal-trigger" data-position="left" data-tooltip="Buscar" href="#modal3"><i class="material-icons white-text text- accent-4">search</i></a></th>-->
@@ -48,12 +50,17 @@ Dashboard::headerTemplate('Administrar noticias');
             <!-- Formulario para crear o actualizar un registro -->
             <form method="post" id="save-form" enctype="multipart/form-data">
                 <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                <input class="hide" type="text" id="id_noticia" name="id_noticia" />
+                <input class="hide" type="text" id="id_entrada" name="id_entrada" />
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="titulo" type="text" name="titulo" class="validate" required />
                         <label for="titulo">Título</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select id="categoria_entrada" name="categoria_entrada">
+                        </select>
+                        <label>Categoría</label>
                     </div>
                     <!--
               	<div class="file-field input-field col s12 m6">
@@ -69,12 +76,18 @@ Dashboard::headerTemplate('Administrar noticias');
                     <div class="input-field col s12 m12">
                         <i class="material-icons prefix">description</i>
                         <input id="contenido" type="text" name="contenido" class="validate" required />
-                        <label for="contenido">Contenido Noticia</label>
+                        <label for="contenido">Contenido</label>
                     </div>
+                    
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">time</i>
                         <input id="fecha" type="date" name="fecha" class="validate"/>
                         <label for="fecha">Fecha de registro</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">user</i>
+                        <input id="autor" type="text" name="autor" class="validate" />
+                        <label for="autor">Autor</label>
                     </div>
                     <div class="col s12 m6">
                         <p>
@@ -100,5 +113,5 @@ Dashboard::headerTemplate('Administrar noticias');
 </div>
 
 <?php
-Dashboard::footerTemplate('noticias.js');
+Dashboard::footerTemplate('entradas.js');
 ?>

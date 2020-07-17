@@ -1,14 +1,14 @@
 <?php
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
-require_once('../../models/dashboard/noticias.php');
+require_once('../../models/dashboard/entradas.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $producto = new Noticias;
+    $producto = new entradas;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -47,30 +47,21 @@ if (isset($_GET['action'])) {
                         //print_r($_POST['fecha']);
                         if ($producto->setFecha($_POST['fecha'])) {
                             if ($producto->setEstado(isset($_POST['estado']) ? 1 : 0)) {
-                                if ($producto->createProducto()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Noticia agregada correctamente';
-                                } else {
-                                    $result['exception'] = Database::getException();
-                                }
-                                /*if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
-                                            if ($producto->setImagen($_FILES['archivo_producto'])) {
-                                                if ($producto->updateProducto()) {
-                                                    $result['status'] = 1;
-                                                    if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
-                                                        $result['message'] = 'Producto modificado correctamente';
-                                                    } else {
-                                                        $result['message'] = 'Producto modificada pero no se borro la imagen anterior';
-                                                    }
-                                                } else {
-                                                    $result['exception'] = Database::getException();
-                                                }
-                                            } else {
-                                                $result['exception'] = $producto->getImageError();
-                                            }
+                                $producto->setAutor($_POST['autor']);
+                                if(isset($_POST['categoria_entrada'])){
+                                    if($producto->setIdCategoria($_POST['categoria_entrada'])){
+                                        if ($producto->createProducto()) {
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Entrada agregada correctamente';
                                         } else {
-                                            
-                                        }*/
+                                            $result['exception'] = Database::getException();
+                                        }
+                                    }else{
+                                        $result['exception'] = 'Categoria incorrecta';
+                                    }
+                                }else{
+                                    $result['exception'] = 'Seleccione una categoria';
+                                }
                             } else {
                                 $result['exception'] = 'Estado incorrecto';
                             }
@@ -86,7 +77,7 @@ if (isset($_GET['action'])) {
 
                 break;
             case 'readOne':
-                if ($producto->setId($_POST['id_noticia'])) {
+                if ($producto->setId($_POST['id_entrada'])) {
                     if ($result['dataset'] = $producto->readOneProducto()) {
                         $result['status'] = 1;
                     } else {
@@ -98,38 +89,26 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $producto->validateForm($_POST);
-                if ($producto->setId($_POST['id_noticia'])) {
+                if ($producto->setId($_POST['id_entrada'])) {
                     if ($data = $producto->readOneProducto()) {
                         if ($producto->setTitulo($_POST['titulo'])) {
                             if ($producto->setContenido($_POST['contenido'])) {
                                 if ($producto->setFecha($_POST['fecha'])) {
                                     if ($producto->setEstado(isset($_POST['estado']) ? 1 : 0)) {
-                                        if ($producto->updateProducto()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Noticia modificada correctamente';
-                                        } else {
-                                            $result['exception'] = Database::getException();
-                                        }
-                                        /*if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
-                                            if ($producto->setImagen($_FILES['archivo_producto'])) {
+                                        if(isset($_POST['categoria_entrada'])){
+                                            if($producto->setIdCategoria($_POST['categoria_entrada'])){
                                                 if ($producto->updateProducto()) {
                                                     $result['status'] = 1;
-                                                    if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
-                                                        $result['message'] = 'Producto modificado correctamente';
-                                                    } else {
-                                                        $result['message'] = 'Producto modificada pero no se borro la imagen anterior';
-                                                    }
+                                                    $result['message'] = 'Noticia modificada correctamente';
                                                 } else {
                                                     $result['exception'] = Database::getException();
                                                 }
-                                            } else {
-                                                $result['exception'] = $producto->getImageError();
-                                            }
-                                        } else {
-                                            
-                                        }*/
+                                           }else{
+                                            $result['exception'] = 'Categoria incorrecta';
+                                           }
+                                        }
                                     } else {
-                                        $result['exception'] = 'Estado incorrecto';
+                                        $result['exception'] = 'Seleccione una categoria';
                                     }
                                 } else {
                                     $result['exception'] = 'Fecha incorrecta';
@@ -148,15 +127,16 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($producto->setId($_POST['id_noticia'])) {
+                if ($producto->setId($_POST['id_entrada'])) {
                     if ($data = $producto->readOneProducto()) {
                         if ($producto->deleteProducto()) {
                             $result['status'] = 1;
-                            if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
+                            $result['message'] = 'Producto eliminado correctamente';
+                            /*if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
                                 $result['message'] = 'Producto eliminado correctamente';
                             } else {
-                                $result['message'] = 'Producto eliminado pero no se borro la imagen';
-                            }
+                                //$result['message'] = 'Producto eliminado pero no se borro la imagen';
+                            }*/
                         } else {
                             $result['exception'] = Database::getException();
                         }

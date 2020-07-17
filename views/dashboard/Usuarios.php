@@ -30,7 +30,8 @@ Dashboard::headerTemplate('Administrar usuarios');
                     <th>NOMBRES</th>
                     <th>CORREO</th>
                     <th>TELEFONO</th>
-                    <th>CARGO</th>
+                    <!--<th>CARGO</th>-->
+                    <th>ESTADO</th>
                     <th>ACCIÓN</th>
                 </tr>
             </thead>
@@ -54,7 +55,7 @@ Dashboard::headerTemplate('Administrar usuarios');
         <!-- Formulario para crear o actualizar un registro -->
         <form method="post" id="save-form">
             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-            <input class="hide" type="text" id="id_administrador" name="id_administrador" />
+            <input class="hide" type="text" id="id_usuario" name="id_usuario" />
             <div class="row">
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">person</i>
@@ -75,6 +76,26 @@ Dashboard::headerTemplate('Administrar usuarios');
                     <i class="material-icons prefix">phone</i>
                     <input id="telefono" type="text" name="telefono" class="validate" required />
                     <label for="telefono">Telefono</label>
+                </div>
+                <div class="input-filed col s12 m6">
+                    <p>
+                        <div class="switch">
+                            <span>Estado:</span>
+                            <label>
+                                <i class="material-icons">visibility_off</i>
+                                <input id="estado" type="checkbox" name="estado" checked />
+                                <span class="lever"></span>
+                                <i class="material-icons">visibility</i>
+                            </label>
+                        </div>
+                    </p>
+                </div>
+                <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">time</i>
+                        <input id="fecha" type="date" name="fecha" class="validate"/>
+                        <label for="fecha">Nacimiento</label>
+                    </div>
+                <div class="s12 m12">
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">security</i>

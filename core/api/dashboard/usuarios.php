@@ -43,9 +43,9 @@ if (isset($_GET['action'])) {
                         if ($usuario->setNombres($_POST['nombres_perfil'])) {
                             if ($usuario->setApellidos($_POST['apellidos_perfil'])) {
                                 if ($usuario->setCorreo($_POST['correo_perfil'])) {
-                                    if ($usuario->setTelefono($_POST['alias_perfil'])) {
+                                    if ($usuario->setTelefono($_POST['telefono_perfil'])) {
                                         if ($usuario->editProfile()) {
-                                            $_SESSION['alias_usuario'] = $usuario->getCorreo();
+                                            $_SESSION['alias_usuario'] = $usuario->getNombres()." ".$usuario->getApellidos();
                                             $result['status'] = 1;
                                             $result['message'] = 'Perfil modificado correctamente';
                                         } else {
@@ -136,22 +136,30 @@ if (isset($_GET['action'])) {
                     if ($usuario->setApellidos($_POST['apellido'])) {
                         if ($usuario->setCorreo($_POST['correo'])) {
                             if ($usuario->setTelefono($_POST['telefono'])) {
-                                if ($_POST['clave_usuario'] == $_POST['confirmar_clave']) {
-                                    if ($usuario->setClave($_POST['clave_usuario'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Usuario creado correctamente';
+                                if($usuario->setIdEstado(isset($_POST['estado'])? 1 : 0)){
+                                    if($usuario->setFechaNacimiento($_POST['fecha'])){
+                                        if ($_POST['clave_usuario'] == $_POST['confirmar_clave']) {
+                                            if ($usuario->setClave($_POST['clave_usuario'])) {
+                                                if ($usuario->createUsuario()) {
+                                                    $result['status'] = 1;
+                                                    $result['message'] = 'Usuario creado correctamente';
+                                                } else {
+                                                    $result['exception'] = Database::getException();
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Clave menor a 6 caracteres';
+                                            }
                                         } else {
-                                            $result['exception'] = Database::getException();
+                                            $result['exception'] = 'Claves diferentes';
                                         }
-                                    } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
+                                    }else{
+                                        $result['exception'] = 'Fecha de nacimiento incorrecta';
                                     }
-                                } else {
-                                    $result['exception'] = 'Claves diferentes';
+                                }else{
+                                    $result['exception'] = 'Estado incorrecto';
                                 }
                             } else {
-                                $result['exception'] = 'Alias incorrecto';
+                                $result['exception'] = 'Telefono incorrecto';
                             }
                         } else {
                             $result['exception'] = 'Correo incorrecto';
@@ -176,19 +184,27 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setId($_POST['id_administrador'])) {
+                if ($usuario->setId($_POST['id_usuario'])) {
                     if ($usuario->readOneUsuario()) {
                         if ($usuario->setNombres($_POST['nombre'])) {
                             if ($usuario->setApellidos($_POST['apellido'])) {
-                                if ($usuario->setTelefono($_POST['telefono'])) {
-                                    if ($usuario->updateUsuario()) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Usuario modificado correctamente';
-                                    } else {
-                                        $result['exception'] = Database::getException();
+                                if($usuario->setFechaNacimiento($_POST['fecha'])){
+                                    if($usuario->setIdEstado(isset($_POST['estado'])?1:0)){
+                                        if ($usuario->setTelefono($_POST['telefono'])) {
+                                            if ($usuario->updateUsuario()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Usuario modificado correctamente';
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Telefono incorrecto';
+                                        }
+                                    }else{
+                                        $result['exception'] = 'Estado incorrecto';
                                     }
-                                } else {
-                                    $result['exception'] = 'Correo incorrecto';
+                                }else{
+                                    $result['exception'] = 'Fecha de nacimiento incorrecta';
                                 }
                             } else {
                                 $result['exception'] = 'Apellidos incorrectos';
@@ -274,6 +290,7 @@ if (isset($_GET['action'])) {
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
                 if ($usuario->checkCorreo($_POST['alias'])) {
+                    $usuario->setClave($_POST['clave']);
                     if ($usuario->checkPassword($_POST['clave'])) {
                         $_SESSION['id_usuario'] = $usuario->getId();
                         $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
