@@ -22,6 +22,50 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay facturas registradas';
                 }
                 break;
+            case 'readProducts':
+                if ($result['dataset'] = $factura->readProducts()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay facturas registradas';
+                }
+                break;
+
+            case 'verifyBill':
+                $_POST = $factura->validateForm($_POST);
+                if ($factura->setIdSucursal(1)) {
+                    if ($factura->setMesa($_POST['mesa'])) {
+                        if ($factura->setNombre($_POST['buscar-producto'])) {
+                            if ($factura->setIdUsuario(1/*$_SESSION['id_usuario']*/)) {
+                                if ($factura->setCantidad($_POST['cantidad-producto'])) {
+                                    if ($result['dataset'] = $factura->verifyBill()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Se ha ingresado el producto correctamente';
+                                    } else {
+                                        $result['exception'] = 'El producto es incorrecto o no existe';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Error al asignar la cantidad';
+                                }
+                            } else {
+                                $result['exception'] = 'Error al asignar el usuario';
+                            }
+                        } else {
+                            $result['exception'] = 'Error al asignar el producto';
+                        }
+                    } else {
+                        $result['exception'] = 'Error al asignar una mesa';
+                    }
+                } else {
+                    $result['exception'] = 'Error en la sucursal';
+                }
+                break;
+
+            case 'continue':
+                if ($factura->setId($_POST['id_factura'])) {
+
+                } else {
+                    
+                }
             case 'search':
                 $_POST = $factura->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -83,15 +127,13 @@ if (isset($_GET['action'])) {
                 break;
             case 'readOneFactura':
                 if ($factura->setId($_POST['id_factura'])) {
-                    if ($data = $factura->readOneFactura()) {
-                        if ($result['dataset'] = $factura->readOneFactura()) {
-                            $result['status'] = 1;
-                        } else {
-                            $result['exception'] = 'Producto inexistente';
-                        }
+                    if ($result['dataset'] = $factura->readOneFactura()) {
+                        $result['status'] = 1;
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto inexistente';
                     }
+                } else {
+                    $result['exception'] = 'ID incorrecto';
                 }
                 break;
             case 'readOne':

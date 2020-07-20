@@ -73,7 +73,9 @@ function readRowsModified(api, identifier) {
             type: 'post',
             dataType: 'json',
             url: api,
-            data: identifier
+            data: {
+               id_factura : identifier
+            }
         })
         .done(function (response) {
             // Si no hay datos se muestra un mensaje indicando la situación.

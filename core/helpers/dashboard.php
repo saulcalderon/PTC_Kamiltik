@@ -111,6 +111,11 @@ class Dashboard
                                 </i>Proveedores
                             </a>
                         </li>
+                        <li>
+                            <a href="factura2.php" class="white-text"><i class="material-icons white-text">local_shipping
+                                </i>Facturas
+                            </a>
+                        </li>
                     </ul>
                 </header>
                 <main class="m-normal">

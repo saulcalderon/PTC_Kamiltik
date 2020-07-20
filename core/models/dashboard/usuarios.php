@@ -145,7 +145,7 @@ class Usuarios extends Validator
     */
     public function checkCorreo($correo)
     {
-        $sql = 'SELECT id_administrador, nombre, apellido FROM administrador WHERE correo = ?';
+        $sql = 'SELECT id_usuario, nombre, apellido FROM id_usuario WHERE correo = ?';
         $params = array($correo);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_administrador'];
@@ -160,7 +160,7 @@ class Usuarios extends Validator
 
     public function checkPassword($password)
     {
-        $sql = 'SELECT clave FROM administrador WHERE id_administrador = ?';
+        $sql = 'SELECT clave FROM id_usuario WHERE id_administrador = ?';
         $params = array($this->id);
         $data = Database::getRow($sql, $params);
         if (password_verify($password, $data['clave'])) {
@@ -212,8 +212,8 @@ class Usuarios extends Validator
 
     public function readAllUsuarios()
     {
-        $sql = 'SELECT id_administrador, nombre, apellido, correo, telefono, id_cargo
-                FROM administrador
+        $sql = 'SELECT id_usuario, nombre, apellido, correo, telefono, id_tipo_usuario
+                FROM usuarios
                 ORDER BY apellido';
         $params = null;
         return Database::getRows($sql, $params);
@@ -221,9 +221,9 @@ class Usuarios extends Validator
 
     public function readOneUsuario()
     {
-        $sql = 'SELECT id_administrador, nombre, apellido, correo, telefono, id_cargo
-                FROM administrador
-                WHERE id_administrador = ?';
+        $sql = 'SELECT id_usuario, nombre, apellido, correo, telefono, id_tipo_usuario
+                FROM usuarios
+                WHERE id_usuario = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
