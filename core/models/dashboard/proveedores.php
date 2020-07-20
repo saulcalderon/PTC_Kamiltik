@@ -10,8 +10,9 @@ class Proveedores extends Validator
     private $nombre_contacto = null;
     private $nombre_empresa = null;
     private $telefono = null;
-    private $id_departamento = null;
-    private $departamento = null;
+    private $celular = null;
+    private $email = null;
+    private $direccion = null;
 
     public function setId($value)
     {
@@ -25,7 +26,7 @@ class Proveedores extends Validator
 
     public function setNombre($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
+        if ($this->validateAlphabetic($value, 1, 50)) {
             $this->nombre_contacto = $value;
             return true;
         } else {
@@ -35,7 +36,7 @@ class Proveedores extends Validator
 
     public function setEmpresa($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
+        if ($this->validateAlphabetic($value, 1, 50)) {
             $this->nombre_empresa = $value;
             return true;
         } else {
@@ -52,19 +53,28 @@ class Proveedores extends Validator
             return false;
         }
     }
-    public function setIdDepartamento($value)
+    public function setCelular($value)
     {
-        if ($this->validateNaturalNumber($value)) {
-            $this->id_departamento = $value;
+        if ($this->validateAlphanumeric($value, 1, 50)) {
+            $this->celular = $value;
             return true;
         } else {
             return false;
         }
     }
-    public function setDepartamento($value)
+    public function setDireccion($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->departamento = $value;
+        if ($this->validateAlphabetic($value, 1, 120)) {
+            $this->direccion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function setEmail($value)
+    {
+        if ($this->validateEmail($value)) {
+            $this->email = $value;
             return true;
         } else {
             return false;
@@ -92,50 +102,46 @@ class Proveedores extends Validator
     {
         return $this->telefono;
     }
-    public function getIdDepartamento()
+    public function getCelular()
     {
-        return $this->id_departamento;
+        return $this->celular;
     }
-    public function getDepartamento()
+    public function getDireccion()
     {
-        return $this->departamento;
+        return $this->direccion;
+    }
+    public function getEmail()
+    {
+        return $this->email;
     }
     //Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
 
     public function searchProveedor($value)
     {
-        $sql = 'SELECT id_proveedor, nombre_contacto, nombre_empresa, telefono, departamento 
-                FROM proveedor pr INNER JOIN departamento USING(id_departamento)
-                WHERE nombre_contacto ILIKE ? OR nombre_empresa ILIKE ?
-                ORDER BY nombre_contacto';
-        $params = array("%$value%", "%$value%");
+        $sql = 'SELECT id_proveedor,nombre, empresa,direccion, telefono_empresa, celular_contacto,correo 
+                FROM proveedores WHERE nombre ILIKE ?
+                ORDER BY empresa';
+        $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
     public function createProveedor()
     {
-        $sql = 'INSERT INTO proveedor(nombre_contacto, nombre_empresa, telefono, id_departamento )
-                VALUES(?, ?, ?, ?)';
-        $params = array($this->nombre_contacto, $this->nombre_empresa, $this->telefono, $this->id_departamento);
+        $sql = 'INSERT INTO proveedores(nombre,empresa,direccion,telefono_empresa,celular_contacto,correo) 
+                VALUES (?,?,?,?,?,?)';
+        $params = array($this->nombre_contacto, $this->nombre_empresa,$this->direccion , $this->telefono,$this->celular,$this->email);
         return Database::executeRow($sql, $params);
     }
     public function readAllProveedores()
     {
-        $sql = 'SELECT id_proveedor, nombre_contacto, nombre_empresa, telefono, departamento
-        FROM proveedor pr INNER JOIN departamento dp USING(id_departamento) ORDER BY nombre_contacto';
+        $sql = 'SELECT id_proveedor,nombre,empresa,direccion,telefono_empresa,celular_contacto,correo
+                FROM proveedores ORDER BY empresa';
         $params = null;
         return Database::getRows($sql, $params);
     }
-    public function readDepartamentos()
-    {
-        $sql = 'SELECT id_departamento, departamento FROM departamento';
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
-
     public function readOneProveedor()
     {
-        $sql = 'SELECT id_proveedor, nombre_contacto, nombre_empresa, telefono, id_departamento 
-                FROM proveedor
+        $sql = 'SELECT id_proveedor,nombre,empresa,direccion,telefono_empresa,celular_contacto,correo
+                FROM proveedores
                 WHERE id_proveedor = ?';
         $params = array($this->id_proveedor);
         return Database::getRow($sql, $params);
@@ -143,15 +149,16 @@ class Proveedores extends Validator
 
     public function updateProveedor()
     {
-        $sql = 'UPDATE proveedor SET nombre_contacto = ?, nombre_empresa = ?, 
-        telefono= ?, id_departamento = ? WHERE id_proveedor = ?';
-        $params = array($this->nombre_contacto, $this->nombre_empresa, $this->telefono, $this->id_departamento, $this->id_proveedor);
+        $sql = 'UPDATE proveedores
+                SET nombre = ?, empresa = ?,direccion = ?, 
+                telefono_empresa= ?, celular_contacto = ?, correo = ? WHERE id_proveedor = ?';
+        $params = array($this->nombre_contacto, $this->nombre_empresa,$this->direccion , $this->telefono,$this->celular,$this->email);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteProveedor()
     {
-        $sql = 'DELETE FROM proveedor
+        $sql = 'DELETE FROM proveedores
                 WHERE id_proveedor = ?';
         $params = array($this->id_proveedor);
         return Database::executeRow($sql, $params);

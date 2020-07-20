@@ -15,10 +15,12 @@ function fillTable(dataset) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>   
-                <td>${row.nombre_contacto}</td>
-                <td>${row.nombre_empresa}</td>
-                <td>${row.telefono}</td>
-                <td>${row.departamento}</td>
+                <td>${row.nombre}</td>
+                <td>${row.empresa}</td>
+                <td>${row.direccion}</td>
+                <td>${row.telefono_empresa}</td>
+                <td>${row.celular_contacto}</td>
+                <td>${row.correo}</td>
                 
                 <td>
                     <a href="#" onclick="openUpdateModal(${row.id_proveedor})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
@@ -54,8 +56,7 @@ function openCreateModal() {
     // Se asigna el título para la caja de dialogo (modal).
     $('#modal-title').text('Crear proveedor');
     // Se establece el campo de tipo archivo como obligatorio.
-    $('#archivo_cliente').prop('required', true);
-    fillSelect(API_PROVEEDORES + 'readDepartamentos', 'departamento', null);
+    
 }
 
 // Función que prepara formulario para modificar un registro.
@@ -67,7 +68,7 @@ function openUpdateModal(id) {
     // Se asigna el título para la caja de dialogo (modal).
     $('#modal-title').text('Modificar proveedor');
     // Se establece el campo de tipo archivo como opcional.
-    $('#archivo_producto').prop('required', false);
+    //$('#archivo_producto').prop('required', false);
 
     $.ajax({
             dataType: 'json',
@@ -81,11 +82,13 @@ function openUpdateModal(id) {
             // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
             if (response.status) {
                 // Se inicializan los campos del formulario con los datos del registro seleccionado previamente.
-                $('#id_proveedor').val(response.dataset.id_proveedor);
-                $('#nombre_contacto').val(response.dataset.nombre_contacto);
-                $('#nombre_empresa').val(response.dataset.nombre_empresa);
-                $('#telefono').val(response.dataset.telefono);
-                fillSelect(API_PROVEEDORES + 'readDepartamentos', 'departamento', response.dataset.id_departamento)
+               // $('#id_proveedor').val(response.dataset.id_proveedor);
+                $('#nombre_contacto').val(response.dataset.nombre);
+                $('#nombre_empresa').val(response.dataset.empresa);
+                $('#direccion').val(response.dataset.direccion);
+                $('#telefono').val(response.dataset.telefono_empresa);
+                $('#celular').val(response.dataset.celular_contacto);
+                $('#correo').val(response.dataset.correo);
                 // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 M.updateTextFields();
             } else {

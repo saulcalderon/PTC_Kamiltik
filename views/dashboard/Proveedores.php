@@ -26,8 +26,10 @@ Dashboard::headerTemplate('Administrar facturas');
             <tr>
                 <th>CONTACTO</th>
                 <th>EMPRESA</th>
+                <th>DIRECCION</th>
                 <th>TELÉFONO</th>
-                <th>DEPARTAMENTO</th>
+                <th>CELULAR</th>
+                <th>CORREO</th>
                 <th>ACCIONES</th>
             </tr>
         </thead>
@@ -60,15 +62,25 @@ Dashboard::headerTemplate('Administrar facturas');
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
+                        <input id="direccion" type="text" name="direccion" class="validate" required />
+                        <label for="direccion">Direccion</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">note_add</i>
                         <input id="telefono" type="tel" name="telefono" class="validate" pattern="[0-9]{8}" maxlength="8" required />
                         <label for="telefono">Teléfono</label>
                     </div>
-
                     <div class="input-field col s12 m6">
-                        <select id="departamento" name="departamento">
-                        </select>
-                        <label>Departamento</label>
+                        <i class="material-icons prefix">note_add</i>
+                        <input id="celular" type="tel" name="celular" class="validate" pattern="[0-9]{8}" maxlength="8" required />
+                        <label for="celular">Celular</label>
                     </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">note_add</i>
+                        <input id="correo" type="text" name="correo" class="validate" required />
+                        <label for="correo">E-mail</label>
+                    </div>
+
                 </div>
                 <div class="row center-align">
                     <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>

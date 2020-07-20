@@ -22,13 +22,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay proveedores registrados';
                 }
                 break;
-            case 'readDepartamentos':
-                if ($result['dataset'] = $proveedor->readDepartamentos()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay departamentos registrados';
-                }
-                break;
             case 'search':
                 $_POST = $proveedor->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -52,15 +45,25 @@ if (isset($_GET['action'])) {
                 if ($proveedor->setNombre($_POST['nombre_contacto'])) {
                     if ($proveedor->setEmpresa($_POST['nombre_empresa'])) {
                         if ($proveedor->setTelefono($_POST['telefono'])) {
-                            if ($proveedor->setIdDepartamento($_POST['departamento'])) {
+                            if ($proveedor->setDireccion($_POST['direccion'])) {
+                                if($proveedor->setCelular($_POST['celular'])){
+                                    if($proveedor->setEmail($_POST['correo'])){
                                 if ($proveedor->createProveedor()) {
                                     $result['status'] = 1;
                                     $result['message'] = 'Proveedor creado correctamente';
                                 } else {
                                     $result['exception'] = Database::getException();;
                                 }
+                                    } else{
+                                        $result['execption'] = 'Correo incorrecto';
+                                    }
+
+                                } else{
+                                    $result['execption'] = 'Celular incorrecto';
+                                }
+                                
                             } else {
-                                $result['exception'] = 'ID incorrecto';
+                                $result['exception'] = 'Dirección incorrecto';
                             }
                         } else {
                             $result['exception'] = 'Telefono incorrecto';
@@ -90,7 +93,9 @@ if (isset($_GET['action'])) {
                         if ($proveedor->setNombre($_POST['nombre_contacto'])) {
                             if ($proveedor->setEmpresa($_POST['nombre_empresa'])) {
                                 if ($proveedor->setTelefono($_POST['telefono'])) {
-                                    if ($proveedor->setIdDepartamento($_POST['departamento'])) {
+                                    if ($proveedor->setDireccion($_POST['direccion'])) {
+                                        if ($proveedor->setCelular($_POST['celular'])) {
+                                            if ($proveedor->setEmail($_POST['correo'])) {
                                         if ($proveedor->updateProveedor()) {
                                             $result['status'] = 1;
                                             $result['message'] = 'Proveedor modificado correctamente';
@@ -98,7 +103,13 @@ if (isset($_GET['action'])) {
                                             $result['exception'] = Database::getException();
                                         }
                                     } else {
-                                        $result['exception'] = 'Departamento incorrecto';
+                                        $result['exception'] = 'Correo incorrecto';
+                                    }
+                                    } else {
+                                        $result['exception'] = 'Celular incorrecto';
+                                    }
+                                } else {
+                                        $result['exception'] = 'Direccion incorrecto';
                                     }
                                 } else {
                                     $result['exception'] = 'Telefono incorrecto';
@@ -116,6 +127,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto';
                 }
                 break;
+                
             case 'delete':
                 if ($proveedor->setId($_POST['id_proveedor'])) {
                     if ($data = $proveedor->readOneProveedor()) {
