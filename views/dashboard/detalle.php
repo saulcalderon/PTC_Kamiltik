@@ -5,13 +5,13 @@ Dashboard::headerTemplate('Administrar noticias');
 <div class="padd-15">
 
     <div class="nav-wrapper">
-      <div class="col s12 green-text">
-        <a href="factura2.php" class="breadcrumb black-text">Facturas</a>
-        <a href="" class="breadcrumb black-text">Crear factura</a>
-        
-      </div>
+        <div class="col s12 green-text">
+            <a href="factura2.php" class="breadcrumb black-text">Facturas</a>
+            <a href="" class="breadcrumb black-text">Crear factura</a>
+
+        </div>
     </div>
-  
+
     <div class="row margin-0">
         <!-- <div class="col s12 m3">
             <h5>N° factura</h5>
@@ -43,22 +43,13 @@ Dashboard::headerTemplate('Administrar noticias');
         </div>
         <div class="col s12 m9">
             <!-- <a class="waves-effect waves-light btn-large block">Agregar productos</a> -->
-            <div class="card padd-15">
-                <h5>Elija una mesa</h5>
-                <form action="" method="" id="">
-                    <div class="row">
-                        <button type="" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>1</button>
-                        <button type="" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>2</button>
-                        <button type="" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>3</button>
-                        <button type="" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>4</button>
-                        <button type="" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>5</button>
-                    </div>
-                </form>
-            </div>
+            <!-- <a href="#" onclick="createBill(1)" >Holaaaa</a> -->
             <div class="card padd-15">
                 <h5>Elija un producto</h5>
                 <form action="" method="" id="addProduct">
                     <div class="row">
+                        <input type="hidden" id="id_factura" name="id_factura">
+                        <input type="hidden" id="mesa_form" name="mesa_form">
                         <div class="input-field col s6">
                             <input id="buscar-producto" name="buscar-producto" autocomplete="off" type="text" class="validate-search autocomplete ">
                             <label for="buscar-producto">Producto</label>
@@ -67,10 +58,6 @@ Dashboard::headerTemplate('Administrar noticias');
                         <div class="input-field col s2">
                             <input id="cantidad-producto" name="cantidad-producto" type="number" class="validate autocomplete">
                             <label for="cantidad-producto">Cantidad</label>
-                        </div>
-                        <div class="input-field col s2">
-                            <input id="mesa" type="number" name="mesa" class="validate autocomplete">
-                            <label for="mesa">Mesa</label>
                         </div>
                         <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
                     </div>
@@ -90,6 +77,30 @@ Dashboard::headerTemplate('Administrar noticias');
                     <tbody id="tbody-details"></tbody>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+<div id="update-modal" class="modal">
+    <div class="modal-content">
+        <h4 id="content" class="center"></h4>
+        <div class="container">
+            <form method="post" id="updateForm">
+                <input class="hide" type="text" id="id_detalle" name="id_detalle">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" name="cantidad" id="cantidad">
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <h6 id="nombre-producto" class="center"></h6>
+            <h6 id="precio-unitario" class="center"></h6>
+            <h6 id="tipo-producto" class="center"></h6>
         </div>
     </div>
 </div>

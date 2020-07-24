@@ -21,6 +21,7 @@ class Factura extends Validator
     private $mesa = null;
     private $id_usuario = null;
     private $id_sucursal = null;
+    private $id_detalle_factura = null;
 
 
     /*
@@ -144,6 +145,16 @@ class Factura extends Validator
         }
     }
 
+    public function setIdDetalle($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->id_detalle_factura = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -189,6 +200,10 @@ class Factura extends Validator
         return $this->producto;
     }
 
+    public function getMesa()
+    {
+        return $this->mesa;
+    }
 
 
 
@@ -209,15 +224,18 @@ class Factura extends Validator
     public function readOne()
 
     {
-        $sql = 'SELECT fc.id_factura as id_factura, nombre, fc.fecha_registro, precio_total, id_estado_factura, COUNT(cantidad) as cantidad FROM factura fc inner join cliente cl USING(id_cliente) inner join detalle_factura df USING(id_factura) inner join estado_factura ef USING(id_estado_factura) where id_factura = ? group by fc.id_factura, nombre, fc.fecha_registro, precio_total, id_estado_factura order by id_factura asc';
-        $params = array($this->id_factura);
+        $sql = 'SELECT id_detalle_factura,nombre_producto,cantidad,precio_unitario,tipo_producto
+            FROM detalle_factura INNER JOIN productos USING(id_producto)
+            INNER JOIN tipo_producto USING(id_tipo_producto)
+            WHERE id_detalle_factura = ?';
+        $params = array($this->id_detalle_factura);
         return Database::getRow($sql, $params);
     }
 
-    public function updateFactura()
+    public function updateDetail()
     {
-        $sql = 'UPDATE factura SET id_estado_factura = ? WHERE id_factura = ?';
-        $params = array($this->id_estado_factura, $this->id_factura);
+        $sql = 'UPDATE detalle_factura SET cantidad = ? WHERE id_detalle_factura = ?';
+        $params = array($this->cantidad, $this->id_detalle_factura);
         return Database::executeRow($sql, $params);
     }
 
@@ -243,12 +261,25 @@ class Factura extends Validator
         return Database::getRows($sql, $params);
     }
     #Método para verificar si el producto existe y que se agregue al detalle_factura
-    public function verifyBill()
+
+    public function readOneFactura()
+
+    {
+        $sql = 'SELECT id_detalle_factura,nombre_producto, cantidad, precio_unitario, tipo_producto
+        FROM detalle_factura INNER JOIN productos USING(id_producto)
+        INNER JOIN tipo_producto USING(id_tipo_producto)
+        WHERE id_factura = ?';
+        $params = array($this->id_factura);
+        return Database::getRows($sql, $params);
+    }
+
+
+    public function createBill()
     {
         $sql = 'SELECT id_factura FROM factura 
                 WHERE mesa = ?  AND id_estado_factura = 2';
         $params = array($this->mesa);
-        if (!$data = Database::getRow($sql, $params)) {
+        if (!Database::getRow($sql, $params)) {
             $sql = 'INSERT INTO factura (id_sucursal, id_usuario, mesa)
                 VALUES (?,?,?)';
             $params = array($this->id_sucursal, $this->id_usuario, $this->mesa);
@@ -256,9 +287,29 @@ class Factura extends Validator
             $sql = 'SELECT id_factura FROM factura 
                     WHERE mesa = ?  AND id_estado_factura = 2';
             $params = array($this->mesa);
-            $data = Database::getRow($sql, $params);
+            return Database::getRow($sql, $params);
+        } else {
+            return false;
         }
+    }
 
+    public function verifyTable()
+    {
+        $sql = 'SELECT MAX(mesa) from factura';
+        return Database::getRow($sql, null);
+    }
+
+    public function billID()
+    {
+        $sql = 'SELECT id_factura FROM factura 
+                WHERE mesa = ?  AND id_estado_factura = 2';
+        $params = array(intval($this->mesa));
+        $data = Database::getRow($sql, $params);
+        return $data['id_factura'];
+    }
+
+    public function addProduct()
+    {
         $sql = 'SELECT id_producto FROM productos
         WHERE nombre_producto = ?';
         $params = array($this->nombre);
@@ -267,19 +318,14 @@ class Factura extends Validator
         }
         $sql = 'INSERT INTO detalle_factura (cantidad, id_factura, id_producto) 
                 VALUES (?,?,?)';
-        $params = array($this->cantidad, $data['id_factura'], $data2['id_producto']);
+        $params = array($this->cantidad, $this->id_factura, $data2['id_producto']);
         Database::executeRow($sql, $params);
-        return $data;
+        return true;
     }
-
-    public function readOneFactura()
-
+    public function deleteDetail()
     {
-        $sql = 'SELECT nombre_producto, cantidad, precio_unitario, tipo_producto
-        FROM detalle_factura INNER JOIN productos USING(id_producto)
-        INNER JOIN tipo_producto USING(id_tipo_producto)
-        WHERE id_factura = ?';
-        $params = array($this->id_factura);
-        return Database::getRows($sql, $params);
+        $sql = 'DELETE from detalle_factura where id_detalle_factura = ?';
+        $params = array($this->id_detalle_factura);
+        return Database::executeRow($sql, $params);
     }
 }

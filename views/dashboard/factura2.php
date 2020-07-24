@@ -15,10 +15,21 @@ Dashboard::headerTemplate('Administrar facturas');
                 <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar"><i class="material-icons">check_circle</i></button>
             </div>
         </form>
-        <a href="detalle.php" class="btn-large waves-effect green tooltipped" data-tooltip="Nueva factura"><i class="material-icons"></i>Agregar factura</a>
+
         <!-- <a href="#" onclick="openBill()" class="btn waves-effect grey tooltipped" data-tooltip="Nueva factura"><i class="material-icons">cancel</i></a> -->
     </div>
-
+    <div class="card padd-15">
+        <h5>Elija una mesa</h5>
+        <form action="detalle.php" id="factura-mesa">
+            <div class="row">
+                <button type="submit" name="boton" value="1" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>1</button>
+                <button type="submit" name="boton" value="2" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>2</button>
+                <button type="submit" name="boton" value="3" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>3</button>
+                <button type="submit" name="boton" value="4" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>4</button>
+                <button type="submit" name="boton" value="5" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>5</button>
+            </div>
+        </form>
+    </div>
     <table class="highlight padd-15 pagination responsive-table">
         <!-- Cabeza de la tabla para mostrar los títulos de las columnas -->
         <thead>

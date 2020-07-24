@@ -74,7 +74,7 @@ function readRowsModified(api, identifier) {
             dataType: 'json',
             url: api,
             data: {
-               id_factura : identifier
+               mesa_form : identifier
             }
         })
         .done(function (response) {

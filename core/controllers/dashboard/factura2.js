@@ -56,14 +56,14 @@ function openViewDetails(id, mesa) {
     // $('#detalle-modal').modal('open');
     // $('#modal-title-2').text('Detalle de compra');
     // Se establece el campo de tipo archivo como obligatorio.
-    
+
     location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/crear_factura.php';
-    
+
     mesas.forEach(el => {
         if (mesas == mesa) {
             mesas[el].classList.add = 'gray';
             mesas[el].classList.remove = 'green';
-        } 
+        }
     });
     let identifier = {
         id_factura: id
@@ -128,10 +128,7 @@ $('#save-form').submit(function (event) {
     }
 });
 
-function openBill() {
-    $('#bill').modal('open');
 
-}
 
 
 

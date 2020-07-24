@@ -29,43 +29,63 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay facturas registradas';
                 }
                 break;
-
-            case 'verifyBill':
+            case 'createBill':
                 $_POST = $factura->validateForm($_POST);
                 if ($factura->setIdSucursal(1)) {
-                    if ($factura->setMesa($_POST['mesa'])) {
-                        if ($factura->setNombre($_POST['buscar-producto'])) {
-                            if ($factura->setIdUsuario(1/*$_SESSION['id_usuario']*/)) {
-                                if ($factura->setCantidad($_POST['cantidad-producto'])) {
-                                    if ($result['dataset'] = $factura->verifyBill()) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Se ha ingresado el producto correctamente';
-                                    } else {
-                                        $result['exception'] = 'El producto es incorrecto o no existe';
-                                    }
+                    if ($factura->setIdUsuario(1)) {
+                        if ($factura->setMesa($_POST['mesa'])) {
+                            if ($_POST['mesa'] <= $factura->verifyTable()) {
+                                if ($result['dataset'] = $factura->createBill()) {
+                                    $result['status'] = 1;
                                 } else {
-                                    $result['exception'] = 'Error al asignar la cantidad';
+                                    if ($factura->setId($factura->billID())) {
+                                        if ($result['dataset'] = $factura->readOneFactura()) {
+                                            $result['status'] = 1;
+                                        } else {
+                                            $result['exception'] = 'Factura sin productos';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Factura incorrecta';
+                                    }
                                 }
                             } else {
-                                $result['exception'] = 'Error al asignar el usuario';
+                                $result['exception'] = 'Mesa Inexistente';
                             }
                         } else {
-                            $result['exception'] = 'Error al asignar el producto';
+                            $result['exception'] = 'Error en la mesa';
                         }
                     } else {
-                        $result['exception'] = 'Error al asignar una mesa';
+                        $result['exception'] = 'Error en el usuario';
                     }
                 } else {
                     $result['exception'] = 'Error en la sucursal';
                 }
                 break;
-
-            case 'continue':
-                if ($factura->setId($_POST['id_factura'])) {
-
+            case 'addProduct':
+                $_POST = $factura->validateForm($_POST);
+                if ($factura->setNombre($_POST['buscar-producto'])) {
+                    if ($factura->setCantidad($_POST['cantidad-producto'])) {
+                        if ($factura->setMesa($_POST['mesa_form'])) {
+                            if ($factura->setId($factura->billID())) {
+                                if ($factura->addProduct()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Se ha ingresado el producto correctamente';
+                                } else {
+                                    $result['exception'] = 'El producto es incorrecto o no existe';
+                                }
+                            } else {
+                                $result['exception'] = 'La factura es incorrecto o no existe';
+                            }
+                        } else {
+                            $result['exception'] = 'Mesa incorrecto';
+                        }
+                    } else {
+                        $result['exception'] = 'Error al asignar la cantidad';
+                    }
                 } else {
-                    
+                    $result['exception'] = 'Error al asignar el producto';
                 }
+                break;
             case 'search':
                 $_POST = $factura->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -84,94 +104,62 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
-            case 'create':
-                $_POST = $producto->validateForm($_POST);
-                if ($producto->setNombre($_POST['nombre_producto'])) {
-                    if ($producto->setDescripcion($_POST['descripcion_producto'])) {
-                        if ($producto->setPrecio($_POST['precio_producto'])) {
-                            if (isset($_POST['categoria_producto'])) {
-                                if ($producto->setCategoria($_POST['categoria_producto'])) {
-                                    if ($producto->setEstado(isset($_POST['estado_producto']) ? 1 : 0)) {
-                                        if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
-                                            if ($producto->setImagen($_FILES['archivo_producto'])) {
-                                                if ($producto->createProducto()) {
-                                                    $result['status'] = 1;
-                                                    $result['message'] = 'Producto creado correctamente';
-                                                } else {
-                                                    $result['exception'] = Database::getException();;
-                                                }
-                                            } else {
-                                                $result['exception'] = $producto->getImageError();
-                                            }
-                                        } else {
-                                            $result['exception'] = 'Seleccione una imagen';
-                                        }
-                                    } else {
-                                        $result['exception'] = 'Estado incorrecto';
-                                    }
-                                } else {
-                                    $result['exception'] = 'Categoría incorrecta';
-                                }
-                            } else {
-                                $result['exception'] = 'Seleccione una categoría';
-                            }
-                        } else {
-                            $result['exception'] = 'Precio incorrecto';
-                        }
-                    } else {
-                        $result['exception'] = 'Descripción incorrecta';
-                    }
-                } else {
-                    $result['exception'] = 'Nombre incorrecto';
-                }
-                break;
             case 'readOneFactura':
-                if ($factura->setId($_POST['id_factura'])) {
-                    if ($result['dataset'] = $factura->readOneFactura()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'Producto inexistente';
-                    }
-                } else {
-                    $result['exception'] = 'ID incorrecto';
-                }
-                break;
-            case 'readOne':
-                if ($factura->setId($_POST['id_factura'])) {
-                    if ($data = $factura->readOne()) {
-                        if ($result['dataset'] = $factura->readOne()) {
+                if ($factura->setMesa($_POST['mesa_form'])) {
+                    if ($factura->setId($factura->billID())) {
+                        if ($result['dataset'] = $factura->readOneFactura()) {
                             $result['status'] = 1;
                         } else {
                             $result['exception'] = 'Producto inexistente';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
-                    }
-                }
-                break;
-            case 'update':
-                $_POST = $factura->validateForm($_POST);
-                if ($factura->setId($_POST['id_factura'])) {
-                    if ($data = $factura->readOne()) {
-                        if ($factura->setIdEstadoFactura($_POST['estado_factura'])) {
-                            if ($factura->updateFactura()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Factura modificado correctamente';
-                            } else {
-                                $result['exception'] = Database::getException();
-                            }
-                        } else {
-                            $result['exception'] = 'Seleccione una categoría';
-                        }
-                    } else {
-                        $result['exception'] = 'Producto inexistente';
+                        $result['exception'] = 'ID incorrecto';
                     }
                 } else {
-                    $result['exception'] = 'Producto incorrecto';
+                    $result['exception'] = 'Mesa incorrecta';
                 }
                 break;
+            case 'readOne':
+                if ($factura->setIdDetalle($_POST['id_detalle'])) {
+                    if ($result['dataset'] = $factura->readOne()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'ID detalle incorrecto';
+                    }
+                } else {
+                    $result['exception'] = 'ID detalle incorrecto';
+                }
 
-
+                break;
+            case 'updateDetail':
+                $_POST = $factura->validateForm($_POST);
+                if ($factura->setIdDetalle($_POST['id_detalle'])) {
+                    if ($factura->setCantidad($_POST['cantidad'])) {
+                        if ($factura->updateDetail()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Cantidad modificada correctamente';
+                        } else {
+                            $result['exception'] = 'Por favor no exceder la cantidad máxima del producto';
+                        }
+                    } else {
+                        $result['exception'] = 'Cantidad incorrecta';
+                    }
+                } else {
+                    $result['exception'] = 'Detalle incorrecto';
+                }
+                break;
+            case 'deleteDetail':
+                if ($factura->setIdDetalle($_POST['id_detalle'])) {
+                    if ($factura->deleteDetail()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Producto eliminado correctamente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = 'Detalle incorrecto';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
