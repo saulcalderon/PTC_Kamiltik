@@ -1,6 +1,7 @@
 const API_FACTURA = '../../core/api/dashboard/factura.php?action=';
 const API_ESTADO_FACTURA = '../../core/api/dashboard/estado_factura.php?action=readAll';
 
+
 $(document).ready(function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_FACTURA);
@@ -12,20 +13,16 @@ function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.forEach(function (row) {
-        // Se establece un icono para el estado del producto.
-
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
+                <td>${row.fecha}</td>
                 <td>${row.nombre}</td>
-                <td>${row.fecha_registro}</td>
-                <td>${row.precio_total}</td>
-                <td>${row.estado_factura}</td>
-                <td>${row.cantidad}</td>
-                <td>
-                    <a href="#" onclick="openUpdateModal(${row.id_factura})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="openViewDetails(${row.id_factura})" class="green-text tooltipped" data-tooltip="Ver detalle"><i class="material-icons">assignment</i></a>
-                </td>
+                <td># ${row.id_mesa}</td>
+                <td>${row.estado_factura}</td> 
+                <td>${row.entregado_por_cliente}</td>
+                <td>${row.cambio}</td>
+                <td>${row.total}</td>
             </tr>
 
         `;
@@ -40,28 +37,7 @@ function fillTable(dataset) {
 }
 
 
-function fillTableModified(dataset) {
-    let content = '';
 
-    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-
-    // Se establece un icono para el estado del producto.
-    dataset.forEach(function (row) {
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        content += `
-            <tr>
-                <td>${row.producto}</td>
-                <td>${row.precio_unitario}</td>
-                <td>${row.cantidad}</td>
-            </tr>
-
-        `;
-    });
-    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    $('#tbody-details').html(content);
-    // Se inicializa el componente Tooltip asignado a los enlaces para que funcionen las sugerencias textuales.
-    $('.tooltipped').tooltip();
-}
 
 // Evento para mostrar los resultados de una búsqueda.
 $('#search-form').submit(function (event) {
@@ -72,11 +48,20 @@ $('#search-form').submit(function (event) {
 
 });
 
-function openViewDetails(id) {
+function openViewDetails(id, mesa) {
     // Se abre la caja de dialogo (modal) que contiene el formulario.
-    $('#detalle-modal').modal('open');
-    $('#modal-title-2').text('Detalle de compra');
+    // $('#detalle-modal').modal('open');
+    // $('#modal-title-2').text('Detalle de compra');
     // Se establece el campo de tipo archivo como obligatorio.
+
+    location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/crear_factura.php';
+
+    mesas.forEach(el => {
+        if (mesas == mesa) {
+            mesas[el].classList.add = 'gray';
+            mesas[el].classList.remove = 'green';
+        }
+    });
     let identifier = {
         id_factura: id
     };
@@ -139,3 +124,8 @@ $('#save-form').submit(function (event) {
         saveRow(API_PRODUCTOS, 'create', this, 'save-modal');
     }
 });
+
+
+
+
+
