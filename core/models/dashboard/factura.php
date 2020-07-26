@@ -11,7 +11,7 @@ class Factura extends Validator
     private $precio_total = null;
     private $id_estado_factura = null;
     private $estado_factura = null;
-    private $cantidad = null;
+
     private $precio_unitario = null;
     private $producto = null;
 
@@ -22,7 +22,10 @@ class Factura extends Validator
     private $id_usuario = null;
     private $id_sucursal = null;
     private $id_detalle_factura = null;
-
+    private $cantidad = null;
+    private $entregado = null;
+    private $total = null;
+    private $cambio = null;
 
     /*
     *   Métodos para asignar valores a los atributos.
@@ -77,46 +80,66 @@ class Factura extends Validator
         }
     }
 
-    public function setIdEstadoFactura($value)
-    {
-        if ($this->validateNaturalNumber($value)) {
-            $this->id_estado_factura = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function setIdEstadoFactura($value)
+    // {
+    //     if ($this->validateNaturalNumber($value)) {
+    //         $this->id_estado_factura = $value;
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
     #---------------------------
 
-    public function setFechaRegistro($value)
-    {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->fecha_registro = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function setFechaRegistro($value)
+    // {
+    //     if ($this->validateAlphanumeric($value, 1, 50)) {
+    //         $this->fecha_registro = $value;
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    public function setPrecioTotal($value)
+    public function setTotal($value)
     {
         if ($this->validateMoney($value)) {
-            $this->precio_total = $value;
+            $this->total = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function setEstadoFactura($value)
+    public function setEntregado($value)
     {
-        if ($this->validateAlphabetic($value, 1, 50)) {
-            $this->estado_factura = $value;
+        if ($this->validateMoney($value)) {
+            $this->entregado = $value;
             return true;
         } else {
             return false;
         }
     }
+
+    public function setCambio($value)
+    {
+        if ($this->validateMoney($value)) {
+            $this->cambio = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // public function setEstadoFactura($value)
+    // {
+    //     if ($this->validateAlphabetic($value, 1, 50)) {
+    //         $this->estado_factura = $value;
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
     public function setCantidad($value)
     {
         if ($this->validateNaturalNumber($value)) {
@@ -126,24 +149,24 @@ class Factura extends Validator
             return false;
         }
     }
-    public function setPrecioUnitario($value)
-    {
-        if ($this->validateMoney($value)) {
-            $this->precio_unitario = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function setProducto($value)
-    {
-        if ($this->validateAlphabetic($value, 1, 50)) {
-            $this->producto = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function setPrecioUnitario($value)
+    // {
+    //     if ($this->validateMoney($value)) {
+    //         $this->precio_unitario = $value;
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    // public function setProducto($value)
+    // {
+    //     if ($this->validateAlphabetic($value, 1, 50)) {
+    //         $this->producto = $value;
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function setIdDetalle($value)
     {
@@ -158,52 +181,52 @@ class Factura extends Validator
     /*
     *   Métodos para obtener valores de los atributos.
     */
-    public function getId()
-    {
-        return $this->id_factura;
-    }
+    // public function getId()
+    // {
+    //     return $this->id_factura;
+    // }
 
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
+    // public function getNombre()
+    // {
+    //     return $this->nombre;
+    // }
 
-    public function getFechaRegistro()
-    {
-        return $this->fecha_registro;
-    }
+    // public function getFechaRegistro()
+    // {
+    //     return $this->fecha_registro;
+    // }
 
-    public function getPrecioTotal()
-    {
-        return $this->precio_total;
-    }
-    public function getIdEstadoFactura()
-    {
-        return $this->id_estado_factura;
-    }
+    // public function getPrecioTotal()
+    // {
+    //     return $this->precio_total;
+    // }
+    // public function getIdEstadoFactura()
+    // {
+    //     return $this->id_estado_factura;
+    // }
 
-    public function getEstadoFactura()
-    {
-        return $this->estado_factura;
-    }
+    // public function getEstadoFactura()
+    // {
+    //     return $this->estado_factura;
+    // }
 
-    public function getCantidad()
-    {
-        return $this->cantidad;
-    }
-    public function getPrecioUnitario()
-    {
-        return $this->precio_unitario;
-    }
-    public function getProducto()
-    {
-        return $this->producto;
-    }
+    // public function getCantidad()
+    // {
+    //     return $this->cantidad;
+    // }
+    // public function getPrecioUnitario()
+    // {
+    //     return $this->precio_unitario;
+    // }
+    // public function getProducto()
+    // {
+    //     return $this->producto;
+    // }
 
-    public function getMesa()
-    {
-        return $this->mesa;
-    }
+    // public function getMesa()
+    // {
+    //     return $this->mesa;
+    // }
 
 
 
@@ -218,8 +241,6 @@ class Factura extends Validator
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
-
-
 
     public function readOne()
 
@@ -326,6 +347,19 @@ class Factura extends Validator
     {
         $sql = 'DELETE from detalle_factura where id_detalle_factura = ?';
         $params = array($this->id_detalle_factura);
+        return Database::executeRow($sql, $params);
+    }
+    public function deleteBill()
+    {
+        $sql = 'DELETE from factura where id_factura = ?';
+        $params = array($this->id_factura);
+        return Database::executeRow($sql, $params);
+    }
+    public function finishBill()
+    {
+        $sql = 'UPDATE factura SET id_estado_factura = 1 , total = ? 
+        , cambio = ? , entregado_por_cliente = ? WHERE id_factura = ?';
+        $params = array($this->total, $this->cambio, $this->entregado, $this->id_factura);
         return Database::executeRow($sql, $params);
     }
 }

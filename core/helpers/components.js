@@ -74,7 +74,7 @@ function readRowsModified(api, identifier) {
             dataType: 'json',
             url: api,
             data: {
-               mesa_form : identifier
+                mesa_form: identifier
             }
         })
         .done(function (response) {
@@ -212,8 +212,11 @@ function confirmDelete(api, identifier) {
                         // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
                         if (response.status) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
-                            readRows(api);
+                            //readRows(api);
                             sweetAlert(1, response.message, null);
+                            setTimeout(() => {
+                                location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura2.php';
+                            }, 3000);
                         } else {
                             sweetAlert(2, response.exception, null);
                         }

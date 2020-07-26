@@ -20,9 +20,11 @@ function createBill(id) {
         .done(function (response) {
             $('#mesa_form').val(id);
             if (response.status) {
-                fillTableModified(response.dataset);
+                if (response.dataset.length) {
+                    fillTableModified(response.dataset);
+                }
             } else {
-                sweetAlert(2, response.exception, null);
+                sweetAlert(4, response.exception, null);
             }
         })
         .fail(function (jqXHR) {
@@ -68,7 +70,12 @@ function fillTableModified(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     // Se establece un icono para el estado del producto.
+
+    let total = 0;
     dataset.forEach(function (row) {
+
+        let subtotal = (row.cantidad * row.precio_unitario);
+        total += subtotal;
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
@@ -83,7 +90,16 @@ function fillTableModified(dataset) {
             </tr>
 
         `;
+
     });
+    $('#total-factura').text(total.toFixed(2));
+    let entregado = $('#entregado').maskMoney('unmasked')[0];
+    let cambio = entregado - total;
+    if (entregado > total) {
+        $('#cambio').text('Cambio: $ ' + cambio.toFixed(2));
+    } else {
+        $('#cambio').text('Cambio inválido');
+    }
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     $('#tbody-details').html(content);
     // Se inicializa el componente Tooltip asignado a los enlaces para que funcionen las sugerencias textuales.
@@ -172,7 +188,7 @@ function openUpdateModal(id) {
         .done(function (response) {
             // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
             if (response.status) {
-                // Se inicializan los campos del formulario con los datos del registro seleccionado previamente.
+                // Se inicializan los campos del formulario con los datos del registro seleccionado previamente. 
                 $('#id_detalle').val(response.dataset.id_detalle_factura);
                 console.log($('#id_detalle').val());
                 $('#nombre-producto').text(response.dataset.nombre_producto);
@@ -252,3 +268,69 @@ function deleteDetail(id) {
             }
         });
 }
+
+function actionBill(action) {
+    let id = $('#mesa_form').val();
+    let str = $('#cambio').text().substring(10);
+    switch (action) {
+        case 'finalizar':
+            $.ajax({
+                    type: 'post',
+                    url: API_FACTURA + 'finishBill',
+                    data: {
+                        mesa: id,
+                        entregado: $('#entregado').maskMoney('unmasked')[0],
+                        total: parseFloat($('#total-factura').text()),
+                        cambio: parseFloat(str)
+                    },
+                    dataType: 'json',
+                })
+                .done(function (response) {
+                    if (response.status) {
+                        sweetAlert(1, response.message, null);
+                        setTimeout(() => {
+                            location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura2.php';
+                        }, 2000);
+                    } else {
+                        sweetAlert(4, response.exception, null);
+                    }
+                })
+                .fail(function (jqXHR) {
+                    // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+                    if (jqXHR.status == 200) {
+                        console.log(jqXHR.responseText);
+                    } else {
+                        console.log(jqXHR.status + ' ' + jqXHR.statusText);
+                    }
+                });
+            break;
+        case 'eliminar':
+            console.log($('#mesa_form').val());
+
+            let identifier = {
+                mesa: id
+            };
+            confirmDelete(API_FACTURA, identifier)
+
+            break;
+        default:
+            location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura2.php';
+            break;
+    }
+}
+
+// $('#entregado').maskMoney();
+$("#entregado").maskMoney({
+    prefix: '$ '
+});
+
+$('#entregado').on('change keyup', function () {
+    let total = parseFloat($('#total-factura').text());
+    let entregado = $('#entregado').maskMoney('unmasked')[0];
+    let cambio = entregado - total;
+    if (entregado > total) {
+        $('#cambio').text('Cambio: $ ' + cambio.toFixed(2));
+    } else {
+        $('#cambio').text('Cambio inválido');
+    }
+});

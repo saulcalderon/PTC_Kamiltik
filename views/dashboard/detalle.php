@@ -23,7 +23,7 @@ Dashboard::headerTemplate('Administrar noticias');
             <h5>Usuario</h5>
             <h6>Saúl Calderón</h6>
         </div> -->
-        <div class="col s12 m3">
+        <!-- <div class="col s12 m3">
             <div class="card padd-15">
                 <div class="row">
                     <div class="col s6">
@@ -40,6 +40,28 @@ Dashboard::headerTemplate('Administrar noticias');
                     </div>
                 </div>
             </div>
+        </div> -->
+        <div class="col s12 m3">
+            <div class="card padd-15">
+                <div class="row center">
+                    <h6 class="margin-10">Total: $<span id="total-factura"></span></h6>
+                    <h6  id="cambio" class="margin-10">Cambio: $</h6>
+                    <form action="" method="post">
+                        <div class="input-field col s12">
+                            <input id="entregado" name="entregado" type="text" maxlength="8" class="validate" placeholder="Ej: $12.00" required>
+                            <label for="entregado">Entregado por cliente</label>
+                        </div>
+                        
+
+                          
+                        
+                    </form>
+                    <a href="#" class="margin-10 block waves-effect waves-light btn-large" onclick="actionBill('finalizar')" data-tooltip="Finalizar factura"><i class="material-icons left">assignment_turned_in</i>Finalizar Factura</a>
+                    <a href="#" class="margin-10 block waves-effect waves-light btn-large" onclick="actionBill('pendiente')" data-tooltip="Factura pendiente"><i class="material-icons left">assignment_return</i>Pendiente</a>
+                    <a href="#" class="margin-10 block waves-effect waves-light btn-large" onclick="actionBill('eliminar')" data-tooltip="Eliminar factura"><i class="material-icons left">assignment_late</i>Eliminar Factura</a>
+
+                </div>
+            </div>
         </div>
         <div class="col s12 m9">
             <!-- <a class="waves-effect waves-light btn-large block">Agregar productos</a> -->
@@ -51,12 +73,12 @@ Dashboard::headerTemplate('Administrar noticias');
                         <input type="hidden" id="id_factura" name="id_factura">
                         <input type="hidden" id="mesa_form" name="mesa_form">
                         <div class="input-field col s6">
-                            <input id="buscar-producto" name="buscar-producto" autocomplete="off" type="text" class="validate-search autocomplete ">
+                            <input id="buscar-producto" name="buscar-producto" autocomplete="off" type="text" class="validate-search autocomplete">
                             <label for="buscar-producto">Producto</label>
                             <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
                         </div>
                         <div class="input-field col s2">
-                            <input id="cantidad-producto" name="cantidad-producto" type="number" class="validate autocomplete">
+                            <input id="cantidad-producto" name="cantidad-producto" type="number" class="validate" value="1" min="1">
                             <label for="cantidad-producto">Cantidad</label>
                         </div>
                         <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
@@ -89,7 +111,7 @@ Dashboard::headerTemplate('Administrar noticias');
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <label for="cantidad">Cantidad</label>
-                        <input type="number" name="cantidad" id="cantidad">
+                        <input type="number" min="1" name="cantidad" id="cantidad">
                     </div>
                     <div class="input-field col s12 m6">
                         <button class="btn waves-effect waves-light" type="submit" name="action">Guardar

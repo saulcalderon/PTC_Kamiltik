@@ -110,7 +110,7 @@ if (isset($_GET['action'])) {
                         if ($result['dataset'] = $factura->readOneFactura()) {
                             $result['status'] = 1;
                         } else {
-                            $result['exception'] = 'Producto inexistente';
+                            $result['exception'] = 'Factura sin productos';
                         }
                     } else {
                         $result['exception'] = 'ID incorrecto';
@@ -158,6 +158,54 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['exception'] = 'Detalle incorrecto';
+                }
+                break;
+            case 'delete':
+                if ($factura->setMesa($_POST['mesa'])) {
+                    if ($factura->setId($factura->billID())) {
+                        if ($factura->deleteBill()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Factura eliminada correctamente';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'ID factura incorrecta';
+                    }
+                } else {
+                    $result['exception'] = 'Mesa incorrecta';
+                }
+                break;
+            case 'finishBill':
+                if ($factura->setMesa($_POST['mesa'])) {
+                    if ($factura->setId($factura->billID())) {
+                        if ($_POST['entregado'] > $_POST['total']) {
+                            if ($factura->setTotal($_POST['total'])) {
+                                if ($factura->setCambio($_POST['cambio'])) {
+                                    if ($factura->setEntregado($_POST['entregado'])) {
+                                        if ($factura->finishBill()) {
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Factura completada';
+                                        } else {
+                                            $result['exception'] = Database::getException();
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Entregado por cliente incorrecto';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Cambio incorrecto';
+                                }
+                            } else {
+                                $result['exception'] = 'Precio total incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'Total o cambio inválido';
+                        }
+                    } else {
+                        $result['exception'] = 'ID factura incorrecta';
+                    }
+                } else {
+                    $result['exception'] = 'Mesa incorrecta';
                 }
                 break;
             default:

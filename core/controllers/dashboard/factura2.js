@@ -23,9 +23,6 @@ function fillTable(dataset) {
                 <td>${row.entregado_por_cliente}</td>
                 <td>${row.cambio}</td>
                 <td>${row.total}</td>
-                <td>
-                    <a href="detalle.php?id=${row.id_factura}&&estado=${row.estado_factura}" class="green-text tooltipped" data-tooltip="Ver detalle"><i class="material-icons">assignment</i></a>
-                </td>
             </tr>
 
         `;

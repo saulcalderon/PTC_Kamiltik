@@ -153,6 +153,7 @@ class Dashboard
                     <h6></h6>
                 </footer>
                 <script type="text/javascript" src="../../resources/js/jquery-3.4.1.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/maskMoney.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
