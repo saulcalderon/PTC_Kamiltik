@@ -18,7 +18,7 @@ function fillTable(dataset) {
             <tr>
                 <td>${row.fecha}</td>
                 <td>${row.nombre}</td>
-                <td># ${row.mesa}</td>
+                <td># ${row.id_mesa}</td>
                 <td>${row.estado_factura}</td> 
                 <td>${row.entregado_por_cliente}</td>
                 <td>${row.cambio}</td>

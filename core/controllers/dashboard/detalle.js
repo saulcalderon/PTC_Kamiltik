@@ -92,7 +92,12 @@ function fillTableModified(dataset) {
         `;
 
     });
-    $('#total-factura').text(total.toFixed(2));
+    if (total.toFixed(2) == 0.00) {
+        $('#total-factura').text('');
+    } else {
+        $('#total-factura').text(total.toFixed(2));
+    }
+
     let entregado = $('#entregado').maskMoney('unmasked')[0];
     let cambio = entregado - total;
     if (entregado > total) {
@@ -122,7 +127,7 @@ async function searchProduct() {
         .done(function (response) {
             if (response.status) {
                 for (let i = 0; i < response.dataset.length; i++) {
-                    options.data[response.dataset[i].nombre_producto] = `hola ${i}`;
+                    options.data[response.dataset[i].nombre_producto] = 'http://localhost/PTC_Kamiltik/resources/img/commerce/producto1.jpg';
                 }
                 var elems = document.querySelectorAll('.autocomplete');
 

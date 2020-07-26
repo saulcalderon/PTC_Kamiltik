@@ -18,7 +18,7 @@ class Factura extends Validator
     #Nuevas variables
     private $id_factura = null;
     private $nombre = null;
-    private $mesa = null;
+    private $id_mesa = null;
     private $id_usuario = null;
     private $id_sucursal = null;
     private $id_detalle_factura = null;
@@ -73,7 +73,7 @@ class Factura extends Validator
     public function setMesa($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->mesa = $value;
+            $this->id_mesa = $value;
             return true;
         } else {
             return false;
@@ -266,7 +266,7 @@ class Factura extends Validator
     # Método para mostrar todas las facturas.
     public function readAllFacturas()
     {
-        $sql = "SELECT id_factura,nombre, to_char(fecha_registro,'YYYY-MM-DD : HH:MM') AS fecha, COUNT(id_detalle_factura) as cantidad, entregado_por_cliente, cambio,total, estado_factura, mesa FROM factura fc INNER JOIN detalle_factura USING(id_factura)
+        $sql = "SELECT id_factura,nombre, to_char(fecha_registro,'YYYY-MM-DD : HH:MM') AS fecha, COUNT(id_detalle_factura) as cantidad, entregado_por_cliente, cambio,total, estado_factura, id_mesa FROM factura fc INNER JOIN detalle_factura USING(id_factura)
         INNER JOIN usuarios USING(id_usuario)
         INNER JOIN estado_factura USING(id_estado_factura)
         GROUP BY id_factura, nombre, estado_factura ORDER BY id_factura desc";
@@ -298,16 +298,16 @@ class Factura extends Validator
     public function createBill()
     {
         $sql = 'SELECT id_factura FROM factura 
-                WHERE mesa = ?  AND id_estado_factura = 2';
-        $params = array($this->mesa);
+                WHERE id_mesa = ?  AND id_estado_factura = 2';
+        $params = array($this->id_mesa);
         if (!Database::getRow($sql, $params)) {
-            $sql = 'INSERT INTO factura (id_sucursal, id_usuario, mesa)
+            $sql = 'INSERT INTO factura (id_sucursal, id_usuario, id_mesa)
                 VALUES (?,?,?)';
-            $params = array($this->id_sucursal, $this->id_usuario, $this->mesa);
+            $params = array($this->id_sucursal, $this->id_usuario, $this->id_mesa);
             Database::executeRow($sql, $params);
             $sql = 'SELECT id_factura FROM factura 
-                    WHERE mesa = ?  AND id_estado_factura = 2';
-            $params = array($this->mesa);
+                    WHERE id_mesa = ?  AND id_estado_factura = 2';
+            $params = array($this->id_mesa);
             return Database::getRow($sql, $params);
         } else {
             return false;
@@ -316,15 +316,15 @@ class Factura extends Validator
 
     public function verifyTable()
     {
-        $sql = 'SELECT MAX(mesa) from factura';
+        $sql = 'SELECT MAX(id_mesa) from mesas';
         return Database::getRow($sql, null);
     }
 
     public function billID()
     {
         $sql = 'SELECT id_factura FROM factura 
-                WHERE mesa = ?  AND id_estado_factura = 2';
-        $params = array(intval($this->mesa));
+                WHERE id_mesa = ?  AND id_estado_factura = 2';
+        $params = array(intval($this->id_mesa));
         $data = Database::getRow($sql, $params);
         return $data['id_factura'];
     }
