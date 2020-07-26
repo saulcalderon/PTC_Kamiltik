@@ -73,7 +73,9 @@ function readRowsModified(api, identifier) {
             type: 'post',
             dataType: 'json',
             url: api,
-            data: identifier
+            data: {
+                mesa_form: identifier
+            }
         })
         .done(function (response) {
             // Si no hay datos se muestra un mensaje indicando la situación.
@@ -212,6 +214,49 @@ function confirmDelete(api, identifier) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
                             readRows(api);
                             sweetAlert(1, response.message, null);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    })
+                    .fail(function (jqXHR) {
+                        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+                        if (jqXHR.status == 200) {
+                            console.log(jqXHR.responseText);
+                        } else {
+                            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+                        }
+                    });
+            }
+        });
+}
+
+function confirmDelete2(api, identifier) {
+    swal({
+            title: 'Advertencia',
+            text: '¿Desea eliminar el registro?',
+            icon: 'warning',
+            buttons: ['Cancelar', 'Aceptar'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        })
+        .then(function (value) {
+            // Se verifica si fue cliqueado el botón Aceptar para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                $.ajax({
+                        type: 'post',
+                        url: api + 'delete',
+                        data: identifier,
+                        dataType: 'json'
+                    })
+                    .done(function (response) {
+                        // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                            //readRows(api);
+                            sweetAlert(1, response.message, null);
+                            setTimeout(() => {
+                                location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura2.php';
+                            }, 3000);
                         } else {
                             sweetAlert(2, response.exception, null);
                         }
