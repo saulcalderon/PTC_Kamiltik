@@ -28,7 +28,7 @@ function fillTable(dataset) {
                 <td>${row.id_producto}</td>
                 <!--<td><img src="../../resources/img/productos/${row.id_imagen}" class="materialboxed" height="100"></td>-->
                 <td>${row.nombre_producto}</td>
-                <td>${row.cantidad}</td>
+                <td>${row.existencias}</td>
                 <td>${row.descripcion}</td>
                 <td>${row.precio_unitario}</td>
                 <td>${row.tipo_producto}</td>
@@ -101,7 +101,7 @@ function openUpdateModal(id) {
                 $('#id_producto').val(response.dataset.id_producto);
                 $('#nombre_producto').val(response.dataset.nombre_producto);
                 $('#precio_producto').val(response.dataset.precio_unitario);
-                $('#existencias_producto').val(response.dataset.cantidad);
+                $('#existencias_producto').val(response.dataset.existencias);
                 $('#fecha').val(response.dataset.fecha_registro);
                 $('#descripcion_producto').val(response.dataset.descripcion);
                 /* Rellenar selects */

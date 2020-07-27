@@ -9,7 +9,7 @@ class Productos extends Validator
     private $nombre = null;
     private $descripcion = null;
     private $precio = null;
-    private $cantidad = null;
+    private $existencias = null;
     private $sucursal = null;
     private $imagen = null;
     private $archivo = null;
@@ -66,7 +66,7 @@ class Productos extends Validator
     public function setCantidad($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->cantidad = $value;
+            $this->existencias = $value;
             return true;
         } else {
             return false;
@@ -180,7 +180,7 @@ class Productos extends Validator
 
     public function getCantidad()
     {
-        return $this->cantidad;
+        return $this->existencias;
     }
 
     public function getSurcursal()
@@ -286,15 +286,15 @@ class Productos extends Validator
     public function createProducto()
     {
 
-        $sql = 'INSERT INTO productos(nombre_producto, descripcion, precio_unitario, cantidad,id_sucursal, id_estado_producto, id_estado_distribucion, id_tipo_producto, id_proveedor, id_documento_compra)
+        $sql = 'INSERT INTO productos(nombre_producto, descripcion, precio_unitario, existencias,id_sucursal, id_estado_producto, id_estado_distribucion, id_tipo_producto, id_proveedor, id_documento_compra)
                     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->cantidad, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra);
+        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra);
         return Database::executeRow($sql, $params);
     }
 
     public function searchProductos($value)
     {
-        $sql = 'SELECT id_producto, nombre_producto, cantidad, descripcion, precio_unitario, tipo_producto, estado_producto 
+        $sql = 'SELECT id_producto, nombre_producto, existencias, descripcion, precio_unitario, tipo_producto, estado_producto 
         FROM productos pr INNER JOIN tipo_producto cp USING(id_tipo_producto) INNER JOIN estado_producto ep USING(id_estado_producto) 
         where nombre_producto ILIKE ? OR descripcion ILIKE ?
         ORDER BY id_producto';
@@ -304,7 +304,7 @@ class Productos extends Validator
 
     public function readAllProductos()
     {
-        $sql = 'SELECT id_producto, nombre_producto, cantidad, descripcion, precio_unitario, tipo_producto, estado_producto 
+        $sql = 'SELECT id_producto, nombre_producto, existencias, descripcion, precio_unitario, tipo_producto, estado_producto 
         FROM productos pr INNER JOIN tipo_producto cp USING(id_tipo_producto) INNER JOIN estado_producto ep USING(id_estado_producto) 
         ORDER BY id_producto';
         $params = null;
@@ -313,7 +313,7 @@ class Productos extends Validator
 
     public function readOneProducto()
     {
-        $sql = 'SELECT id_producto, nombre_producto, cantidad, descripcion, precio_unitario, fecha_registro ,id_tipo_producto, id_estado_producto, id_sucursal, id_estado_distribucion, id_proveedor, id_documento_compra
+        $sql = 'SELECT id_producto, nombre_producto, existencias, descripcion, precio_unitario, fecha_registro ,id_tipo_producto, id_estado_producto, id_sucursal, id_estado_distribucion, id_proveedor, id_documento_compra
         FROM productos
         WHERE id_producto = ?';
         $params = array($this->id);
@@ -323,9 +323,9 @@ class Productos extends Validator
     public function updateProducto()
     {
         $sql = 'UPDATE productos
-        SET nombre_producto = ?, descripcion = ?, precio_unitario = ?, cantidad = ?, id_sucursal = ?, id_estado_producto = ?, id_estado_distribucion = ?, id_tipo_producto = ?, id_proveedor = ?, id_documento_compra = ?
+        SET nombre_producto = ?, descripcion = ?, precio_unitario = ?, existencias = ?, id_sucursal = ?, id_estado_producto = ?, id_estado_distribucion = ?, id_tipo_producto = ?, id_proveedor = ?, id_documento_compra = ?
         WHERE id_producto = ?';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->cantidad, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra, $this->id);
+        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra, $this->id);
         return Database::executeRow($sql, $params);
     }
 

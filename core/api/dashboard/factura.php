@@ -28,7 +28,7 @@ if (isset($_GET['action'])) {
                 if ($result['dataset'] = $factura->readMesas()) {
                     $result['status'] = 1;
                 } else {
-                    $result['exception'] = 'No hay mesas registradas registradas';
+                    $result['exception'] = 'No hay mesas ocupadas';
                 }
                 break;
                 # readProducts : Mostrar todos los productos en el buscador de productos en detalle.php
