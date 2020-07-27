@@ -40,12 +40,18 @@ footer,
     padding: 15px;
 }
 
+
+
 .m-15 {
     margin: 35px 0 0;
 }
 
 .m-0 {
     margin: 0;
+}
+
+.block {
+    display: block;
 }
 
 body {
@@ -120,4 +126,43 @@ body {
 .chart-container {
     width: 600px;
     height: 400px;
+}
+
+#bill {
+    width: 80%;
+    max-height: 90%;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.margin-10 {
+    margin: 40px 12px;
+}
+
+.padd-10 {
+    padding: 1px;
+}
+
+.cabecera {
+    background-color: #FF4A4A;
+    color: white;
+}
+
+#tab {
+    height: 250px;
+    overflow-x: hidden;
+}
+
+.breadcrumb::before {
+    color: black;
+}
+
+.btn-d {
+    height: 100px;
+    padding: 0 20px;
+    margin: 0 10px;
+    font-size: 36px;
+    
 }

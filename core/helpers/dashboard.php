@@ -92,7 +92,7 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="categorias.php" class="white-text"><i class="material-icons white-text">shop</i>Categorias Productos
+                            <a href="tipo_producto.php" class="white-text"><i class="material-icons white-text">shop</i>Tipo Productos
                             </a>
                         </li>
                         <li>
@@ -100,7 +100,7 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="factura.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
+                            <a href="factura2.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
                             </a>
                         </li>
                         <li>
@@ -145,6 +145,7 @@ class Dashboard
                     <h6></h6>
                 </footer>
                 <script type="text/javascript" src="../../resources/js/jquery-3.4.1.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/maskMoney.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
