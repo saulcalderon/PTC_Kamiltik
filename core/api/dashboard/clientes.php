@@ -4,7 +4,8 @@ require_once('../../helpers/validator.php');
 require_once('../../models/dashboard/clientes.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
-if (isset($_GET['action'])) {
+//if (isset($_GET['action'])) {
+if (true) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
@@ -15,6 +16,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_usuario'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            /* Read */
             case 'readAll':
                 if ($result['dataset'] = $cliente->readAllClientes()) {
                     $result['status'] = 1;
@@ -22,6 +24,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay clientes registrados';
                 }
                 break;
+            /* Search */
             case 'search':
                 $_POST = $cliente->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -40,24 +43,21 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
+            /* Create */
             case 'create':
                 $_POST = $cliente->validateForm($_POST);
                 if ($cliente->setNombre($_POST['nombre'])) {
                     if ($cliente->setApellido($_POST['apellido'])) {
                         if ($cliente->setCorreo($_POST['correo'])) {
-                            if ($cliente->setTelefono($_POST['telefono'])) {
-                                if ($cliente->setDireccion($_POST['direccion'])) {
+                            if ($cliente->setfechaNacimiento($_POST['fecha'])) {                                
                                     if ($cliente->createCliente()) {
                                         $result['status'] = 1;
                                         $result['message'] = 'Cliente creado correctamente';
                                     } else {
                                         $result['exception'] = Database::getException();;
-                                    }
-                                } else {
-                                    $result['exception'] = 'Direccion incorrecta';
-                                }
+                                    }                                
                             } else {
-                                $result['exception'] = 'Telefono incorrecta';
+                                $result['exception'] = 'Fecha nacimiento incorrecto';
                             }
                         } else {
                             $result['exception'] = 'Correo incorrecto';
@@ -68,7 +68,10 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Nombre incorrecto';
                 }
+
+
                 break;
+            /* Leer un producto */
             case 'readOne':
                 if ($cliente->setId($_POST['id_cliente'])) {
                     if ($result['dataset'] = $cliente->readOneCliente()) {
@@ -80,6 +83,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Cliente incorrecto';
                 }
                 break;
+            /* Actualizar */
             case 'update':
                 $_POST = $cliente->validateForm($_POST);
                 if ($cliente->setId($_POST['id_cliente'])) {
@@ -87,23 +91,15 @@ if (isset($_GET['action'])) {
                         if ($cliente->setNombre($_POST['nombre'])) {
                             if ($cliente->setApellido($_POST['apellido'])) {
                                 if ($cliente->setCorreo($_POST['correo'])) {
-                                    if ($cliente->setTelefono($_POST['telefono'])) {
-                                        if ($cliente->setDireccion($_POST['direccion'])) {
-                                            if ($cliente->setEstado(isset($_POST['estado']) ? 1 : 2)) {
+                                    if ($cliente->setFechaNacimiento($_POST['fecha'])) {  
                                                 if ($cliente->updateCliente()) {
                                                     $result['status'] = 1;
                                                     $result['message'] = 'Cliente modificado correctamente';
                                                 } else {
                                                     $result['exception'] = Database::getException();
                                                 }
-                                            } else {
-                                                $result['exception'] = 'Estado incorrecto';
-                                            }
-                                        } else {
-                                            $result['exception'] = 'Direccion incorrecta';
-                                        }
                                     } else {
-                                        $result['exception'] = 'Telefono incorrecto';
+                                        $result['exception'] = 'Fecha nacimiento incorrecta';
                                     }
                                 } else {
                                     $result['exception'] = 'Correo inexistente';
@@ -121,7 +117,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto';
                 }
                 break;
-
+            /* Borrar */
             case 'delete':
                 if ($cliente->setId($_POST['id_cliente'])) {
                     if ($data = $cliente->readOneCliente()) {
@@ -136,17 +132,6 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['exception'] = 'CLiente incorrecto';
-                }
-                break;
-            case 'readCompras':
-                if ($cliente->setId($_POST['id_cliente'])) {
-                    if ($result['dataset'] = $cliente->readCompras()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'Compras inexistentes';
-                    }
-                } else {
-                    $result['exception'] = 'Cliente incorrecto';
                 }
                 break;
             default:

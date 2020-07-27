@@ -10,6 +10,7 @@ class Clientes extends Validator
     private $nombre = null;
     private $apellido = null;
     private $correo = null;
+    private $fechaNacimiento = null;
     private $telefono = null;
     private $clave = null;
     private $nacimiento = null;
@@ -59,50 +60,10 @@ class Clientes extends Validator
         }
     }
 
-    public function setTelefono($value)
-    {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->telefono = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setClave($value)
-    {
-        if ($this->validatePassword($value)) {
-            $this->clave = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setNacimiento($value)
+    public function setFechaNacimiento($value)
     {
         if ($this->validateDate($value)) {
-            $this->nacimiento = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    public function setDireccion($value)
-    {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->direccion = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function setEstado($value)
-    {
-        if ($this->validateBoolean($value)) {
-            $this->estado = $value;
+            $this->fechaNacimiento = $value;
             return true;
         } else {
             return false;
@@ -138,33 +99,19 @@ class Clientes extends Validator
         return $this->telefono;
     }
 
-    public function getClave()
+    public function getfechaNacimiento()
     {
-        return $this->clave;
-    }
-
-    public function getNacimiento()
-    {
-        return $this->nacimiento;
-    }
-
-    public function getDireccion()
-    {
-        return $this->direccion;
-    }
-
-    public function getEstado()
-    {
-        return $this->estado;
+        return $this->fechaNacimiento;
     }
 
 
     //Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
 
+    /* SCRUD */
     public function searchClientes($value)
     {
-        $sql = 'SELECT id_cliente, nombre, apellido, correo, telefono, clave, direccion
-                FROM cliente
+        $sql = 'SELECT id_cliente, nombre, apellido, correo
+                FROM clientes
                 WHERE nombre ILIKE ? OR apellido ILIKE ?
                 ORDER BY nombre';
         $params = array("%$value%", "%$value%");
@@ -173,25 +120,24 @@ class Clientes extends Validator
 
     public function createCliente()
     {
-        $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO cliente(nombre, apellido, correo, telefono, clave, direccion, fecha_nacimiento,  estado)
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->telefono, $hash, $this->direccion, $this->nacimiento, true);
+        $sql = 'INSERT INTO clientes(nombre, apellido, correo, fecha_nacimiento)
+                    VALUES(?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->fechaNacimiento);
         return Database::executeRow($sql, $params);
     }
 
     public function readAllClientes()
     {
-        $sql = 'SELECT id_cliente, nombre, apellido, correo, telefono, direccion, estado
-                FROM cliente ORDER BY id_cliente';
+        $sql = 'SELECT id_cliente, nombre, apellido, correo
+                FROM clientes ORDER BY id_cliente';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOneCliente()
     {
-        $sql = 'SELECT id_cliente, nombre, apellido, correo, telefono, direccion, fecha_nacimiento as nacimiento, estado
-                FROM cliente
+        $sql = 'SELECT id_cliente, nombre, apellido, correo, fecha_nacimiento
+                FROM clientes
                 WHERE id_cliente = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
@@ -199,73 +145,19 @@ class Clientes extends Validator
 
     public function updateCliente()
     {
-        $sql = 'UPDATE cliente
-                    SET nombre = ?, apellido = ?, correo = ?, telefono = ?, direccion = ?,
-                    estado= ?
+        $sql = 'UPDATE clientes
+                    SET nombre = ?, apellido = ?, correo = ?, fecha_nacimiento = ?
                     WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->telefono, $this->direccion, $this->estado, $this->id);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->fechaNacimiento, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteCliente()
     {
-        $sql = 'DELETE FROM cliente
+        $sql = 'DELETE FROM clientes
                 WHERE id_cliente = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
-
-    public function readCompras()
-    {
-        $sql = 'SELECT id_factura, fc.fecha_registro, precio_total, estado_factura, nombre, apellido
-        FROM factura fc INNER JOIN estado_factura ef USING(id_estado_factura) INNER JOIN cliente
-        USING(id_cliente) WHERE id_cliente= ?';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
-    }
-
-    public function checkUser($email){
-        $sql = 'SELECT id_cliente, estado FROM cliente WHERE correo = ?';
-        $params = array($email);
-        if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['id_cliente'];
-            $this->estado = $data['estado'];
-            $this->correo = $email;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //ARREGLAR
-    public function checkPassword($password)
-    {
-        $sql = 'SELECT clave FROM cliente WHERE id_cliente = ?';
-        $params = array($this->id);
-        $data = Database::getRow($sql, $params);
-        if (password_verify($password, $data['clave'])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function changePassword()
-    {
-        $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE cliente SET clave = ? WHERE id_cliente = ?';
-        $params = array($hash, $this->id);
-        return Database::executeRow($sql, $params);
-    }
-
-    public function editProfile()
-    {        
-        $sql = 'UPDATE cliente
-                SET nombre = ?, apellido = ?, correo = ?, telefono = ?, direccion = ?, fecha_nacimiento = ?
-                WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->telefono, $this->direccion, $this->nacimiento, $this->id);
-        return Database::executeRow($sql, $params);
-    }
-
 
 }

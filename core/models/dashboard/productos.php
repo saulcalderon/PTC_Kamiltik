@@ -9,15 +9,17 @@ class Productos extends Validator
     private $nombre = null;
     private $descripcion = null;
     private $precio = null;
-    private $existencias = null;
+    private $cantidad = null;
+    private $sucursal = null;
     private $imagen = null;
     private $archivo = null;
-    private $categoria = null;
-    private $estado = null;
+    private $tipo_producto = null;
+    private $estado_producto = null;
+    private $estado_distribucion = null;
+    private $proveedor = null;
+    private $documento_compra = null;
     private $ruta = '../../../resources/img/productos/';
     private $cliente = null;
-    private $valoracion = null;
-
     /*
     *   Métodos para asignar valores a los atributos.
     */
@@ -61,10 +63,70 @@ class Productos extends Validator
         }
     }
 
-    public function setExistencias($value)
+    public function setCantidad($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->existencias = $value;
+            $this->cantidad = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setEstadoProducto($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->estado_producto = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setSucursal($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->sucursal = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setEstadoDistribucion($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->estado_distribucion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setTipoProducto($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->tipo_producto = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setProveedor($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->proveedor = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDocumentoCompra($value)
+    {
+        if ($this->validateString($value, 1, 250)) {
+            $this->documento_compra = $value;
             return true;
         } else {
             return false;
@@ -82,26 +144,6 @@ class Productos extends Validator
         }
     }
 
-    public function setCategoria($value)
-    {
-        if ($this->validateNaturalNumber($value)) {
-            $this->categoria = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setEstado($value)
-    {
-        if ($this->validateNaturalNumber($value)) {
-            $this->estado = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function setCliente($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
@@ -112,19 +154,10 @@ class Productos extends Validator
         }
     }
 
-    public function setIdValoracion($value)
-    {
-        if ($this->validateNaturalNumber($value)) {
-            $this->valoracion = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     /*
     *   Métodos para obtener valores de los atributos.
     */
+    
     public function getId()
     {
         return $this->id;
@@ -145,9 +178,14 @@ class Productos extends Validator
         return $this->precio;
     }
 
-    public function getExistencias()
+    public function getCantidad()
     {
-        return $this->existencias;
+        return $this->cantidad;
+    }
+
+    public function getSurcursal()
+    {
+        return $this->sucursal;
     }
 
     public function getImagen()
@@ -155,14 +193,29 @@ class Productos extends Validator
         return $this->imagen;
     }
 
-    public function getCategoria()
+    public function getTipoProducto()
     {
-        return $this->categoria;
+        return $this->tipo_producto;
     }
 
-    public function getEstado()
+    public function getEstadoProducto()
     {
-        return $this->estado;
+        return $this->estado_distribucion;
+    }
+
+    public function getEstadoDistribucion()
+    {
+        return $this->estado_distribucion;
+    }
+
+    public function getProveedor()
+    {
+        return $this->proveedor;
+    }
+
+    public function getDocumentoCompra()
+    {
+        return $this->DocumentoCompra;
     }
 
     public function getRuta()
@@ -175,124 +228,113 @@ class Productos extends Validator
         return $this->cliente;
     }
 
-    public function getIdValoracion()
-    {
-        return $this->valoracion;
-    }
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    public function searchProductos($value)
+
+    /* Selects */
+    public function readAllTipoProducto()
     {
-        /*$sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM producto INNER JOIN categorias USING(id_categoria)
-                WHERE nombre_producto ILIKE ? OR descripcion_producto ILIKE ?
-                ORDER BY nombre_producto';*/
-        $sql = 'SELECT id_producto, nombre, descripcion, existencias, precio_unitario, id_categoria_producto, id_estado_producto
-                FROM producto
-                WHERE nombre ILIKE ? OR descripcion ILIKE ?
-                ORDER BY nombre';
-        $params = array("%$value%", "%$value%");
+        $sql = 'SELECT id_tipo_producto, tipo_producto
+                FROM tipo_producto';
+        $params = null;
         return Database::getRows($sql, $params);
     }
+
+    public function readAllSucursal()
+    {
+        $sql = 'SELECT id_sucursal, nombre
+                FROM sucursales';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+    
+    public function readAllEstadoProducto()
+    {
+        $sql = 'SELECT id_estado_producto, estado_producto
+                FROM estado_producto';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllEstadoDistribucion()
+    {
+        $sql = 'SELECT id_estado_distribucion, estado_distribucion
+                FROM estado_distribucion';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllProveedor()
+    {
+        $sql = 'SELECT id_proveedor, empresa
+                FROM proveedores';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllDocumentoCompra()
+    {
+        $sql = 'SELECT id_documento_compra, imagen_factura
+                FROM documento_compra_proveedor';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+   /*SCRUD*/ 
 
     public function createProducto()
     {
 
-        $sql = 'INSERT INTO producto(nombre, descripcion, precio_unitario, existencias,id_estado_producto, id_categoria_producto, id_proveedor)
-                    VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->estado, $this->categoria, 1);
+        $sql = 'INSERT INTO productos(nombre_producto, descripcion, precio_unitario, cantidad,id_sucursal, id_estado_producto, id_estado_distribucion, id_tipo_producto, id_proveedor, id_documento_compra)
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->descripcion, $this->precio, $this->cantidad, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra);
         return Database::executeRow($sql, $params);
+    }
 
-        /*if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
-            $sql = 'INSERT INTO productos(nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, id_categoria)
-                    VALUES(?, ?, ?, ?, ?, ?)';
-            $params = array($this->nombre, $this->descripcion, $this->precio, $this->imagen, $this->estado, $this->categoria);
-            return Database::executeRow($sql, $params);
-        } else {
-            return false;
-        }*/
+    public function searchProductos($value)
+    {
+        $sql = 'SELECT id_producto, nombre_producto, cantidad, descripcion, precio_unitario, tipo_producto, estado_producto 
+        FROM productos pr INNER JOIN tipo_producto cp USING(id_tipo_producto) INNER JOIN estado_producto ep USING(id_estado_producto) 
+        where nombre_producto ILIKE ? OR descripcion ILIKE ?
+        ORDER BY id_producto';
+        $params = array("%$value%", "%$value%");
+        return Database::getRows($sql, $params);
     }
 
     public function readAllProductos()
     {
-        $sql = 'SELECT id_producto, nombre, existencias, descripcion, precio_unitario, categoria_producto, id_estado_producto 
-        FROM producto pr INNER JOIN categoria_producto cp USING(id_categoria_producto) 
+        $sql = 'SELECT id_producto, nombre_producto, cantidad, descripcion, precio_unitario, tipo_producto, estado_producto 
+        FROM productos pr INNER JOIN tipo_producto cp USING(id_tipo_producto) INNER JOIN estado_producto ep USING(id_estado_producto) 
         ORDER BY id_producto';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
-    public function readProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto
-                FROM productos INNER JOIN categorias USING(id_categoria)
-                WHERE id_categoria = ? AND estado_producto = true
-                ORDER BY nombre_producto';
-        $params = array($this->categoria);
-        return Database::getRows($sql, $params);
-    }
-
     public function readOneProducto()
     {
-        $sql = 'SELECT id_producto, nombre, existencias, descripcion, precio_unitario, id_categoria_producto, id_estado_producto 
-        FROM producto
-                WHERE id_producto = ?';
+        $sql = 'SELECT id_producto, nombre_producto, cantidad, descripcion, precio_unitario, fecha_registro ,id_tipo_producto, id_estado_producto, id_sucursal, id_estado_distribucion, id_proveedor, id_documento_compra
+        FROM productos
+        WHERE id_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function updateProducto()
     {
-        $sql = 'UPDATE producto
-        SET nombre = ?, descripcion = ?, precio_unitario = ?, existencias = ?, id_estado_producto = ?, id_categoria_producto = ?
+        $sql = 'UPDATE productos
+        SET nombre_producto = ?, descripcion = ?, precio_unitario = ?, cantidad = ?, id_sucursal = ?, id_estado_producto = ?, id_estado_distribucion = ?, id_tipo_producto = ?, id_proveedor = ?, id_documento_compra = ?
         WHERE id_producto = ?';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->estado, $this->categoria, $this->id);
-        /*if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
-            $sql = 'UPDATE producto
-                    SET imagen_producto = ?, nombre = ?, descripcion = ?, precio_unitario = ?, id_estado_producto = ?, id_categoria_producto = ?
-                    WHERE id_producto = ?';
-            $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->estado, $this->categoria, $this->id);
-        } else {
-            $sql = 'UPDATE producto
-                    SET nombre = ?, descripcion = ?, precio_unitario = ?, id_estado_producto = ?, id_categoria_producto = ?
-                    WHERE id_producto = ?';
-            $params = array($this->nombre, $this->descripcion, $this->precio, $this->estado, $this->categoria, $this->id);
-        }*/
+        $params = array($this->nombre, $this->descripcion, $this->precio, $this->cantidad, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteProducto()
     {
-        $sql = 'DELETE FROM producto
+        $sql = 'DELETE FROM productos
                 WHERE id_producto = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 
-    public function readValoraciones()
-    {
-        $sql = 'SELECT id_valoracion, pr.nombre, pr.id_producto ,valoracion, comentario, cl.nombre AS cliente, vl.id_estado AS estado FROM valoracion vl INNER JOIN cliente cl USING(id_cliente) INNER JOIN producto pr USING(id_producto) WHERE id_producto = ?';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
-    }
-
-    public function changeStatus()
-    {
-        $sql = 'UPDATE valoracion SET id_estado = ? WHERE id_valoracion = ?';
-        $params = array($this->estado, $this->valoracion);
-        return Database::executeRow($sql, $params);
-    }
-
-    /*
-    *   Métodos para generar gráficas.
-    */
-    public function cantidadProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad
-                FROM producto INNER JOIN categorias USING(id_categoria)
-                GROUP BY id_categoria, nombre_categoria';
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
 }

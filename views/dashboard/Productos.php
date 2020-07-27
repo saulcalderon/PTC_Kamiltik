@@ -27,6 +27,7 @@ Dashboard::headerTemplate('Administrar facturas');
                 <!--<th>IMAGEN</th>-->
                 <th>NOMBRE</th>
                 <th>EXISTENCIAS</th>
+                <th>DESCRIPCION</th>
                 <th>PRECIO (US$)</th>
                 <th>CATEGORÍA</th>
                 <th>ESTADO</th>
@@ -49,83 +50,77 @@ Dashboard::headerTemplate('Administrar facturas');
             <!-- Formulario para crear o actualizar un registro -->
             <form method="post" id="save-form" enctype="multipart/form-data">
                 <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                <input class="hide" type="text" id="id_producto" name="id_producto" />
+                <input class="hide" type="text" id="id_producto" name="id_producto" >
                 <div class="row">
+                    <!-- Campos para ingresar y modificar producto -->
                     <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">note_add</i>
-                        <input id="nombre_producto" type="text" name="nombre_producto" class="validate" required />
+                        <i class="material-icons prefix">category</i>
+                        <input id="nombre_producto" type="text" name="nombre_producto" class="validate" maxlength="50" required />
                         <label for="nombre_producto">Nombre</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">shopping_cart</i>
+                        <i class="material-icons prefix">monetization_on</i>
                         <input id="precio_producto" type="number" name="precio_producto" class="validate" max="999.99" min="0.01" step="any" required />
                         <label for="precio_producto">Precio (US$)</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">local_shipping</i>
+                        <i class="material-icons prefix">format_list_numbered</i>
                         <input id="existencias_producto" type="number" name="existencias_producto" class="validate" min="1" step="any" required />
                         <label for="existencias_producto">Existencias</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">description</i>
+                        <i class="material-icons prefix">today</i>                 
+                        <input disabled id="fecha" type="text" name="fecha">
+                        <label for="fecha">Fecha Registro</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">description</i>                   
                         <input id="descripcion_producto" type="text" name="descripcion_producto" class="validate" required />
                         <label for="descripcion_producto">Descripción</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <select id="categoria_producto" name="categoria_producto">
+                        <i class="material-icons prefix">local_mall</i>
+                        <select id="tipo_producto" name="tipo_producto">
                         </select>
-                        <label>Categoría</label>
+                        <label>Tipo producto</label>
                     </div>
-                    <!--
-              	<div class="file-field input-field col s12 m6">
-                    <div class="btn waves-effect tooltipped" data-tooltip="Seleccione una imagen de al menos 500x500">
-                        <span><i class="material-icons">image</i></span>
-                        <input id="archivo_producto" type="file" name="archivo_producto" accept=".gif, .jpg, .png"/>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">store_mall_directory</i>
+                        <select id="nombre_sucursal" name="nombre_sucursal">
+                        </select>
+                        <label>Sucursal</label>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input type="text" class="file-path validate" placeholder="Formatos aceptados: gif, jpg y png"/>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">shopping_basket</i>
+                        <select id="estado_producto" name="estado_producto">
+                        </select>
+                        <label>Estado del producto</label>
                     </div>
-                </div>
-                -->
-                    <div class="col s12 m6">
-                        <p>
-                            <div class="switch">
-                                <span>Estado:</span>
-                                <label>
-                                    <i class="material-icons">visibility_off</i>
-                                    <input id="estado_producto" type="checkbox" name="estado_producto" checked />
-                                    <span class="lever"></span>
-                                    <i class="material-icons">visibility</i>
-                                </label>
-                            </div>
-                        </p>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">shopping_basket</i>
+                        <select id="estado_distribucion" name="estado_distribucion">
+                        </select>
+                        <label>Estado distribución</label>
                     </div>
-                </div>
-                <div class="row center-align">
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">local_shipping</i>
+                        <select id="nombre_proveedor" name="nombre_proveedor">
+                        </select>
+                        <label>Nombre proveedor</label>
+                    </div>
+                    <div class="input-field col s12 m12">
+                        <i class="material-icons prefix">note_add</i>
+                        <select id="documento_compra" name="documento_compra">
+                        </select>
+                        <label>Documento compra</label>
+                    </div> 
+                
+                <!-- Botones para aceptar o cancelar -->
+                <div class="row center-align col s12 m12">
                     <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
                     <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <div id="val-modal" class="modal">
-        <div class="modal-content">
-            <h4 id="modal-2"></h4>
-            <table class="highlight padd-15">
-                <!-- Cabeza de la tabla para mostrar los títulos de las columnas -->
-                <thead>
-                    <tr>
-                        <th>VALORACION</th>
-                        <th>COMENTARIO</th>
-                        <th>CLIENTE</th>
-                        <th>ESTADO</th>
-                    </tr>
-                </thead>
-                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                <tbody id="tbody-details">
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

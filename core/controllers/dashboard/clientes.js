@@ -12,21 +12,16 @@ function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.forEach(function (row) {
-        (row.id_estado == 1) ? icon = 'visibility': icon = 'visibility_off';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
+                <td>${row.id_cliente}</td>
                 <td>${row.nombre}</td>
                 <td>${row.apellido}</td>
                 <td>${row.correo}</td>
-                <td>${row.telefono}</td>
-                <td>${row.direccion}</td>
-                <td><i class="material-icons">${icon}</i></td>
                 <td>
                     <a href="#" onclick="openUpdateModal(${row.id_cliente})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
                     <a href="#" onclick="openDeleteDialog(${row.id_cliente})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
-
-                    <a href="#" onclick="openViewDetails(${row.id_cliente})" class="green-text tooltipped" data-tooltip="Ver compras"><i class="material-icons">assignment</i></a>
                 </td>
             </tr>
         `;
@@ -88,9 +83,7 @@ function openUpdateModal(id) {
                 $('#nombre').val(response.dataset.nombre);
                 $('#apellido').val(response.dataset.apellido);
                 $('#correo').val(response.dataset.correo);
-                $('#telefono').val(response.dataset.telefono);
-                $('#direccion').val(response.dataset.direccion);
-                (response.dataset.id_estado == 1) ? $('#estado').prop('checked', true): $('#estado').prop('checked', false);
+                $('#fecha').val(response.dataset.fecha_nacimiento);
 
                 // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 M.updateTextFields();

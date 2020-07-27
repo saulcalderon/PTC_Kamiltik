@@ -1,6 +1,12 @@
 // Constantes para establecer las rutas y parámetros de comunicación con la API.
 const API_PRODUCTOS = '../../core/api/dashboard/productos.php?action=';
-const API_CATEGORIAS = '../../core/api/dashboard/categorias.php?action=readAll';
+/* Selects */
+const API_TIPO_PRODUCTO = '../../core/api/dashboard/productos.php?action=readAllTipoProducto';
+const API_SUCURSAL = '../../core/api/dashboard/productos.php?action=readAllSucursal';
+const API_ESTADO_PRODUCTO = '../../core/api/dashboard/productos.php?action=readAllEstadoProducto';
+const API_ESTADO_DISTRIBUCION = '../../core/api/dashboard/productos.php?action=readAllEstadoDistribucion';
+const API_PROVEEDOR = '../../core/api/dashboard/productos.php?action=readAllProveedor';
+const API_DOCUMENTO_COMPRA = '../../core/api/dashboard/productos.php?action=readAllDocumentoCompra';
 
 // Método que se ejecuta cuando el documento está listo.
 $(document).ready(function () {
@@ -15,22 +21,21 @@ function fillTable(dataset) {
     dataset.forEach(function (row) {
         // Se establece un icono para el estado del producto.
 
-        (row.id_estado_producto == 1) ? icon = 'visibility': icon = 'visibility_off';
+        //(row.id_estado_producto == 1) ? icon = 'visibility': icon = 'visibility_off';
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
                 <td>${row.id_producto}</td>
                 <!--<td><img src="../../resources/img/productos/${row.id_imagen}" class="materialboxed" height="100"></td>-->
-                <td>${row.nombre}</td>
-                <td>${row.existencias}</td>
+                <td>${row.nombre_producto}</td>
+                <td>${row.cantidad}</td>
+                <td>${row.descripcion}</td>
                 <td>${row.precio_unitario}</td>
-                <td>${row.categoria_producto}</td>
-                <td><i class="material-icons">${icon}</i></td>
+                <td>${row.tipo_producto}</td>
+                <td>${row.estado_producto}</td>
                 <td>
                     <a href="#" onclick="openUpdateModal(${row.id_producto})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
                     <a href="#" onclick="openDeleteDialog(${row.id_producto})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
-
-                    <a href="#" onclick="openViewVal(${row.id_producto})" class="green-text tooltipped" data-tooltip="Valoraciones"><i class="material-icons">assessment</i></a>
                 </td>
             </tr>
         `;
@@ -62,7 +67,12 @@ function openCreateModal() {
     // Se establece el campo de tipo archivo como obligatorio.
     //$( '#archivo_producto' ).prop( 'required', true );
     // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
-    fillSelect(API_CATEGORIAS, 'categoria_producto', null);
+    fillSelect(API_TIPO_PRODUCTO, 'tipo_producto', null);
+    fillSelect(API_SUCURSAL, 'nombre_sucursal', null);
+    fillSelect(API_ESTADO_PRODUCTO, 'estado_producto', null);
+    fillSelect(API_ESTADO_DISTRIBUCION, 'estado_distribucion', null);
+    fillSelect(API_PROVEEDOR, 'nombre_proveedor', null);
+    fillSelect(API_DOCUMENTO_COMPRA, 'documento_compra', null);
 }
 
 // Función que prepara formulario para modificar un registro.
@@ -89,12 +99,19 @@ function openUpdateModal(id) {
             if (response.status) {
                 // Se inicializan los campos del formulario con los datos del registro seleccionado previamente.
                 $('#id_producto').val(response.dataset.id_producto);
-                $('#nombre_producto').val(response.dataset.nombre);
+                $('#nombre_producto').val(response.dataset.nombre_producto);
                 $('#precio_producto').val(response.dataset.precio_unitario);
-                $('#existencias_producto').val(response.dataset.existencias);
+                $('#existencias_producto').val(response.dataset.cantidad);
+                $('#fecha').val(response.dataset.fecha_registro);
                 $('#descripcion_producto').val(response.dataset.descripcion);
-                fillSelect(API_CATEGORIAS, 'categoria_producto', response.dataset.id_categoria_producto);
-                (response.dataset.id_estado_producto == 1) ? $('#estado_producto').prop('checked', true): $('#estado_producto').prop('checked', false);
+                /* Rellenar selects */
+                fillSelect(API_TIPO_PRODUCTO, 'tipo_producto', response.dataset.id_tipo_producto);
+                fillSelect(API_SUCURSAL, 'nombre_sucursal', response.dataset.id_sucursal);
+                fillSelect(API_ESTADO_PRODUCTO, 'estado_producto', response.dataset.id_estado_producto);
+                fillSelect(API_ESTADO_DISTRIBUCION, 'estado_distribucion', response.dataset.id_estado_distribucion);
+                fillSelect(API_PROVEEDOR, 'nombre_proveedor', response.dataset.id_proveedor);
+                fillSelect(API_DOCUMENTO_COMPRA, 'documento_compra', response.dataset.id_documento_compra);
+                
                 // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 M.updateTextFields();
             } else {
@@ -130,93 +147,4 @@ function openDeleteDialog(id) {
         id_producto: id
     };
     confirmDelete(API_PRODUCTOS, identifier);
-}
-
-function openViewVal(id) {
-    $('#val-modal').modal('open');
-    let identifier = {
-        id_producto: id
-    };
-    readRowsModified(API_PRODUCTOS + 'readValoraciones', identifier);
-}
-
-function fillTableModified(dataset) {
-    let content = '';
-    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    // Se establece un icono para el estado del producto.
-    dataset.forEach(function (row) {
-        $('#modal-2').text(row.nombre);
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        content += `
-            <tr>
-                <td>${row.valoracion}</td>
-                <td>${row.comentario}</td>
-                <td>${row.cliente}</td>
-                <td>
-                <p>
-                  <label>
-                    <input class="estado-val${row.estado}" type="checkbox" onclick="cambiar(${row.estado},${row.id_valoracion},${row.id_producto})"/>
-                    <span class="estado-name"></span>
-                  </label>
-                </p>
-              </td>
-            </tr>
-        `;
-        if (row.estado == 1) {
-            $(function () {
-                $('.estado-val' + row.estado).prop('checked', true);
-                $('.estado-name' + row.estado).text('Activado');
-                $('.estado-val' + row.estado).attr('value', row.estado);
-            });
-        } else {
-            $(function () {
-                $('.estado-val' + row.estado).prop('checked', false);
-                $('.estado-name' + row.estado).text('Desactivado');
-                $('.estado-val' + row.estado).attr('value', row.estado);
-            });
-        }
-    });
-    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    $('#tbody-details').html(content);
-    // Se inicializa el componente Tooltip asignado a los enlaces para que funcionen las sugerencias textuales.
-    $('.tooltipped').tooltip();
-}
-
-function cambiar(estado, val, id) {
-    let newEstado = null;
-    if (estado == 1) {
-        newEstado = 2;
-    } else {
-        newEstado = 1;
-    }
-    let identifier = {
-        id_producto: id
-    };
-    $.ajax({
-            dataType: 'json',
-            url: API_PRODUCTOS + 'changeStatus',
-            data: {
-                newEstado,
-                val
-            },
-            type: 'post'
-        })
-        .done(function (response) {
-            // Si no hay datos se muestra un mensaje indicando la situación.
-            if (!response.status) {
-                sweetAlert(4, response.exception, null);
-            }
-            // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-            readRowsModified(API_PRODUCTOS + 'readValoraciones', identifier);
-            sweetAlert(1, response.message, null);
-
-        })
-        .fail(function (jqXHR) {
-            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-            if (jqXHR.status == 200) {
-                console.log(jqXHR.responseText);
-            } else {
-                console.log(jqXHR.status + ' ' + jqXHR.statusText);
-            }
-        });
 }
