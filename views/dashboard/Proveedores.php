@@ -34,6 +34,7 @@ Dashboard::headerTemplate('Administrar facturas');
             </tr>
         </thead>
         <tbody class="black-text" id="tbody-rows">
+            
         </tbody>
     </table>
 

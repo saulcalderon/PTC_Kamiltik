@@ -27,6 +27,7 @@ class Dashboard
                     <link type="text/css" rel="stylesheet" href="../../resources/css/material-icons.css"/>
                     <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css"/>
                     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 </head>
                 <body>
@@ -84,10 +85,6 @@ class Dashboard
                         </li>
                         <li>
                             <a href="clientes.php" class="white-text"><i class="material-icons white-text">people</i>Clientes
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="white-text"><i class="material-icons white-text">insert_chart</i>Analíticas
                             </a>
                         </li>
                         <li>

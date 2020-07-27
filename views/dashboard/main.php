@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboard.php');
-Dashboard::headerTemplate('Administrar facturas');
+Dashboard::headerTemplate('Inicio');
 ?>
 <div class="row padd-15">
     <div class="col l3 s6">
@@ -56,7 +56,44 @@ Dashboard::headerTemplate('Administrar facturas');
         </div>
     </div>
 </div>
+<!--comienzo delas graficas-->
+<div class="row">
+    <div class="col s6 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <canvas id="myChart" ></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="row padd-15">
+    <div class="col l6 s6">
+        <!-- small box -->
+        <div class="row">
+            <div class="col s12 m">
+                <div class="card">
+                    <div class="card-content">
+                    <canvas id="Chart" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- final de la tarjeta -->
+    <div class="col l6 s6">
+        <!-- small box -->
+        <div class="row">
+            <div class="col s12 m">
+                <div class="card">
+                    <div class="card-content">
+                    <canvas id="Chart2" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- <div class="row">
     <div class="col s12 m12 l3">
         <div class="card horizontal gradient-45deg-light-red-red gradient-shadow">
@@ -93,6 +130,7 @@ Dashboard::headerTemplate('Administrar facturas');
     </div>
 
 </div> -->
+
 <?php
 Dashboard::footerTemplate('main.js');
 ?>

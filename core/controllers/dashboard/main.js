@@ -57,3 +57,71 @@ function graficaCategorias() {
             }
         });
 }
+
+//bar
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Noviembre','Diciembre'],
+        datasets: [{
+            label: 'Entras del Año ',
+            backgroundColor: 'rgb(255, 39, 68, .3)',
+            borderColor: 'rgb(130, 132, 137 )',
+            data: [5, 9, 12, 19, 24, 30, 70,87,92,120,130]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+//radar
+var ctx = document.getElementById('Chart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'radar',
+
+    // The data for our dataset
+    data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Noviembre','Diciembre'],
+        datasets: [{
+            label: 'Entras del Año ',
+            backgroundColor: 'rgb(77, 117, 225, .3)',
+            borderColor: 'rgb(42, 92, 227  )',
+            data: [5, 9, 12, 19, 24, 30, 70,87,92,120,130]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+//radar
+var ctx = document.getElementById('Chart2').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
+        datasets: [{
+            label: 'Entras del Año ',
+            backgroundColor: ['rgb(31, 222, 28 , .3)','rgb(28, 133, 222 , .3)','rgb(152, 48, 224  , .3)','rgb(125, 224, 48  , .3)', 
+            'rgb(239, 70, 44  , .3)','rgb(239, 221, 44  , .3)','rgb(239, 44, 239  , .3)'],
+            borderColor: ['rgb(31, 222, 28 )','rgb(28, 133, 222 )','rgb(152, 48, 224 )','rgb(125, 224, 48 )', 
+            'rgb(239, 70, 44 )','rgb(239, 221, 44 )','rgb(239, 44, 239 )'],
+            data: [5, 9, 12, 19, 24, 30, 70]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+
+

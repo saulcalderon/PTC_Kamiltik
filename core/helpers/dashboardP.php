@@ -155,6 +155,8 @@ class Dashboard
       <script type="text/javascript" src="../../resources/Js/mdb.min.js"></script>
       <!-- Initializations -->
       <script type="text/javascript" src="../../resources/Js/dashboard.js"></script>
+      <!-- charts-->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
           </footer> 
         </body>
