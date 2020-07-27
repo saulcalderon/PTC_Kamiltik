@@ -5,7 +5,7 @@ $(document).ready(function () {
     searchProduct();
     let params = new URLSearchParams(location.search);
     const MESA = params.get('boton');
-    createBill(MESA);
+     createBill(MESA);
 });
 
 function createBill(id) {
@@ -134,7 +134,7 @@ async function searchProduct() {
                 var instances = M.Autocomplete.init(elems, options);
 
             } else {
-                sweetAlert(2, result.exception, null);
+                sweetAlert(2, response.exception, null);
             }
         })
         .fail(function (jqXHR) {
@@ -203,7 +203,7 @@ function openUpdateModal(id) {
 
                 M.updateTextFields();
             } else {
-                sweetAlert(2, result.exception, null);
+                sweetAlert(2, response.exception, null);
             }
         })
         .fail(function (jqXHR) {
@@ -234,7 +234,7 @@ $('#updateForm').submit(function (e) {
                 M.updateTextFields();
 
             } else {
-                sweetAlert(2, result.exception, null);
+                sweetAlert(2, response.exception, null);
             }
         })
         .fail(function (jqXHR) {
@@ -315,7 +315,7 @@ function actionBill(action) {
             let identifier = {
                 mesa: id
             };
-            confirmDelete(API_FACTURA, identifier)
+            confirmDelete2(API_FACTURA, identifier)
 
             break;
         default:

@@ -51,10 +51,6 @@ Dashboard::headerTemplate('Administrar noticias');
                             <input id="entregado" name="entregado" type="text" maxlength="8" class="validate" placeholder="Ej: $12.00" required>
                             <label for="entregado">Entregado por cliente</label>
                         </div>
-                        
-
-                          
-                        
                     </form>
                     <a href="#" class="margin-10 block waves-effect waves-light btn-large" onclick="actionBill('finalizar')" data-tooltip="Finalizar factura"><i class="material-icons left">assignment_turned_in</i>Finalizar Factura</a>
                     <a href="#" class="margin-10 block waves-effect waves-light btn-large" onclick="actionBill('pendiente')" data-tooltip="Factura pendiente"><i class="material-icons left">assignment_return</i>Pendiente</a>

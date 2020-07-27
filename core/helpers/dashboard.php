@@ -95,7 +95,7 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="categorias.php" class="white-text"><i class="material-icons white-text">shop</i>Categorias Productos
+                            <a href="tipo_producto.php" class="white-text"><i class="material-icons white-text">shop</i>Tipo Productos
                             </a>
                         </li>
                         <li>
@@ -103,17 +103,12 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="factura.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
+                            <a href="factura2.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
                             </a>
                         </li>
                         <li>
                             <a href="proveedores.php" class="white-text"><i class="material-icons white-text">local_shipping
                                 </i>Proveedores
-                            </a>
-                        </li>
-                        <li>
-                            <a href="factura2.php" class="white-text"><i class="material-icons white-text">local_shipping
-                                </i>Facturas
                             </a>
                         </li>
                     </ul>

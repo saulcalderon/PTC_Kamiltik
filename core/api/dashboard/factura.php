@@ -32,7 +32,7 @@ if (isset($_GET['action'])) {
             case 'createBill':
                 $_POST = $factura->validateForm($_POST);
                 if ($factura->setIdSucursal(1)) {
-                    if ($factura->setIdUsuario(1)) {
+                    if ($factura->setIdUsuario(9)) {
                         if ($factura->setMesa($_POST['mesa'])) {
                             if ($_POST['mesa'] <= $factura->verifyTable()) {
                                 if ($result['dataset'] = $factura->createBill()) {

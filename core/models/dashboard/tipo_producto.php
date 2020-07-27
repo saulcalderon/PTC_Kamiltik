@@ -2,7 +2,7 @@
 /*
 *	Clase para manejar la tabla categorías de la base de datos.
 */
-class Categorias extends Validator
+class TipoProductos extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
@@ -92,55 +92,55 @@ class Categorias extends Validator
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    public function searchCategorias($value)
+    public function searchTipos($value)
     {
-        $sql = 'SELECT id_categoria_producto, categoria_producto
-                FROM categoria_producto
-                WHERE categoria_producto ILIKE ?
-                ORDER BY categoria_producto';
+        $sql = 'SELECT id_tipo_producto, tipo_producto
+                FROM tipo_producto
+                WHERE tipo_producto ILIKE ?
+                ORDER BY tipo_producto';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
 
     public function createCategoria()
     {
-        $sql = 'INSERT INTO categoria_producto(categoria_producto)
+        $sql = 'INSERT INTO tipo_producto(tipo_producto)
                 VALUES(?)';
         $params = array($this->nombre);
         return Database::executeRow($sql, $params);
     }
 
-    public function readAllCategorias()
+    public function readAllTipos()
     {
-        $sql = 'SELECT id_tipo_entrada, tipo_entrada
-                FROM tipo_entrada';
+        $sql = 'SELECT id_tipo_producto, tipo_producto
+                FROM tipo_producto';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
-    public function readOneCategoria()
+    public function readOneTipo()
     {
-        $sql = 'SELECT id_categoria_producto, categoria_producto
-                FROM categoria_producto
-                WHERE id_categoria_producto = ?';
+        $sql = 'SELECT id_tipo_producto, tipo_producto
+                FROM tipo_producto
+                WHERE id_tipo_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
-    public function updateCategoria()
+    public function updateTipo()
     {
 
-        $sql = 'UPDATE categoria_producto
-                SET categoria_producto = ?
-                WHERE id_categoria_producto = ?';
+        $sql = 'UPDATE tipo_producto
+                SET tipo_producto = ?
+                WHERE id_tipo_producto = ?';
         $params = array($this->nombre, $this->id);
         return Database::executeRow($sql, $params);
     }
 
-    public function deleteCategoria()
+    public function deleteTipo()
     {
-        $sql = 'DELETE FROM categoria_producto
-                WHERE id_categoria_producto = ?';
+        $sql = 'DELETE FROM tipo_producto
+                WHERE id_tipo_producto = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

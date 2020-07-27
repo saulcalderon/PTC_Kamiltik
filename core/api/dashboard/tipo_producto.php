@@ -1,14 +1,14 @@
 <?php
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
-require_once('../../models/dashboard/categorias_productos.php');
+require_once('../../models/dashboard/tipo_producto.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $categoria = new Categorias;
+    $tipo = new TipoProductos;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -16,16 +16,16 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $categoria->readAllCategorias()) {
+                if ($result['dataset'] = $tipo->readAllTipos()) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay categorías registradas';
                 }
                 break;
             case 'search':
-                $_POST = $categoria->validateForm($_POST);
+                $_POST = $tipo->validateForm($_POST);
                 if ($_POST['search'] != '') {
-                    if ($result['dataset'] = $categoria->searchCategorias($_POST['search'])) {
+                    if ($result['dataset'] = $tipo->searchTipos($_POST['search'])) {
                         $result['status'] = 1;
                         $rows = count($result['dataset']);
                         if ($rows > 1) {
@@ -41,11 +41,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'create':
-                $_POST = $categoria->validateForm($_POST);
-                if ($categoria->setNombre($_POST['nombre_categoria'])) {
-                    if ($categoria->createCategoria()) {
+                $_POST = $tipo->validateForm($_POST);
+                if ($tipo->setNombre($_POST['nombre_tipo'])) {
+                    if ($tipo->createCategoria()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Categoría creada correctamente';
+                        $result['message'] = 'Tipo Producto creado correctamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -54,25 +54,24 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if ($categoria->setId($_POST['id_categoria'])) {
-                    if ($result['dataset'] = $categoria->readOneCategoria()) {
+                if ($tipo->setId($_POST['id_tipo_producto'])) {
+                    if ($result['dataset'] = $tipo->readOneTipo()) {
                         $result['status'] = 1;
                     } else {
-                        $result['exception'] = 'Categoría inexistente';
+                        $result['exception'] = 'Tipo Producto inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Categoría incorrecta';
+                    $result['exception'] = 'ID Tipo incorrecto';
                 }
                 break;
             case 'update':
-                $_POST = $categoria->validateForm($_POST);
-
-                if ($categoria->setId($_POST['id_categoria'])) {
-                    if ($data = $categoria->readOneCategoria()) {
-                        if ($categoria->setNombre($_POST['nombre_categoria'])) {
-                            if ($categoria->updateCategoria()) {
+                $_POST = $tipo->validateForm($_POST);
+                if ($tipo->setId($_POST['id_tipo_producto'])) {
+                    if ($data = $tipo->readOneTipo()) {
+                        if ($tipo->setNombre($_POST['nombre_tipo'])) {
+                            if ($tipo->updateTipo()) {
                                 $result['status'] = 1;
-                                $result['message'] = 'Categoría modificada correctamente';
+                                $result['message'] = 'Tipo Producto modificado correctamente';
                             } else {
                                 $result['exception'] = Database::getException();
                             }
@@ -81,22 +80,23 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Nombre incorrecto';
                     }
                 } else {
-                    $result['exception'] = 'Categoría inexistente';
+                    $result['exception'] = 'ID tipo inexistente';
                 }
                 break;
             case 'delete':
-                if ($categoria->setId($_POST['id_categoria'])) {
-                    if ($data = $categoria->readOneCategoria()) {
-                        if ($categoria->deleteCategoria()) {
+                if ($tipo->setId($_POST['id_tipo_producto'])) {
+                    if ($data = $tipo->readOneTipo()) {
+                        if ($tipo->deleteTipo()) {
                             $result['status'] = 1;
+                            $result['message'] = 'Tipo Producto eliminado correctamente';
                         } else {
                             $result['exception'] = Database::getException();
                         }
                     } else {
-                        $result['exception'] = 'Categoría inexistente';
+                        $result['exception'] = 'Tipo Producto inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Categoría incorrecta';
+                    $result['exception'] = 'Tipo Producto incorrecto';
                 }
                 break;
             default:
