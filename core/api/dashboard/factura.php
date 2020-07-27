@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_usuario'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            # readAll : Mostrar todas las facturas en la página de facturas.php
             case 'readAll':
                 if ($result['dataset'] = $factura->readAllFacturas()) {
                     $result['status'] = 1;
@@ -22,6 +23,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay facturas registradas';
                 }
                 break;
+            # readProducts : Mostrar todos los productos en el buscador de productos en detalle.php
             case 'readProducts':
                 if ($result['dataset'] = $factura->readProducts()) {
                     $result['status'] = 1;
@@ -29,6 +31,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay facturas registradas';
                 }
                 break;
+            # createBill : Lógica para la creación de una factura, si ya está creada se muestra los productos ingresados para poder continuar la factura.
             case 'createBill':
                 $_POST = $factura->validateForm($_POST);
                 if ($factura->setIdSucursal(1)) {
@@ -61,6 +64,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Error en la sucursal';
                 }
                 break;
+            # addProduct : Añadir un producto al detalle de una factura.
             case 'addProduct':
                 $_POST = $factura->validateForm($_POST);
                 if ($factura->setNombre($_POST['buscar-producto'])) {
@@ -86,6 +90,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Error al asignar el producto';
                 }
                 break;
+            # Search : Buscador por fecha de facturas.
             case 'search':
                 $_POST = $factura->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -104,6 +109,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
+            # readOneFactura : Leer el contenido del detalle de una factura.
             case 'readOneFactura':
                 if ($factura->setMesa($_POST['mesa_form'])) {
                     if ($factura->setId($factura->billID())) {
@@ -119,6 +125,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mesa incorrecta';
                 }
                 break;
+            # readOne : Leer solo un detalle de la factura por su ID.
             case 'readOne':
                 if ($factura->setIdDetalle($_POST['id_detalle'])) {
                     if ($result['dataset'] = $factura->readOne()) {
@@ -129,8 +136,8 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'ID detalle incorrecto';
                 }
-
                 break;
+            # updateDetail : Actualizar la cantidad de un detalle de la factura.
             case 'updateDetail':
                 $_POST = $factura->validateForm($_POST);
                 if ($factura->setIdDetalle($_POST['id_detalle'])) {
@@ -148,6 +155,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Detalle incorrecto';
                 }
                 break;
+            # deleteDetail : Eliminar un detalle de la factura.
             case 'deleteDetail':
                 if ($factura->setIdDetalle($_POST['id_detalle'])) {
                     if ($factura->deleteDetail()) {
@@ -160,6 +168,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Detalle incorrecto';
                 }
                 break;
+            # delete : Eliminar una factura.
             case 'delete':
                 if ($factura->setMesa($_POST['mesa'])) {
                     if ($factura->setId($factura->billID())) {
@@ -176,6 +185,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mesa incorrecta';
                 }
                 break;
+            # finishBill : Finalizar una factura, agregando a la factura el estado de cancelado.
             case 'finishBill':
                 if ($factura->setMesa($_POST['mesa'])) {
                     if ($factura->setId($factura->billID())) {

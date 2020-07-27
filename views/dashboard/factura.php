@@ -2,6 +2,7 @@
 require_once('../../core/helpers/dashboard.php');
 Dashboard::headerTemplate('Administrar facturas');
 ?>
+<!-- Contenido principal de factura -->
 <div class="padd-15">
     <div class="row">
         <!-- Formulario de búsqueda -->
@@ -15,11 +16,11 @@ Dashboard::headerTemplate('Administrar facturas');
                 <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar"><i class="material-icons">check_circle</i></button>
             </div>
         </form>
-
-        <!-- <a href="#" onclick="openBill()" class="btn waves-effect grey tooltipped" data-tooltip="Nueva factura"><i class="material-icons">cancel</i></a> -->
     </div>
+    <!-- Contenedor para crear una factura a partir de una mesa -->
     <div class="card padd-15">
         <h5>Elija una mesa</h5>
+        <!-- Formulario con botones para determinar la mesa -->
         <form action="detalle.php" id="factura-mesa">
             <div class="row">
                 <button type="submit" name="boton" value="1" class="btn btn-d waves-effect green mesa"><i class="material-icons">local_dining</i>1</button>
@@ -47,12 +48,14 @@ Dashboard::headerTemplate('Administrar facturas');
         <tbody id="tbody-rows">
         </tbody>
     </table>
+    <!-- Apartado de paginación -->
     <div class="col-md-12 center text-center">
         <span class="left" id="total_reg"></span>
         <ul class="pagination pager" id="myPager"></ul>
     </div>
 
 </div>
+<!-- Modal para el detalle modal -->
 <div id="detalle-modal" class="modal">
     <div class="modal-content">
         <h4 id="modal-title-2" class="center-align"></h4>
@@ -71,8 +74,7 @@ Dashboard::headerTemplate('Administrar facturas');
         </table>
     </div>
 </div>
-
-
+<!-- Fin del contenido principal -->
 <?php
-Dashboard::footerTemplate('factura2.js');
+Dashboard::footerTemplate('factura.js');
 ?>

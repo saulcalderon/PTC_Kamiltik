@@ -100,7 +100,7 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="factura2.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
+                            <a href="factura.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
                             </a>
                         </li>
                         <li>

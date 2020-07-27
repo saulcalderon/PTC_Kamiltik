@@ -255,7 +255,7 @@ function confirmDelete2(api, identifier) {
                             //readRows(api);
                             sweetAlert(1, response.message, null);
                             setTimeout(() => {
-                                location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura2.php';
+                                location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura.php';
                             }, 3000);
                         } else {
                             sweetAlert(2, response.exception, null);

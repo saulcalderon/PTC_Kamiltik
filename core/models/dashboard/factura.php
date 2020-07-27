@@ -6,16 +6,6 @@ class Factura extends Validator
 {
     // Declaración de atributos (propiedades).
 
-
-    private $fecha_registro = null;
-    private $precio_total = null;
-    private $id_estado_factura = null;
-    private $estado_factura = null;
-
-    private $precio_unitario = null;
-    private $producto = null;
-
-    #Nuevas variables
     private $id_factura = null;
     private $nombre = null;
     private $id_mesa = null;
@@ -28,7 +18,7 @@ class Factura extends Validator
     private $cambio = null;
 
     /*
-    *   Métodos para asignar valores a los atributos.
+    *   Métodos para asignar valores a los atributos. 
     */
     public function setId($value)
     {
@@ -80,27 +70,6 @@ class Factura extends Validator
         }
     }
 
-    // public function setIdEstadoFactura($value)
-    // {
-    //     if ($this->validateNaturalNumber($value)) {
-    //         $this->id_estado_factura = $value;
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    #---------------------------
-
-    // public function setFechaRegistro($value)
-    // {
-    //     if ($this->validateAlphanumeric($value, 1, 50)) {
-    //         $this->fecha_registro = $value;
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
     public function setTotal($value)
     {
         if ($this->validateMoney($value)) {
@@ -131,15 +100,6 @@ class Factura extends Validator
         }
     }
 
-    // public function setEstadoFactura($value)
-    // {
-    //     if ($this->validateAlphabetic($value, 1, 50)) {
-    //         $this->estado_factura = $value;
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
     public function setCantidad($value)
     {
         if ($this->validateNaturalNumber($value)) {
@@ -149,24 +109,6 @@ class Factura extends Validator
             return false;
         }
     }
-    // public function setPrecioUnitario($value)
-    // {
-    //     if ($this->validateMoney($value)) {
-    //         $this->precio_unitario = $value;
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function setProducto($value)
-    // {
-    //     if ($this->validateAlphabetic($value, 1, 50)) {
-    //         $this->producto = $value;
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
 
     public function setIdDetalle($value)
     {
@@ -177,58 +119,6 @@ class Factura extends Validator
             return false;
         }
     }
-
-    /*
-    *   Métodos para obtener valores de los atributos.
-    */
-    // public function getId()
-    // {
-    //     return $this->id_factura;
-    // }
-
-    // public function getNombre()
-    // {
-    //     return $this->nombre;
-    // }
-
-    // public function getFechaRegistro()
-    // {
-    //     return $this->fecha_registro;
-    // }
-
-    // public function getPrecioTotal()
-    // {
-    //     return $this->precio_total;
-    // }
-    // public function getIdEstadoFactura()
-    // {
-    //     return $this->id_estado_factura;
-    // }
-
-    // public function getEstadoFactura()
-    // {
-    //     return $this->estado_factura;
-    // }
-
-    // public function getCantidad()
-    // {
-    //     return $this->cantidad;
-    // }
-    // public function getPrecioUnitario()
-    // {
-    //     return $this->precio_unitario;
-    // }
-    // public function getProducto()
-    // {
-    //     return $this->producto;
-    // }
-
-    // public function getMesa()
-    // {
-    //     return $this->mesa;
-    // }
-
-
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -242,6 +132,8 @@ class Factura extends Validator
         return Database::getRows($sql, $params);
     }
 
+    # Método para leer un solo detalle. 
+
     public function readOne()
 
     {
@@ -253,6 +145,8 @@ class Factura extends Validator
         return Database::getRow($sql, $params);
     }
 
+    # Método para actualizar el detalle de una factura.
+
     public function updateDetail()
     {
         $sql = 'UPDATE detalle_factura SET cantidad = ? WHERE id_detalle_factura = ?';
@@ -260,10 +154,8 @@ class Factura extends Validator
         return Database::executeRow($sql, $params);
     }
 
-
-    # Nuevos métodos
-
     # Método para mostrar todas las facturas.
+
     public function readAllFacturas()
     {
         $sql = "SELECT id_factura,nombre, to_char(fecha_registro,'YYYY-MM-DD : HH:MM') AS fecha, COUNT(id_detalle_factura) as cantidad, entregado_por_cliente, cambio,total, estado_factura, id_mesa FROM factura fc INNER JOIN detalle_factura USING(id_factura)
@@ -294,6 +186,7 @@ class Factura extends Validator
         return Database::getRows($sql, $params);
     }
 
+    # Método para la creación de una factura.
 
     public function createBill()
     {
@@ -314,11 +207,15 @@ class Factura extends Validator
         }
     }
 
+    # Método para obtener la cantidad máxima de mesas disponibles.
+
     public function verifyTable()
     {
         $sql = 'SELECT MAX(id_mesa) from mesas';
         return Database::getRow($sql, null);
     }
+
+    # Método para obtener el ID de la factura mediante el ID mesa.
 
     public function billID()
     {
@@ -328,6 +225,8 @@ class Factura extends Validator
         $data = Database::getRow($sql, $params);
         return $data['id_factura'];
     }
+
+    # Método para validar si existe un producto por su nombre, si existe se inserta el ID producto en el detalle.
 
     public function addProduct()
     {
@@ -343,18 +242,27 @@ class Factura extends Validator
         Database::executeRow($sql, $params);
         return true;
     }
+
+    # Método para eliminar un detalle de una factura.
+
     public function deleteDetail()
     {
         $sql = 'DELETE from detalle_factura where id_detalle_factura = ?';
         $params = array($this->id_detalle_factura);
         return Database::executeRow($sql, $params);
     }
+
+    # Método para eliminar una factura por su ID.
+
     public function deleteBill()
     {
         $sql = 'DELETE from factura where id_factura = ?';
         $params = array($this->id_factura);
         return Database::executeRow($sql, $params);
     }
+
+    # Método para finalizar la factura y agregar el estado de cancelado.
+
     public function finishBill()
     {
         $sql = 'UPDATE factura SET id_estado_factura = 1 , total = ? 
