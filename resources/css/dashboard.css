@@ -40,7 +40,13 @@ footer,
     padding: 15px;
 }
 
+.font-size-1{
+  font-size: 1.5rem;  
+}
 
+.m-10{
+    margin: 10px;
+}
 
 .m-15 {
     margin: 35px 0 0;
@@ -161,7 +167,7 @@ body {
 
 .btn-d {
     height: 100px;
-    padding: 0 20px;
+    padding: 0 80px;
     margin: 0 10px;
     font-size: 36px;
     

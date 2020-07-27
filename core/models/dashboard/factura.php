@@ -16,6 +16,7 @@ class Factura extends Validator
     private $entregado = null;
     private $total = null;
     private $cambio = null;
+    private $fecha_registro = null;
 
     /*
     *   Métodos para asignar valores a los atributos. 
@@ -34,6 +35,16 @@ class Factura extends Validator
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
             $this->nombre = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setFechaRegistro($value)
+    {
+        if ($this->validateDate($value)) {
+            $this->fecha_registro = $value;
             return true;
         } else {
             return false;
@@ -125,9 +136,11 @@ class Factura extends Validator
     */
     public function searchFacturas($value)
     {
-        $sql = 'SELECT fc.id_factura, nombre, fc.fecha_registro, precio_total, estado_factura, 
-            COUNT(cantidad) as cantidad
-            FROM factura fc inner join cliente cl USING(id_cliente) inner join detalle_factura df USING(id_factura) inner join estado_factura ef USING(id_estado_factura) where nombre ILIKE ? group by fc.id_factura, nombre, fc.fecha_registro, precio_total, estado_factura order by id_factura asc';
+        $sql = "SELECT id_factura,nombre, to_char(fecha_registro,'YYYY-MM-DD : HH:MM') AS fecha, COUNT(id_detalle_factura) as cantidad, entregado_por_cliente, cambio,total, estado_factura, id_mesa FROM factura fc INNER JOIN detalle_factura USING(id_factura)
+                INNER JOIN usuarios USING(id_usuario)
+                INNER JOIN estado_factura USING(id_estado_factura)
+                WHERE fecha_registro::text ILIKE ?
+                GROUP BY id_factura, nombre, estado_factura ORDER BY id_factura desc";
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
@@ -270,4 +283,14 @@ class Factura extends Validator
         $params = array($this->total, $this->cambio, $this->entregado, $this->id_factura);
         return Database::executeRow($sql, $params);
     }
+
+    # Método para obtener las mesas con facturas pendientes.
+
+    public function readMesas()
+    {
+        $sql = 'SELECT id_mesa FROM factura WHERE id_estado_factura = 2';
+        return Database::getRows($sql, null);
+    }
+
+
 }
