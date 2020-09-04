@@ -4,7 +4,7 @@
  */
 
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API = '../../core/api_en/dashboard/usuarios.php?action=';
+const API = '../../core/api_en/dashboard/users.php?action=';
 
 // Función para verificar si existen usuarios en el sitio privado antes de iniciar sesión.
 function checkUsuarios() {
