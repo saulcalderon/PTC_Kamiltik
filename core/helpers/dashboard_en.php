@@ -21,7 +21,7 @@ class Dashboard
             <html lang="es">
                 <head>
                     <meta charset="utf-8">
-                    <title>The Coffe cup - ' . $titulo . '</title>
+                    <title>The Coffee cup - ' . $titulo . '</title>
                     <!--<link type="image/png" rel="icon" href="../../resources/img/logo.png"/>-->
                     <link rel="icon" href="../../resources/img/logo_coffee_cup_mini.ico">
                     <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.css"/>
@@ -48,16 +48,16 @@ class Dashboard
                     <nav class="cuzcatlan-color">
                         <div class="nav wrapper">
                             <div class="container">
-                                <a href="" class="brand-logo center">The Coffe cup</a>
+                                <a href="" class="brand-logo center">The Coffee cup</a>
                                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                                         class="material-icons">menu</i></a>
                                         <ul class="right hide-on-med-and-down">
-                                        <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">verified_user</i>Cuenta: <b>' . $_SESSION['alias_usuario'] . '</b></a></li>
+                                        <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">verified_user</i>Account: <b>' . $_SESSION['alias_usuario'] . '</b></a></li>
                                     </ul>
                                     <ul id="dropdown" class="dropdown-content"> 
-                                        <li><a href="#" onclick="openModalProfile()"><i class="material-icons">face</i>Editar perfil</a></li>
-                                        <li><a href="#password-modal" class="modal-trigger"><i class="material-icons">lock</i>Cambiar clave</a></li>
-                                        <li><a href="#" onclick="signOff()"><i class="material-icons">clear</i>Salir</a></li>
+                                        <li><a href="#" onclick="openModalProfile()"><i class="material-icons">face</i>Edit profile</a></li>
+                                        <li><a href="#password-modal" class="modal-trigger"><i class="material-icons">lock</i>Change Password</a></li>
+                                        <li><a href="#" onclick="signOff()"><i class="material-icons">clear</i>Log out</a></li>
                                     </ul>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ class Dashboard
                                     <img src="../../resources/img/logo_coffee_cup.png" alt="" width="255px">
                                 </a>
                                 <span class="white-text name">' . $_SESSION['alias_usuario'] . '</span>
-                                <span class="white-text">Miembro en The Coffe Cup</span>
+                                <span class="white-text">Member in The Coffee Cup</span>
                                 <hr class= "cuzcatlan-color">
                             </div>
                         </li>
@@ -81,32 +81,32 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="usuarios.php" class="white-text"><i class="material-icons white-text">person</i>Usuarios
+                            <a href="users.php" class="white-text"><i class="material-icons white-text">person</i>Users
                             </a>
                         </li>
                         <li>
-                            <a href="clientes.php" class="white-text"><i class="material-icons white-text">people</i>Clientes
+                            <a href="clients.php" class="white-text"><i class="material-icons white-text">people</i>Clients
                             </a>
                         </li>
                         <li>
-                            <a href="productos.php" class="white-text"><i class="material-icons white-text">shop</i>Productos
+                            <a href="products.php" class="white-text"><i class="material-icons white-text">shop</i>Products
                             </a>
                         </li>
                         <li>
-                            <a href="tipo_producto.php" class="white-text"><i class="material-icons white-text">shop</i>Tipo Productos
+                            <a href="product_type.php" class="white-text"><i class="material-icons white-text">shop</i>Type of Products
                             </a>
                         </li>
                         <li>
-                            <a href="entradas.php" class="white-text"><i class="material-icons white-text">event_note</i>Entradas
+                            <a href="entradas.php" class="white-text"><i class="material-icons white-text">event_note</i>Entries
                             </a>
                         </li>
                         <li>
-                            <a href="factura.php" class="white-text"><i class="material-icons white-text">payment</i>Facturas
+                            <a href="bills.php" class="white-text"><i class="material-icons white-text">payment</i>Bills
                             </a>
                         </li>
                         <li>
-                            <a href="proveedores.php" class="white-text"><i class="material-icons white-text">local_shipping
-                                </i>Proveedores
+                            <a href="suppliers.php" class="white-text"><i class="material-icons white-text">local_shipping
+                                </i>Suppliers
                             </a>
                         </li>
                     </ul>
@@ -149,12 +149,11 @@ class Dashboard
                 <script type="text/javascript" src="../../resources/js/maskMoney.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-                <script type="text/javascript" src="../../core/helpers/components.js"></script>
-                <script type="text/javascript" src="../../core/controllers/dashboard/initialization.js"></script>
-                <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>
-                <script type="text/javascript" src="../../resources/js/pagination.js"></script>
-                <script type="text/javascript" src="../../core/controllers/dashboard/'
-            . $controller . '"></script> 
+                <script type="text/javascript" src="../../core/helpers/components_en.js"></script>
+                <script type="text/javascript" src="../../core/controllers_en/dashboard/initialization.js"></script>
+                <script type="text/javascript" src="../../core/controllers_en/dashboard/account.js"></script>
+                <script type="text/javascript" src="../../resources/js/pagination_en.js"></script>
+                <script type="text/javascript" src="../../core/controllers_en/dashboard/' . $controller . '"></script> 
             
                 
                 </body>
@@ -172,33 +171,33 @@ class Dashboard
             <!-- Componente Modal para mostrar el formulario de editar perfil -->
             <div id="profile-modal" class="modal">
                 <div class="modal-content">
-                    <h4 class="center-align">Editar perfil</h4>
+                    <h4 class="center-align">Edit profile</h4>
                     <form method="post" id="profile-form">
                         <div class="row">
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">person</i>
                                 <input id="nombres_perfil" type="text" name="nombres_perfil" class="validate" required/>
-                                <label for="nombres_perfil">Nombres</label>
+                                <label for="nombres_perfil">Names</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">person</i>
                                 <input id="apellidos_perfil" type="text" name="apellidos_perfil" class="validate" required/>
-                                <label for="apellidos_perfil">Apellidos</label>
+                                <label for="apellidos_perfil">Surnames</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">email</i>
                                 <input id="correo_perfil" type="email" name="correo_perfil" class="validate" required/>
-                                <label for="correo_perfil">Correo</label>
+                                <label for="correo_perfil">Email</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">phone</i>
                                 <input id="telefono_perfil" type="text" name="telefono_perfil" class="validate" required/>
-                                <label for="telefono_perfil">Telefono</label>
+                                <label for="telefono_perfil">Phone</label>
                             </div>
                         </div>
                         <div class="row center-align">
-                            <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
-                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                            <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancel"><i class="material-icons">cancel</i></a>
+                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Save"><i class="material-icons">save</i></button>
                         </div>
                     </form>
                 </div>
@@ -207,41 +206,41 @@ class Dashboard
             <!-- Componente Modal para mostrar el formulario de cambiar contraseña -->
             <div id="password-modal" class="modal">
                 <div class="modal-content">
-                    <h4 class="center-align">Cambiar contraseña</h4>
+                    <h4 class="center-align">Change Password</h4>
                     <form method="post" id="password-form">
                         <div class="row center-align">
-                            <label>CLAVE ACTUAL</label>
+                            <label>CURRENT PASSWORD</label>
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">security</i>
                                 <input id="clave_actual_1" type="password" name="clave_actual_1" class="validate" required/>
-                                <label for="clave_actual_1">Clave</label>
+                                <label for="clave_actual_1">Password</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">security</i>
                                 <input id="clave_actual_2" type="password" name="clave_actual_2" class="validate" required/>
-                                <label for="clave_actual_2">Confirmar clave</label>
+                                <label for="clave_actual_2">Confirm password</label>
                             </div>
                         </div>
                         <div class="row center-align">
-                            <label>CLAVE NUEVA</label>
+                            <label>NEW PASSWORD</label>
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">security</i>
                                 <input id="clave_nueva_1" type="password" name="clave_nueva_1" class="validate" required/>
-                                <label for="clave_nueva_1">Clave</label>
+                                <label for="clave_nueva_1">Password</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">security</i>
                                 <input id="clave_nueva_2" type="password" name="clave_nueva_2" class="validate" required/>
-                                <label for="clave_nueva_2">Confirmar clave</label>
+                                <label for="clave_nueva_2">Confirm password</label>
                             </div>
                         </div>
                         <div class="row center-align">
-                            <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
-                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                            <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancel"><i class="material-icons">cancel</i></a>
+                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Save"><i class="material-icons">save</i></button>
                         </div>
                     </form>
                 </div>

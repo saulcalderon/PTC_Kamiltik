@@ -19,6 +19,7 @@ class Commerce
         <title>Kamiltik | Inicio</title>
         <!-- Importación de archivos CSS -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="icon" href="../../resources/img/logo_coffee_cup_mini.ico">
         <link rel="stylesheet" href="../../resources/css/swiper.css">
         <link rel="stylesheet" href="../../resources/css/materialize.css">
         <link rel="stylesheet" href="../../resources/css/commerce.css">

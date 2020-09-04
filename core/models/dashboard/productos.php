@@ -133,6 +133,20 @@ class Productos extends Validator
         }
     }
 
+    
+
+    public function setCliente($value)
+    {
+        if ($this->validateAlphanumeric($value, 1, 50)) {
+            $this->cliente = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Todo para agregar imagenes
+
     public function setImagen($file)
     {
         if ($this->validateImageFile($file, 500, 500)) {
@@ -144,15 +158,6 @@ class Productos extends Validator
         }
     }
 
-    public function setCliente($value)
-    {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->cliente = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /*
     *   Métodos para obtener valores de los atributos.
@@ -188,11 +193,6 @@ class Productos extends Validator
         return $this->sucursal;
     }
 
-    public function getImagen()
-    {
-        return $this->imagen;
-    }
-
     public function getTipoProducto()
     {
         return $this->tipo_producto;
@@ -218,15 +218,23 @@ class Productos extends Validator
         return $this->DocumentoCompra;
     }
 
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    //Todo para agregar imagenes
     public function getRuta()
     {
         return $this->ruta;
     }
 
-    public function getCliente()
+    public function getImagen()
     {
-        return $this->cliente;
+        return $this->imagen;
     }
+
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -285,11 +293,14 @@ class Productos extends Validator
 
     public function createProducto()
     {
-
-        $sql = 'INSERT INTO productos(nombre_producto, descripcion, precio_unitario, existencias,id_sucursal, id_estado_producto, id_estado_distribucion, id_tipo_producto, id_proveedor, id_documento_compra)
+        if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
+            $sql = 'INSERT INTO productos(nombre_producto, descripcion, precio_unitario, existencias,id_sucursal, id_estado_producto, id_estado_distribucion, id_tipo_producto, id_proveedor, id_documento_compra)
                     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra);
-        return Database::executeRow($sql, $params);
+            $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra);
+            return Database::executeRow($sql, $params);
+        } else {
+            return false;
+        }
     }
 
     public function searchProductos($value)
@@ -313,7 +324,7 @@ class Productos extends Validator
 
     public function readOneProducto()
     {
-        $sql = 'SELECT id_producto, nombre_producto, existencias, descripcion, precio_unitario, fecha_registro ,id_tipo_producto, id_estado_producto, id_sucursal, id_estado_distribucion, id_proveedor, id_documento_compra
+        $sql = 'SELECT id_producto, nombre_producto, existencias, imagen, descripcion, precio_unitario, fecha_registro ,id_tipo_producto, id_estado_producto, id_sucursal, id_estado_distribucion, id_proveedor, id_documento_compra
         FROM productos
         WHERE id_producto = ?';
         $params = array($this->id);
@@ -322,10 +333,17 @@ class Productos extends Validator
 
     public function updateProducto()
     {
-        $sql = 'UPDATE productos
-        SET nombre_producto = ?, descripcion = ?, precio_unitario = ?, existencias = ?, id_sucursal = ?, id_estado_producto = ?, id_estado_distribucion = ?, id_tipo_producto = ?, id_proveedor = ?, id_documento_compra = ?
-        WHERE id_producto = ?';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra, $this->id);
+        if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
+            $sql = 'UPDATE productos
+                    SET imagen = ?, nombre_producto = ?, descripcion = ?, precio_unitario = ?, existencias = ?, id_sucursal = ?, id_estado_producto = ?, id_estado_distribucion = ?, id_tipo_producto = ?, id_proveedor = ?, id_documento_compra = ?
+                    WHERE id_producto = ?';
+                    $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra, $this->id);            
+        } else {
+            $sql = 'UPDATE productos
+                    SET nombre_producto = ?, descripcion = ?, precio_unitario = ?, existencias = ?, id_sucursal = ?, id_estado_producto = ?, id_estado_distribucion = ?, id_tipo_producto = ?, id_proveedor = ?, id_documento_compra = ?
+                    WHERE id_producto = ?';
+            $params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->sucursal, $this->estado_producto, $this->estado_distribucion, $this->tipo_producto, $this->proveedor, $this->documento_compra, $this->id);
+        }
         return Database::executeRow($sql, $params);
     }
 

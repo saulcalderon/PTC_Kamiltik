@@ -70,7 +70,7 @@ class Usuarios extends Validator
 
     public function setTelefono($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
+        if ($this->validatePhone($value)) {
             $this->telefono = $value;
             return true;
         } else {

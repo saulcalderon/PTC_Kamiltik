@@ -176,6 +176,23 @@ class Validator
     }
 
     /*
+    *   Método para validar un número telefónico.
+    *
+    *   Parámetros: $value (dato a validar).
+    *   
+    *   Retorno: booleano (true si el valor es correcto o false en caso contrario).
+    */
+    public function validatePhone($value)
+    {
+        // Se verifica que el número tenga el formato 0000-0000 y que inicie con 2, 6 o 7.
+        if (preg_match('/^[2,6,7]{1}[0-9]{3}[-][0-9]{4}$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
     *   Método para validar un dato alfabético (letras y espacios en blanco).
     *
     *   Parámetros: $value (dato a validar), $minimum (longitud mínima) y $maximum (longitud máxima).
