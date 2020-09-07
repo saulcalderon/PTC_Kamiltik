@@ -25,6 +25,9 @@ Dashboard::headerTemplate('Welcome');
                             <div class="col s12 center-align m-15">
                                 <button type="submit" class="btn waves-effect rose-m tooltipped" data-tooltip="Log in">Log in</button>
                             </div>
+                            <div class="col s12 center-align m-15">
+                                <a href="../../views/dashboard/index.php">Español</a>                               
+                            </div>
                         </form>
                     </div>
                 </div>

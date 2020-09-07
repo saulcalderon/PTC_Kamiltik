@@ -57,6 +57,7 @@ class Dashboard
                                     <ul id="dropdown" class="dropdown-content"> 
                                         <li><a href="#" onclick="openModalProfile()"><i class="material-icons">face</i>Edit profile</a></li>
                                         <li><a href="#password-modal" class="modal-trigger"><i class="material-icons">lock</i>Change Password</a></li>
+                                        <li><a href="../../views/dashboard/main.php"><i class="material-icons left">language</i>Español</a></li>
                                         <li><a href="#" onclick="signOff()"><i class="material-icons">clear</i>Log out</a></li>
                                     </ul>
                             </div>
