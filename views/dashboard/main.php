@@ -58,23 +58,32 @@ Dashboard::headerTemplate('Inicio');
 </div>
 <!--comienzo delas graficas-->
 <div class="row">
-    <div class="col s6 m12 l12">
+    <div class="col s6 m12 l6">
         <div class="card">
             <div class="card-content">
-                <canvas id="myChart" ></canvas>
+                <canvas id="chart" ></canvas>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col s6 m12 l6">
+        <div class="card">
+            <div class="card-content">
+                <canvas id="chart4" ></canvas>
             </div>
         </div>
     </div>
 </div>
-
+</div>
 <div class="row padd-15">
-    <div class="col l6 s6">
+    <div class="col s6 m12 l6">
         <!-- small box -->
         <div class="row">
             <div class="col s12 m">
                 <div class="card">
                     <div class="card-content">
-                    <canvas id="Chart" ></canvas>
+                    <canvas id="chart1" ></canvas>
                     </div>
                 </div>
             </div>
@@ -87,7 +96,22 @@ Dashboard::headerTemplate('Inicio');
             <div class="col s12 m">
                 <div class="card">
                     <div class="card-content">
-                    <canvas id="Chart2" ></canvas>
+                    <canvas id="chart2" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row padd-15">
+    <div class="col l12 s6">
+        <!-- small box -->
+        <div class="row">
+            <div class="col s12 m">
+                <div class="card">
+                    <div class="card-content">
+                    <canvas id="chart5" ></canvas>
                     </div>
                 </div>
             </div>

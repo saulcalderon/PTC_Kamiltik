@@ -423,3 +423,37 @@ function barGraph(canvas, xAxis, yAxis, legend, title) {
         }
     });
 }
+    //comienza la funcion para ejecutar el grafico de dona
+function pastelGraph( canvas, legend, daata, title )
+{
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar en el eje X y se van agregando al arreglo.
+    for (i = 0; i < legend.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    }
+
+    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
+    const context = $( '#' + canvas );
+    // Se crea una instancia para generar la gráfica con los datos recibidos.
+
+    const chart = new Chart( context, {
+        type: 'doughnut',
+        data: {
+            labels: legend,
+            datasets: [
+            {
+                label: legend,
+                backgroundColor: colors,
+                data: daata
+            }
+            ]
+        },
+        options: {
+            title: {
+            display: true,
+            text: title,
+            fontSize: 14
+            }
+        }
+    });
+    }
