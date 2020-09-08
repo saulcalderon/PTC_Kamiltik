@@ -43,17 +43,17 @@ class Commerce
                             <ul class="left hide-on-med-and-down">
                                 <li><a href="menu.php" class="menu-text">Menu</a></li>
                                 <li><a href="sucursales.php" class="menu-text">Branch offices</a></li>
-                                <li><a href="promociones.php" class="menu-text">Promociones</a></li>
+                                <li><a href="promociones.php" class="menu-text">Promotions</a></li>
                             </ul>
                             <ul class="right hide-on-med-and-down">
                                 <li>
                                     <!--<form action="" class="form-buscar">
-                                        <input type="text" name="" id="" placeholder="Buscar">
+                                        <input type="text" name="" id="" placeholder="Search">
                                         <a href=""><i class="material-icons">search</i></a>
                                     </form>-->
                                     <form>
                                         <div class="input-field ">
-                                          <input id="search" type="search" placeholder="Buscar" required>
+                                          <input id="search" type="search" placeholder="Search" required>
                                           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                           <i class="material-icons">close</i>
                                         </div>
@@ -67,14 +67,14 @@ class Commerce
             <!-- Navegación en pantallas medianas y pequeñas -->
             <ul class="sidenav" id="mobile-demo">
                 <li><a class="sidenav-close" href=""><i class="material-icons right">close</i></a></li>
-                <li><a href="menu.php">Menú</a></li>
-                <li><a href="sucursales.php">Sucursales</a></li>
-                <li><a href="promociones.php">Promociones</a></li>
+                <li><a href="menu.php">Menu</a></li>
+                <li><a href="sucursales.php">Branch offices</a></li>
+                <li><a href="promociones.php">Promotions</a></li>
                 <li><div class="divider"></div></li>
-                <li><a href="#modal1" class="modal-trigger">Regístrate como cliente</a></li>
-                <li><a href="index.php">Buscar sucursal más cercana</a></li>
-                <li><a href="noticias.php">Noticias</a></li>
-                <li><a href="contacto.php">Contáctanos</a></li>
+                <li><a href="#modal1" class="modal-trigger">Register as a customer</a></li>
+                <li><a href="index.php">Find nearest branch</a></li>
+                <li><a href="noticias.php">News</a></li>
+                <li><a href="contacto.php">Contact us</a></li>
             </ul>
             
             <!-- Final de la Barra de Navegación -->
@@ -83,11 +83,11 @@ class Commerce
             <nav class="nav-secundario hide-on-med-and-down">
                 <div class="nav-wrapper">
                     <ul>
-                        <li><a href="#modal1" class="texto-nav-secundario modal-trigger"><i class="material-icons">group</i>Regístrate como cliente</a></li>
-                        <li><a href="index.php" class="texto-nav-secundario"><i class="material-icons">domain</i>Buscar sucursal más cercana</a></li>
+                        <li><a href="#modal1" class="texto-nav-secundario modal-trigger"><i class="material-icons">group</i>Register as a customer</a></li>
+                        <li><a href="index.php" class="texto-nav-secundario"><i class="material-icons">domain</i>Find nearest branch</a></li>
                         <li><a href="noticias.php" class="texto-nav-secundario"><i class="material-icons">chrome_reader_mode
-                        </i>Noticias</a></li>
-                        <li><a href="contacto.php" class="texto-nav-secundario"><i class="material-icons">message</i>Contáctanos</a></li>
+                        </i>News</a></li>
+                        <li><a href="contacto.php" class="texto-nav-secundario"><i class="material-icons">message</i>Contact us</a></li>
                     </ul>
                 </div>
             </nav>
@@ -95,7 +95,7 @@ class Commerce
             <!-- Estructura del modal -->
             <div id="modal1" class="modal modal-cliente">
                 <div class="cabecera padd-10">
-                    <h6 class="margin-0">Datos personales</h6>
+                    <h6 class="margin-0">Personal information</h6>
                 </div>
                 <div class="modal-content">
                     <div class="row margin-0">
@@ -104,7 +104,7 @@ class Commerce
                                 <div class="card-image">
                                     <img src="../../resources/img/commerce/notebook-1.png">
                                     <div class="valign-wrapper fondo-negro">
-                                        <span class="card-title">Se parte de The Coffee Cup</span>
+                                        <span class="card-title">Be part of The Coffee Cup</span>
                                     </div>
                                 </div>
                             </div>     
@@ -116,48 +116,48 @@ class Commerce
                                     <div class="row">
                                         <div class="input-field col s12 m6">
                                             <input id="nombre" type="text" class="validate">
-                                            <label for="nombre">Nombre</label>
+                                            <label for="nombre">Name</label>
                                         </div>
                                         <div class="input-field col s12 m6">
                                             <input id="fecha" type="date" class="validate">
-                                                <label for="fecha">Fecha de nacimiento</label>
+                                                <label for="fecha">Birth</label>
                                         </div>
                                         <div class="input-field col s12 m6">
                                             <input id="apellido" type="text" class="validate">
-                                            <label for="apellido">Apellido</label>
+                                            <label for="apellido">Last name</label>
                                         </div>
                                         <div class="input-field col s12 m6">
                                             <select>
-                                                <option value="" disabled selected>Seleccionar producto</option>
+                                                <option value="" disabled selected>Select product</option>
                                                     <option value="1">Option 1</option>
                                                     <option value="2">Option 2</option>
                                                     <option value="3">Option 3</option>
                                                 </select>
-                                            <label for="">Producto favorito</label>
+                                            <label for="">Favorite product</label>
                                         </div>
                                         <div class="input-field col s12 m6">
                                             <input id="email" type="email" class="validate">
-                                                <label for="email">Correo electrónico</label>
+                                                <label for="email">Email</label>
                                         </div>
                                         <div class="input-field col s12 m6">
                                             <select>
-                                                <option value="" disabled selected>Seleccionar producto</option>
+                                                <option value="" disabled selected>Select product</option>
                                                 <option value="1">Option 1</option>
                                                 <option value="2">Option 2</option>
                                                 <option value="3">Option 3</option>
                                             </select>
-                                            <label for="">Producto favorito</label>
+                                            <label for="">Favorite product</label>
                                         </div>
                                         <div class="col s12">
                                             <p class="center">
                                             <label>
                                                 <input type="checkbox" />
-                                                <span>Aceptos los términos y condiciones</span>
+                                                <span>I accept the terms and conditions</span>
                                             </label>
                                             </p> 
                                         </div>
                                         <div class="col s12 center">
-                                            <button class="btn waves-effect waves-light" type="submit" name="action">Registrarme</button>   
+                                            <button class="btn waves-effect waves-light" type="submit" name="action">Sign up</button>   
                                         </div>
                                     </div>
                                 </form>
@@ -179,12 +179,12 @@ class Commerce
         <div class="container">
             <div class="row">
                 <div class="col s12 m4 center">
-                    <h5 class="white-text ftf-medium">Dirección principal</h5>
+                    <h5 class="white-text ftf-medium">Address</h5>
                     <i class="material-icons small">directions_car</i>
                     <p>Km 13 1/2, Autopista <br> Comalapa, San Marcos</p>
                 </div>
                 <div class="col s12 m4 center">
-                    <h5 class="white-text ftf-medium">Contáctanos</h5>
+                    <h5 class="white-text ftf-medium">Contact us</h5>
                     <div class="flex">
                         <i class="material-icons small margin-5">phone</i>
                         <p class="margin-5">+503 2507-1300</p>
@@ -207,7 +207,7 @@ class Commerce
         <div class="footer-copyright sub">
             <div class="container">
             © 2020 Derechos reservados por The Coffee Cup
-            <a class="grey-text text-lighten-4 right" href="#!">Términos y condiciones</a>
+            <a class="grey-text text-lighten-4 right" href="#!">Terms and Conditions</a>
             </div>
         </div>
     </footer>
