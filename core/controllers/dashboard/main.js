@@ -29,6 +29,20 @@ $(document).ready(function () {
     productossucursales();
 });
 
+// Función que prepara formulario para insertar un registro.
+function openCreateModal() {
+    // Se limpian los campos del formulario.
+    $('#save-form')[0].reset();
+    // Se abre la caja de dialogo (modal) que contiene el formulario.
+    $('#save-modal').modal('open');
+    // Se asigna el título para la caja de dialogo (modal).
+    $('#modal-title').text('Crear producto');
+    // Se establece el campo de tipo archivo como obligatorio.
+    //$( '#archivo_producto' ).prop( 'required', true );
+    // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
+
+}
+
 // Función para graficar la cantidad de productos por categoría.
 function graficaCategorias() {
     $.ajax({
@@ -50,7 +64,7 @@ function graficaCategorias() {
                     cantidad.push(row.cantidad);
                 });
                 // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-                barGraph('chart', Tipos, cantidad, 'Tipos de usuarios', 'Cantidad de usuarios por categoría');
+                barGraph('chart', Tipos, cantidad, 'Tipos de usuarios', 'Cantidad de usuarios por cargo');
             } else {
                 $('#chart').remove();
             }
