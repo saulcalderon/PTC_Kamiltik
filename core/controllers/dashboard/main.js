@@ -36,7 +36,7 @@ function openCreateModal() {
     // Se abre la caja de dialogo (modal) que contiene el formulario.
     $('#save-modal').modal('open');
     // Se asigna el título para la caja de dialogo (modal).
-    $('#modal-title').text('Crear producto');
+    $('#modal-title').text('Generar grafico');
     // Se establece el campo de tipo archivo como obligatorio.
     //$( '#archivo_producto' ).prop( 'required', true );
     // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
