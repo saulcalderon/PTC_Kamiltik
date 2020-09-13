@@ -18,7 +18,7 @@ Dashboard::headerTemplate('Inicio');
             <div class="icon">
                 <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col l4 s6">
@@ -31,7 +31,7 @@ Dashboard::headerTemplate('Inicio');
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col l4 s6">
@@ -44,7 +44,7 @@ Dashboard::headerTemplate('Inicio');
             <div class="icon">
                 <i class="ion ion-email"></i>
             </div>
-            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col l6 s6">
@@ -57,7 +57,7 @@ Dashboard::headerTemplate('Inicio');
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col l6 s12">
@@ -70,7 +70,7 @@ Dashboard::headerTemplate('Inicio');
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
@@ -123,7 +123,7 @@ Dashboard::headerTemplate('Inicio');
 </div>
 
 <div class="row padd-15">
-    <div class="col s6 m12 l6">
+    <div class="col s12 m12 l12">
         <!-- small box -->
         <div class="row">
             <div class="col s12 m">
@@ -150,12 +150,7 @@ Dashboard::headerTemplate('Inicio');
                     <div class="input-field ">
                         <i class="material-icons prefix">today</i>
                         <input id="fecha" type="date" name="fecha" class="validate"/>
-                        <label for="fecha">Fecha de inicio</label>
-                    </div>
-                    <div class="input-field ">
-                        <i class="material-icons prefix">today</i>
-                        <input id="fecha" type="date" name="fecha" class="validate"/>
-                        <label for="fecha">Fecha de fin</label>
+                        <label for="fecha">Mes</label>
                     </div>
                 <!-- Botones para aceptar o cancelar -->
                 <div class="row center-align col s12 m12">

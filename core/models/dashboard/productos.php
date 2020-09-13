@@ -355,7 +355,7 @@ class Productos extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    //comienza las sentacias para los graficos
+    /*comienza las sentacias para los graficos*/
     public function productosexistencia()
     {
         $sql = 'SELECT nombre_producto,existencias
@@ -364,7 +364,7 @@ class Productos extends Validator
         $params = null;
         return database::getRows($sql,$params);
     }
-
+    //
     public function productosproveedores()
     {
         $sql = 'SELECT  (empresa)empresa,COUNT(nombre_producto)producto  from productos
@@ -373,7 +373,7 @@ class Productos extends Validator
         $params = NULL;
         return Database::getRows($sql,$params);
     }
-
+    //
     public function productossucursales()
     {
         $sql = 'SELECT (nombre)sucursal,COUNT (nombre_producto)cantidad

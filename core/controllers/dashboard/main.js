@@ -22,10 +22,15 @@ $(document).ready(function () {
     $('#greeting').text(greeting);
     // Se llama a la función que muestra una gráfica en la página web.
     graficaCategorias();
+    // Se llama a la función que muestra una gráfica en la página web.
     graficaproductos();
+    // Se llama a la función que muestra una gráfica en la página web.
     estadosusuarios();
+    // Se llama a la función que muestra una gráfica en la página web.
     productosproveedores();
+    // Se llama a la función que muestra una gráfica en la página web.
     productossucursales();
+    // Se llama a la función que muestra una gráfica en la página web.
     productossucursales();
 });
 
