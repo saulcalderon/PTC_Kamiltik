@@ -239,6 +239,20 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se puede eliminar a sí mismo';
                 }
                 break;
+                case 'usuariosrango':
+                    if ($result['dataset'] = $usuario->usuariosrango()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay datos disponibles';
+                    }
+                    break;
+                case 'estadosusuarios':
+                    if ($result['dataset'] = $usuario->estadosusuarios()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay datos disponibles';
+                    }
+                    break;
             default:
                 exit('Acción no disponible log');
         }

@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_usuario'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            # readAll : Mostrar todas las facturas en la página de facturas.php
+                # readAll : Mostrar todas las facturas en la página de facturas.php
             case 'readAll':
                 if ($result['dataset'] = $factura->readAllFacturas()) {
                     $result['status'] = 1;
@@ -236,6 +236,21 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['exception'] = 'Mesa incorrecta';
+                }
+                break;
+            case 'graph1':
+                if ($factura->setMes1($_POST['mes1'])) {
+                    if ($factura->setMes2($_POST['mes2'])) {
+                        if ($result['dataset'] = $factura->facturaMes()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'No x3';
+                        }
+                    } else {
+                        $result['exception'] = 'No';
+                    }
+                } else {
+                    $result['exception'] = 'No x2';
                 }
                 break;
             default:

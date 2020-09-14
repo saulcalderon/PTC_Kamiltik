@@ -1,5 +1,7 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
+const API_USUARIOS = '../../core/api/dashboard/usuarios.php?action=';
 const API_PRODUCTOS = '../../core/api/dashboard/productos.php?action=';
+const API_FACTURA = '../../core/api/dashboard/factura.php?action=';
 
 // Método que se ejecuta cuando el documento está listo.
 $(document).ready(function () {
@@ -21,29 +23,54 @@ $(document).ready(function () {
     $('#greeting').text(greeting);
     // Se llama a la función que muestra una gráfica en la página web.
     graficaCategorias();
+    // Se llama a la función que muestra una gráfica en la página web.
+    graficaproductos();
+    // Se llama a la función que muestra una gráfica en la página web.
+    estadosusuarios();
+    // Se llama a la función que muestra una gráfica en la página web.
+    productosproveedores();
+    // Se llama a la función que muestra una gráfica en la página web.
+    productossucursales();
+    // Se llama a la función que muestra una gráfica en la página web.
+    productossucursales();
 });
+
+// Función que prepara formulario para insertar un registro.
+function openCreateModal() {
+    // Se limpian los campos del formulario.
+    $('#save-form')[0].reset();
+    // Se abre la caja de dialogo (modal) que contiene el formulario.
+    $('#save-modal').modal('open');
+    // Se asigna el título para la caja de dialogo (modal).
+    $('#modal-title').text('Generar grafico');
+    // Se establece el campo de tipo archivo como obligatorio.
+    //$( '#archivo_producto' ).prop( 'required', true );
+    // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
+
+}
 
 // Función para graficar la cantidad de productos por categoría.
 function graficaCategorias() {
     $.ajax({
             dataType: 'json',
-            url: API_PRODUCTOS + 'cantidadProductosCategoria',
-            data: null
+            url: API_USUARIOS + 'usuariosrango'
+            
         })
         .done(function (response) {
             // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
             if (response.status) {
                 // Se declaran los arreglos para guardar los datos por gráficar.
-                let categorias = [];
+               //console.log(response.dataset); 
+                let Tipos = [];
                 let cantidad = [];
                 // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                 response.dataset.forEach(function (row) {
                     // Se asignan los datos a los arreglos.
-                    categorias.push(row.nombre_categoria);
+                    Tipos.push(row.tipo_usuario);
                     cantidad.push(row.cantidad);
                 });
                 // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-                barGraph('chart', categorias, cantidad, 'Cantidad de productos', 'Cantidad de productos por categoría');
+                barGraph('chart', Tipos, cantidad, 'Tipos de usuarios', 'Cantidad de usuarios por cargo');
             } else {
                 $('#chart').remove();
             }
@@ -58,70 +85,203 @@ function graficaCategorias() {
         });
 }
 
-//bar
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
 
-    // The data for our dataset
-    data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Noviembre','Diciembre'],
-        datasets: [{
-            label: 'Entras del Año ',
-            backgroundColor: 'rgb(255, 39, 68, .3)',
-            borderColor: 'rgb(130, 132, 137 )',
-            data: [5, 9, 12, 19, 24, 30, 70,87,92,120,130]
-        }]
-    },
+function graficaproductos() {
+    $.ajax({
+            dataType: 'json',
+            url: API_PRODUCTOS + 'productosexistencia'
+            
+        })
+        .done(function (response) {
+            // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+            if (response.status) {
+                // Se declaran los arreglos para guardar los datos por gráficar.
+              //console.log(response.dataset.nombre_producto);
+                let productos = [];
+                let cantidad = [];
+                  
+                // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                response.dataset.forEach(function (row) {
+                    // Se asignan los datos a los arreglos.
+                    productos.push(row.nombre_producto);
+                    cantidad.push(row.existencias);
+                });
+                // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+                barGraph('chart2', productos, cantidad, 'Productos', 'Cantidad de existencias en general');
+            } else {
+                $('#chart2').remove();
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
+}
 
-    // Configuration options go here
-    options: {}
+function estadosusuarios() {
+    $.ajax({
+            dataType: 'json',
+            url: API_USUARIOS + 'estadosusuarios'
+            
+        })
+        .done(function (response) {
+            // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+            if (response.status) {
+                // Se declaran los arreglos para guardar los datos por gráficar.
+               //console.log(response.dataset); 
+                let estado = [];
+                let nombre = ['Desactivado','Activo'];
+                let cantidad = [];
+                // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                response.dataset.forEach(function (row) {
+                    // Se asignan los datos a los arreglos.
+                    estado.push(row.estado);
+                    cantidad.push(row.cantidad);
+                });
+                
+                // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+                pastelGraph('chart1', nombre, cantidad, 'Cantidad de usuarios por su estado');
+            } else {
+                $('#chart1').remove();
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
+}
+
+function productosproveedores() {
+    $.ajax({
+            dataType: 'json',
+            url: API_PRODUCTOS + 'productosproveedores'
+            
+        })
+        .done(function (response) {
+            // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+            if (response.status) {
+                // Se declaran los arreglos para guardar los datos por gráficar.
+               console.log(response.dataset); 
+                let empresa = [];
+                let cantidad = [];
+                // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                response.dataset.forEach(function (row) {
+                    // Se asignan los datos a los arreglos.
+                    empresa.push(row.empresa);
+                    cantidad.push(row.producto);
+                });
+                // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+                pastelGraph('chart4', empresa, cantidad, 'Cantidad de productos por proveedor');
+            } else {
+                $('#chart4').remove();
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
+}
+
+function productossucursales() {
+    $.ajax({
+            dataType: 'json',
+            url: API_PRODUCTOS + 'productossucursales'
+            
+        })
+        .done(function (response) {
+            // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+            if (response.status) {
+                // Se declaran los arreglos para guardar los datos por gráficar.
+              //console.log(response.dataset.nombre_producto);
+                let sucursal = [];
+                let cantidad = [];
+                  
+                // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                response.dataset.forEach(function (row) {
+                    // Se asignan los datos a los arreglos.
+                    sucursal.push(row.sucursal);
+                    cantidad.push(row.cantidad);
+                });
+                // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+                barGraph('chart5', sucursal, cantidad, 'Productos', 'Cantidad de productos por sucursales');
+            } else {
+                $('#chart5').remove();
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
+}
+
+let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+$('#save-form').submit(function (e) { 
+    e.preventDefault();
+
+
+
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: API_FACTURA + 'graph1',
+        data: {
+            mes1 : $('#mesa1').val(),
+            mes2:  $('#mesa2').val()
+        }
+        
+    })
+    .done(function (response) {
+        // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+        if (response.status) {
+            // Se declaran los arreglos para guardar los datos por gráficar.
+           //console.log(response.dataset); 
+            let posMonths = [];
+            let cantidad = [];
+            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+            response.dataset.forEach(function (row) {
+                // Se asignan los datos a los arreglos.
+                posMonths.push(row.mes);
+                cantidad.push(row.cantidad);
+            });
+
+            for (let i = 0; i < months.length; i++) {
+                for (let j = 0; j < posMonths.length; j++) {
+                    if (i == parseInt(posMonths[j])) {
+                        posMonths.splice(j,1,months[i]);
+                    }
+                }  
+            }
+            
+            // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+            barGraph('chart6', posMonths , cantidad, 'xxx');
+        } else {
+            $('#chart6').remove();
+        }
+    })
+    .fail(function (jqXHR) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
+        } else {
+            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
 });
-
-//radar
-var ctx = document.getElementById('Chart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'radar',
-
-    // The data for our dataset
-    data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Noviembre','Diciembre'],
-        datasets: [{
-            label: 'Entras del Año ',
-            backgroundColor: 'rgb(77, 117, 225, .3)',
-            borderColor: 'rgb(42, 92, 227  )',
-            data: [5, 9, 12, 19, 24, 30, 70,87,92,120,130]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-
-//radar
-var ctx = document.getElementById('Chart2').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
-        datasets: [{
-            label: 'Entras del Año ',
-            backgroundColor: ['rgb(31, 222, 28 , .3)','rgb(28, 133, 222 , .3)','rgb(152, 48, 224  , .3)','rgb(125, 224, 48  , .3)', 
-            'rgb(239, 70, 44  , .3)','rgb(239, 221, 44  , .3)','rgb(239, 44, 239  , .3)'],
-            borderColor: ['rgb(31, 222, 28 )','rgb(28, 133, 222 )','rgb(152, 48, 224 )','rgb(125, 224, 48 )', 
-            'rgb(239, 70, 44 )','rgb(239, 221, 44 )','rgb(239, 44, 239 )'],
-            data: [5, 9, 12, 19, 24, 30, 70]
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-
-
 

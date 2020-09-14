@@ -3,97 +3,197 @@ require_once('../../core/helpers/dashboard.php');
 Dashboard::headerTemplate('Inicio');
 ?>
 <div class="row padd-15">
-    <div class="col l3 s6">
+        <div class="small-box bg-red">
+            <a href="#" onclick="" class="small-box-footer" class="animsition-link">Graficos Parametrizados <i class="fa fa-arrow-circle-right"></i></a>
+        </div>    
+</div>
+<div class="row padd-15">
+    <div class="col l4 s6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
+        <div class="small-box bg-red">
             <div class="inner">
-                <h3>420</h3>
-                <p>Accounts</p>
+                <p>Ingresos por mes</p>
+                
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
-    <div class="col l3 s6">
+    <div class="col l4 s6">
         <!-- small box -->
-        <div class="small-box bg-green">
+        <div class="small-box bg-red">
             <div class="inner">
-                <h3>69</h3>
-                <p>New Toons</p>
+                <p>Lo mas comprado</p>
+                
             </div>
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
-    <div class="col l3 s6">
+    <div class="col l4 s6">
         <!-- small box -->
-        <div class="small-box bg-yellow">
+        <div class="small-box bg-red">
             <div class="inner">
-                <h3>36</h3>
-                <p>Support Emails</p>
+                <p>Graficos de algo</p>
+                
             </div>
             <div class="icon">
                 <i class="ion ion-email"></i>
             </div>
-            <a href="#" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
-    <div class="col l3 s6">
+    <div class="col l6 s6">
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3>1337</h3>
-                <p>Unique Visitors</p>
+                <p>Graficos</p>
+                
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer" class="animsition-link">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col l6 s12">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <p>Graficos</p>
+                
+            </div>
+            <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" onclick="openCreateModal()" class="small-box-footer" class="animsition-link">Generar por fecha <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
 <!--comienzo delas graficas-->
 <div class="row">
-    <div class="col s6 m12 l12">
+    <div class="col s6 m12 l6">
         <div class="card">
             <div class="card-content">
-                <canvas id="myChart" ></canvas>
+                <canvas id="chart" ></canvas>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col s6 m12 l6">
+        <div class="card">
+            <div class="card-content">
+                <canvas id="chart4" ></canvas>
             </div>
         </div>
     </div>
 </div>
-
+</div>
 <div class="row padd-15">
-    <div class="col l6 s6">
+    <div class="col s6 m12 l6">
         <!-- small box -->
         <div class="row">
             <div class="col s12 m">
                 <div class="card">
                     <div class="card-content">
-                    <canvas id="Chart" ></canvas>
+                    <canvas id="chart1" ></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- final de la tarjeta -->
-    <div class="col l6 s6">
+    <div class="col s6 m12 l6">
         <!-- small box -->
         <div class="row">
             <div class="col s12 m">
                 <div class="card">
                     <div class="card-content">
-                    <canvas id="Chart2" ></canvas>
+                    <canvas id="chart2" ></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="row padd-15">
+    <div class="col s12 m12 l12">
+        <!-- small box -->
+        <div class="row">
+            <div class="col s12 m">
+                <div class="card">
+                    <div class="card-content">
+                    <canvas id="chart5" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row padd-15">
+    <div class="col s12 m12 l12">
+        <!-- small box -->
+        <div class="row">
+            <div class="col s12 m">
+                <div class="card">
+                    <div class="card-content">
+                    <canvas id="chart6" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="save-modal" class="modal">
+        <div class="modal-content">
+            <h4 id="modal-title" class="center-align"></h4>
+            <!-- Formulario para generar un grafico parametrizado -->
+            <form method="post" id="save-form" enctype="multipart/form-data">
+                <!-- Campo oculto para asignar el id del registro al momento de modificar 
+                <input class="hide" type="text" id="" name="">-->
+                    <!-- Campos para generar el grafico -->
+                <div class="row">
+                    <div class="input-field col s12 m6 ">
+                        <select id="mesa1">
+                        <option value="" disabled selected>Choose your option</option>
+                        <?php
+                        $months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                        for ($i=0; $i<count($months) ; $i++) { 
+                            echo '<option value="'.$i.'">'.$months[$i].'</option>';
+                        }
+                        ?>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+                    <div class="input-field col s12 m6 ">
+                        <select id="mesa2">
+                        <option value="" disabled selected>Choose your option</option>
+                        <?php
+                        $months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                        for ($i=0; $i<count($months) ; $i++) { 
+                            echo '<option value="'.$i.'">'.$months[$i].'</option>';
+                        }
+                        ?>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+                </div>
+                <!-- Botones para aceptar o cancelar -->
+                <div class="row center-align col s12 m12">
+                    <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                    <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Guardar"><i class="material-icons">check</i></button>
+                </div>
+            </form>
+        </div>
+    </div>
 <!-- <div class="row">
     <div class="col s12 m12 l3">
         <div class="card horizontal gradient-45deg-light-red-red gradient-shadow">

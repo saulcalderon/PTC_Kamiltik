@@ -380,4 +380,32 @@ class Productos extends Validator
         $params = array($this->estado_producto);
         return Database::getRows($sql, $params);
     }
+    /*comienza las sentacias para los graficos*/
+    public function productosexistencia()
+    {
+        $sql = 'SELECT nombre_producto,existencias
+        FROM productos
+        ORDER BY nombre_producto';
+        $params = null;
+        return database::getRows($sql,$params);
+    }
+    //sentencia que genera la cantidad de productos por proveedores
+    public function productosproveedores()
+    {
+        $sql = 'SELECT  (empresa)empresa,COUNT(nombre_producto)producto  from productos
+                inner join proveedores on productos.id_proveedor = proveedores.id_proveedor
+                GROUP BY empresa'   ;
+        $params = NULL;
+        return Database::getRows($sql,$params);
+    }
+    //sentencia que genera la cantidad de productos que existen en sucursales
+    public function productossucursales()
+    {
+        $sql = 'SELECT (nombre)sucursal,COUNT (nombre_producto)cantidad
+                FROM productos INNER JOIN sucursales on sucursales.id_sucursal = productos.id_sucursal
+                GROUP BY nombre';
+        $params = null;
+        return Database::getRows($sql,$params);
+    }
+
 }

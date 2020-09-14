@@ -292,4 +292,25 @@ class Usuarios extends Validator
         $params = array($this->idTipoUsuario);
         return Database::getRows($sql, $params);
     }
+     /*
+    *  Métedos para generar gráficas
+    */
+    //metodo para ver los detos de los cargos en total que existen 
+    public function usuariosrango()
+    {
+            $sql = ' SELECT tipo_usuario, COUNT(id_usuario) cantidad 
+            FROM usuarios INNER JOIN tipo_usuario USING (id_tipo_usuario)
+            GROUP BY id_tipo_usuario, tipo_usuario';
+            $params = null;
+            return Database::getRows($sql,$params);
+    }
+    //metodo para ver la cantidad de usuarios en total que hay con su estado
+    public function estadosusuarios()
+    {
+        $sql = 'SELECT (id_estado)Estado, COUNT(id_estado)cantidad
+        FROM usuarios 
+        GROUP BY id_estado';
+        $params = null;
+        return Database::getRows($sql,$params);
+    }
 }
