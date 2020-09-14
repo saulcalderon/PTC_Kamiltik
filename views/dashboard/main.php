@@ -137,20 +137,6 @@ Dashboard::headerTemplate('Inicio');
     </div>
 </div>
 
-<div class="row padd-15">
-    <div class="col s12 m12 l12">
-        <!-- small box -->
-        <div class="row">
-            <div class="col s12 m">
-                <div class="card">
-                    <div class="card-content">
-                        <canvas id="chart10"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div id="save-modal" class="modal">
     <div class="modal-content">
@@ -331,7 +317,7 @@ Dashboard::headerTemplate('Inicio');
                 <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
                 <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Guardar"><i class="material-icons">check</i></button>
             </div>
-            <canvas id="chart"></canvas>
+            <canvas id="chart10"></canvas>
         </form>
     </div>
 </div>

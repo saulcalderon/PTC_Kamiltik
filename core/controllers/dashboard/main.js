@@ -483,13 +483,13 @@ $('#save-form4').submit(function (e) {
     e.preventDefault();
 
    
-    let numero =  $('#mes1-prod').val();
+    let numero =  parseInt($('#mes1-prod').val());
 
     $.ajax({
         type: 'post',
         url: API_FACTURA + 'graph2',
         data: {
-            mes : parseInt(numero)
+            mes : numero
         },
         dataType: 'json'
         
