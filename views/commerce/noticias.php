@@ -16,7 +16,7 @@ Commerce::headerTemplate();
                         <div class="card-image">
                             <img src="../../resources/img/commerce/leyla.png">
                             <div class="valign-wrapper fondo-negro">
-                                <span class="card-title static center">Historia The Coffe Cup</span>
+                                <span class="card-title static center">Historia The Coffee Cup</span>
                             </div>
                         </div>
                     </div>

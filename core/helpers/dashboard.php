@@ -21,7 +21,7 @@ class Dashboard
             <html lang="es">
                 <head>
                     <meta charset="utf-8">
-                    <title>The Coffe cup - ' . $titulo . '</title>
+                    <title>The Coffee cup - ' . $titulo . '</title>
                     <!--<link type="image/png" rel="icon" href="../../resources/img/logo.png"/>-->
                     <link rel="icon" href="../../resources/img/logo_coffee_cup_mini.ico">
                     <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.css"/>
@@ -48,7 +48,7 @@ class Dashboard
                     <nav class="cuzcatlan-color">
                         <div class="nav wrapper">
                             <div class="container">
-                                <a href="" class="brand-logo center">The Coffe cup</a>
+                                <a href="" class="brand-logo center">The Coffee cup</a>
                                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i
                                         class="material-icons">menu</i></a>
                                         <ul class="right hide-on-med-and-down">
@@ -73,7 +73,7 @@ class Dashboard
                                     <img src="../../resources/img/logo_coffee_cup.png" alt="" width="255px">
                                 </a>
                                 <span class="white-text name">' . $_SESSION['alias_usuario'] . '</span>
-                                <span class="white-text">Miembro en The Coffe Cup</span>
+                                <span class="white-text">Miembro en The Coffee Cup</span>
                                 <hr class= "cuzcatlan-color">
                             </div>
                         </li>

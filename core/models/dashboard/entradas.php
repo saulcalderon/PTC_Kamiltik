@@ -12,7 +12,7 @@ class Entradas extends Validator
     private $fecha = null;
     private $idCategoria = null;
     private $estado = null;
-    private $autor = 'The Coffe Cup';
+    private $autor = 'The Coffee Cup';
     private $ruta = '../../../resources/img/productos/';
 
     /*
