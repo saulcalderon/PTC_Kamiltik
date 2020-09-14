@@ -5,6 +5,19 @@ const API_CLIENTES = '../../core/api/dashboard/clientes.php?action=';
 $(document).ready(function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_CLIENTES);
+
+    // Se declara e inicializa un objeto para obtener la fecha y hora actual.
+    let today = new Date();
+    // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
+    let day = ( '0' + today.getDate() ).slice( -2 );
+    // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
+    var month = ( '0' + ( today.getMonth() + 1 ) ).slice( -2 );
+    // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
+    let year = today.getFullYear() - 18;
+    // Se declara e inicializa una variable para establecer el formato de la fecha.
+    let date = (`${year}-${month}-${day}`);
+    // Se asigna la fecha como valor máximo en el campo del formulario.
+    $( '#fecha' ).prop( 'max', date );
 });
 
 // Función para llenar la tabla con los datos enviados por readRows().

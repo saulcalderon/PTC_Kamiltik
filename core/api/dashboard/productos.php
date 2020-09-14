@@ -97,12 +97,23 @@ if (isset($_GET['action'])) {
                                             if ($producto->setProveedor($_POST['nombre_proveedor'])) {
                                                 if ($producto->setTipoProducto($_POST['tipo_producto'])) {
                                                     if ($producto->setDocumentoCompra($_POST['documento_compra'])) {
-                                                        if ($producto->createProducto()) {
-                                                            $result['status'] = 1;
-                                                            $result['message'] = 'Producto creado correctamente';
+                                                        if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
+                                                            if ($producto->setImagen($_FILES['archivo_producto'])) {
+
+                                                                if ($producto->createProducto()) {
+                                                                    $result['status'] = 1;
+                                                                    $result['message'] = 'Producto creado correctamente';
+                                                                } else {
+                                                                    $result['exception'] = Database::getException();
+                                                                }
+                                                            } else {
+                                                                $result['exception'] = $producto->getImageError();
+                                                            }
                                                         } else {
-                                                            $result['exception'] = Database::getException();
+                                                            $result['exception'] = 'Seleccione una imagen';
                                                         }
+
+
                                                     }else{
                                                         $result['exception'] = 'Dato erroneo factura';
                                                     }
@@ -161,17 +172,39 @@ if (isset($_GET['action'])) {
                                                 if ($producto->setProveedor($_POST['nombre_proveedor'])) {
                                                     if ($producto->setTipoProducto($_POST['tipo_producto'])) {
                                                         if ($producto->setDocumentoCompra($_POST['documento_compra'])) {
-                                                            if ($producto->updateProducto()) {
-                                                                $result['status'] = 1;
-                                                                $result['message'] = 'Producto modificado correctamente';
+
+
+                                                            if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
+                                                                if ($producto->setImagen($_FILES['archivo_producto'])) {
+
+                                                                    if ($producto->updateProducto()) {
+                                                                        $result['status'] = 1;
+                                                                        if ($producto->deleteFile($producto->getRuta(), $data['imagen'])) {
+                                                                            $result['message'] = 'Producto modificado correctamente';
+                                                                        } else {
+                                                                            $result['message'] = 'Producto modificada pero no se borro la imagen anterior';
+                                                                        }
+                                                                    } else {
+                                                                        $result['exception'] = Database::getException();
+                                                                    }
+                                                                } else {
+                                                                    $result['exception'] = $producto->getImageError();
+                                                                }
                                                             } else {
-                                                                $result['exception'] = Database::getException();
+                                                                if ($producto->updateProducto()) {
+                                                                    $result['status'] = 1;
+                                                                    $result['message'] = 'Producto modificado correctamente';
+                                                                } else {
+                                                                    $result['exception'] = Database::getException();
+                                                                }
                                                             }
+
+
                                                         }else{
                                                             $result['exception'] = 'Dato erroneo factura';
                                                         }
                                                 }else{
-                                                    $result['exception'] = 'Dato erroneo proveedor';
+                                                    $result['exception'] = 'Tipo de producto mal ingresado';
                                                 }
                                             }else{
                                                 $result['exception'] = 'Dato erroneo estado distribucion';
@@ -210,7 +243,7 @@ if (isset($_GET['action'])) {
                     if ($data = $producto->readOneProducto()) {
                         if ($producto->deleteProducto()) {
                             $result['status'] = 1;
-                            if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
+                            if ($producto->deleteFile($producto->getRuta(), $data['imagen'])) {
                                 $result['message'] = 'Producto eliminado correctamente';
                             } else {
                                 $result['message'] = 'Producto eliminado pero no se borro la imagen';
@@ -225,6 +258,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 }
                 break;
+
                 case 'productosexistencia':
                     if ($result['dataset'] = $producto->productosexistencia()) {
                         $result['status'] = 1;
