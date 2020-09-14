@@ -387,6 +387,31 @@ class Productos extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    /* Reportes */
+
+    /* Mandar a traer los datos de los productos por cada tipo de producto */
+    public function readProductosTipo()
+    {
+        $sql = 'SELECT nombre_producto, id_producto, precio_unitario, tipo_producto
+        FROM productos pr INNER JOIN tipo_producto cp USING(id_tipo_producto)
+        WHERE id_tipo_producto = ?
+        ORDER BY nombre_producto';
+        $params = null;
+        $params = array($this->tipo_producto);
+        return Database::getRows($sql, $params);
+    }
+
+    /* Mandar a traer los datos de los productos por estado */
+    public function readProductoEstado()
+    {
+        $sql = 'SELECT nombre_producto, id_producto, precio_unitario, tipo_producto, existencias
+        FROM productos pr INNER JOIN tipo_producto cp USING(id_tipo_producto) INNER JOIN estado_producto ep USING(id_estado_producto)
+        WHERE id_estado_producto = ?
+        ORDER BY nombre_producto';
+        $params = null;
+        $params = array($this->estado_producto);
+        return Database::getRows($sql, $params);
+    }
     /*comienza las sentacias para los graficos*/
     public function productosexistencia()
     {

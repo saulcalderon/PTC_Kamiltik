@@ -18,6 +18,12 @@ Dashboard::headerTemplate('Administrar de productos');
         <div class="input-field center-align col s12 m4">
             <!-- Enlace para abrir caja de dialogo (modal) al momento de crear un nuevo registro -->
             <a href="#" onclick="openCreateModal()" class="btn waves-effect indigo tooltipped" data-tooltip="Crear"><i class="material-icons">add_circle</i></a>
+
+            <!-- Botones de los reportes -->
+            <!-- Reporte de tipo de productos -->
+            <a href="../../core/reports/dashboard/productos_tipo.php" target="_blank" class="btn waves-effect amber tooltipped" data-tooltip="Reporte de productos por categoría"><i class="material-icons">assignment</i></a>
+            <!-- Reporte de estado del producto -->
+            <a href="../../core/reports/dashboard/productos_estado.php" target="_blank" class="btn waves-effect amber tooltipped" data-tooltip="Reporte de productos por estado"><i class="material-icons">assignment</i></a>
         </div>
     </div>
     <table class="highlight padd-15 pagination responsive-table">
@@ -114,6 +120,16 @@ Dashboard::headerTemplate('Administrar de productos');
                         </select>
                         <label>Documento compra</label>
                     </div> 
+                    <!-- Imagen -->
+                    <div class="file-field input-field col s12 m6">
+                        <div class="btn waves-effect tooltipped" data-tooltip="Seleccione una imagen de al menos 500x500">
+                            <span><i class="material-icons">image</i></span>
+                            <input id="archivo_producto" type="file" name="archivo_producto" accept=".gif, .jpg, .png"/>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="text" class="file-path validate" placeholder="Formatos aceptados: gif, jpg y png"/>
+                        </div>
+                    </div>
                 
                 <!-- Botones para aceptar o cancelar -->
                 <div class="row center-align col s12 m12">

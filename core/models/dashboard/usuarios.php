@@ -14,6 +14,7 @@ class Usuarios extends Validator
     private $fechaNacimiento = null;
     private $idCargo = null;
     private $idEstado = true;
+    private $idTipoUsuario = null;
 
     /*
     *   Métodos para asignar valores a los atributos.
@@ -22,6 +23,16 @@ class Usuarios extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->id = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdTipoUsuarios($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idTipoUsuario = $value;
             return true;
         } else {
             return false;
@@ -262,6 +273,25 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    /* Reportes */
+    public function readAllTipoUsuarios()
+    {
+        $sql = 'SELECT id_tipo_usuario, tipo_usuario
+                FROM tipo_usuario
+                ORDER BY tipo_usuario';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readUsuarioTipo()
+    {
+        $sql = 'SELECT nombre, id_usuario, apellido, telefono, correo,tipo_usuario
+                FROM usuarios INNER JOIN tipo_usuario USING(id_tipo_usuario)
+                WHERE id_tipo_usuario= ?
+                ORDER BY nombre';
+        $params = array($this->idTipoUsuario);
+        return Database::getRows($sql, $params);
+    }
      /*
     *  Métedos para generar gráficas
     */

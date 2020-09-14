@@ -19,6 +19,11 @@ Dashboard::headerTemplate('Administrar usuarios');
         <div class="input-field center-align col s12 m4">
             <!-- Enlace para abrir caja de dialogo (modal) al momento de crear un nuevo registro -->
             <a href="#" onclick="openCreateModal()" class="btn waves-effect indigo tooltipped" data-tooltip="Crear"><i class="material-icons">add_circle</i></a>
+
+            <!-- Botones de los reportes -->
+
+            <!-- Botón del reporte tipo usuarios -->
+            <a href="../../core/reports/dashboard/usuarios_tipo.php" target="_blank" class="btn waves-effect amber tooltipped" data-tooltip="Reporte de usuarios por tipo"><i class="material-icons">assignment</i></a>
         </div>
     </div>
     <div class="col l8">
