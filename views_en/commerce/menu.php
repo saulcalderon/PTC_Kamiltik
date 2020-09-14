@@ -1,0 +1,131 @@
+<?php
+require_once('../../core/helpers/commerce.php');
+Commerce::headerTemplate();
+?>
+</header>
+<main>
+<!-- Contenido principal -->
+    <!-- Sección del Slider -->
+    <section>
+        <div class="slider">
+            <!-- Diapositivas -->
+            <ul class="slides">
+                <li>
+                    <img class="" src="../../resources/img/commerce/portada1.jpg">
+                </li>
+                <li>
+                    <img class="" src="../../resources/img/commerce/portada2.jpg">
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- Finalización Sección del Slider -->
+    <!-- Sección del menú  (categorias)-->
+    <section>
+        <div class="container">
+            <h1 class="center">Our products</h1>
+            <div class="row">
+                <div class="col s12 m4">
+                    <!-- Link para acceder la menú de la tienda -->
+                    <a href="productos.php">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../resources/img/commerce/producto1.jpg">
+                                <div class="valign-wrapper fondo-negro">
+                                    <span class="card-title static center">Cold drinks without coffee</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4">
+                    <a href="productos.php">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../resources/img/commerce/producto2.jpg">
+                                <div class="valign-wrapper fondo-negro">
+                                    <span class="card-title static center">Hot Drinks with Espresso</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4">
+                    <a href="productos.php">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../resources/img/commerce/producto3.jpg">
+                                <div class="valign-wrapper fondo-negro">
+                                    <span class="card-title static center">Cold drinks with Espresso</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/commerce/producto4.jpg">
+                            <div class="valign-wrapper fondo-negro">
+                                <span class="card-title static center">Hot drinks without coffee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/commerce/producto5.jpg">
+                            <div class="valign-wrapper fondo-negro">
+                                <span class="card-title static center">Delicorner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/commerce/producto6.jpg">
+                            <div class="valign-wrapper fondo-negro">
+                                <span class="card-title static center">Desserts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/commerce/producto7.jpg">
+                            <div class="valign-wrapper fondo-negro">
+                                <span class="card-title static center">Sugar free</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/commerce/producto8.png">
+                            <div class="valign-wrapper fondo-negro">
+                                <span class="card-title static center">Delivery <br> The Coffee Cup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../../resources/img/commerce/producto9.jpg">
+                            <div class="valign-wrapper fondo-negro">
+                                <span class="card-title static center">To Go</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Final del menú -->
+<?php
+Commerce::FooterTemplate();
+?>
