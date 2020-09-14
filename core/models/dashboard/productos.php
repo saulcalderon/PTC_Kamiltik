@@ -20,6 +20,9 @@ class Productos extends Validator
     private $documento_compra = null;
     private $ruta = '../../../resources/img/productos/';
     private $cliente = null;
+    private $precio1 = null;
+    private $precio2 = null;
+    private $cat = null;
     /*
     *   Métodos para asignar valores a los atributos.
     */
@@ -122,6 +125,25 @@ class Productos extends Validator
             return false;
         }
     }
+    public function setPrecio1($value)
+    {
+        if ($this->validateMoney($value)) {
+            $this->precio1 = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setPrecio2($value)
+    {
+        if ($this->validateMoney($value)) {
+            $this->precio2 = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function setDocumentoCompra($value)
     {
@@ -158,6 +180,16 @@ class Productos extends Validator
         }
     }
 
+
+    public function setCat($value)
+    {
+        if ($this->validate($value)) {
+            $this->cat = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /*
     *   Métodos para obtener valores de los atributos.
@@ -381,6 +413,23 @@ class Productos extends Validator
                 GROUP BY nombre';
         $params = null;
         return Database::getRows($sql,$params);
+    }
+
+    public function productosprecios()
+    {
+        $sql = 'SELECT nombre_producto,precio_unitario 
+        FROM productos 
+        where precio_unitario between ? and ?
+        ORDER BY precio_unitario asc';
+        $params = array($this->precio1,$this->precio2);
+        return Database::getRows($sql,$params);
+    }
+
+    public function productosCat(){
+        $sql = 'SELECT nombre_producto, existencias FROM productos INNER JOIN tipo_producto USING(id_tipo_producto)
+        WHERE id_tipo_producto = ?';
+        $params =  array($this->cat);
+        return Database::getRows($sql, $params);
     }
 
 }

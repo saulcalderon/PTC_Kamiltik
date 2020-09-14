@@ -75,6 +75,17 @@ class Validator
         }
     }
 
+    protected function validate($value)
+    {
+        // Se verifica que el valor sea un número entero mayor o igual a uno.
+        if ($value >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     /*
     *   Método para validar un archivo de imagen.
     *
