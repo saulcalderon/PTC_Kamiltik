@@ -137,21 +137,55 @@ Dashboard::headerTemplate('Inicio');
     </div>
 </div>
 
+<div class="row padd-15">
+    <div class="col s12 m12 l12">
+        <!-- small box -->
+        <div class="row">
+            <div class="col s12 m">
+                <div class="card">
+                    <div class="card-content">
+                    <canvas id="chart6" ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="save-modal" class="modal">
         <div class="modal-content">
             <h4 id="modal-title" class="center-align"></h4>
             <!-- Formulario para generar un grafico parametrizado -->
             <form method="post" id="save-form" enctype="multipart/form-data">
                 <!-- Campo oculto para asignar el id del registro al momento de modificar 
-                <input class="hide" type="text" id="" name="" >
-                <div class="row">-->
+                <input class="hide" type="text" id="" name="">-->
                     <!-- Campos para generar el grafico -->
-
-                    <div class="input-field ">
-                        <i class="material-icons prefix">today</i>
-                        <input id="fecha" type="date" name="fecha" class="validate"/>
-                        <label for="fecha">Mes</label>
+                <div class="row">
+                    <div class="input-field col s12 m6 ">
+                        <select id="mesa1">
+                        <option value="" disabled selected>Choose your option</option>
+                        <?php
+                        $months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                        for ($i=0; $i<count($months) ; $i++) { 
+                            echo '<option value="'.$i.'">'.$months[$i].'</option>';
+                        }
+                        ?>
+                        </select>
+                        <label>Materialize Select</label>
                     </div>
+                    <div class="input-field col s12 m6 ">
+                        <select id="mesa2">
+                        <option value="" disabled selected>Choose your option</option>
+                        <?php
+                        $months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                        for ($i=0; $i<count($months) ; $i++) { 
+                            echo '<option value="'.$i.'">'.$months[$i].'</option>';
+                        }
+                        ?>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+                </div>
                 <!-- Botones para aceptar o cancelar -->
                 <div class="row center-align col s12 m12">
                     <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>

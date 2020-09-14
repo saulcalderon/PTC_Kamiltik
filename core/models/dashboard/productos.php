@@ -364,7 +364,7 @@ class Productos extends Validator
         $params = null;
         return database::getRows($sql,$params);
     }
-    //
+    //sentencia que genera la cantidad de productos por proveedores
     public function productosproveedores()
     {
         $sql = 'SELECT  (empresa)empresa,COUNT(nombre_producto)producto  from productos
@@ -373,7 +373,7 @@ class Productos extends Validator
         $params = NULL;
         return Database::getRows($sql,$params);
     }
-    //
+    //sentencia que genera la cantidad de productos que existen en sucursales
     public function productossucursales()
     {
         $sql = 'SELECT (nombre)sucursal,COUNT (nombre_producto)cantidad

@@ -1,6 +1,7 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_USUARIOS = '../../core/api/dashboard/usuarios.php?action=';
 const API_PRODUCTOS = '../../core/api/dashboard/productos.php?action=';
+const API_FACTURA = '../../core/api/dashboard/factura.php?action=';
 
 // Método que se ejecuta cuando el documento está listo.
 $(document).ready(function () {
@@ -106,7 +107,7 @@ function graficaproductos() {
                     cantidad.push(row.existencias);
                 });
                 // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-                barGraph('chart2', productos, cantidad, 'Productos', 'Cantidad de prodcutos');
+                barGraph('chart2', productos, cantidad, 'Productos', 'Cantidad de existencias en general');
             } else {
                 $('#chart2').remove();
             }
@@ -133,6 +134,7 @@ function estadosusuarios() {
                 // Se declaran los arreglos para guardar los datos por gráficar.
                //console.log(response.dataset); 
                 let estado = [];
+                let nombre = ['Desactivado','Activo'];
                 let cantidad = [];
                 // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                 response.dataset.forEach(function (row) {
@@ -140,8 +142,9 @@ function estadosusuarios() {
                     estado.push(row.estado);
                     cantidad.push(row.cantidad);
                 });
+                
                 // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-                pastelGraph('chart1', estado, cantidad, 'Tipos de usuarios');
+                pastelGraph('chart1', nombre, cantidad, 'Cantidad de usuarios por su estado');
             } else {
                 $('#chart1').remove();
             }
@@ -212,7 +215,7 @@ function productossucursales() {
                     cantidad.push(row.cantidad);
                 });
                 // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-                barGraph('chart5', sucursal, cantidad, 'Productos', 'Cantidad de prodcutos');
+                barGraph('chart5', sucursal, cantidad, 'Productos', 'Cantidad de productos por sucursales');
             } else {
                 $('#chart5').remove();
             }
@@ -227,5 +230,58 @@ function productossucursales() {
         });
 }
 
+let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
+$('#save-form').submit(function (e) { 
+    e.preventDefault();
+
+
+
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: API_FACTURA + 'graph1',
+        data: {
+            mes1 : $('#mesa1').val(),
+            mes2:  $('#mesa2').val()
+        }
+        
+    })
+    .done(function (response) {
+        // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+        if (response.status) {
+            // Se declaran los arreglos para guardar los datos por gráficar.
+           //console.log(response.dataset); 
+            let posMonths = [];
+            let cantidad = [];
+            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+            response.dataset.forEach(function (row) {
+                // Se asignan los datos a los arreglos.
+                posMonths.push(row.mes);
+                cantidad.push(row.cantidad);
+            });
+
+            for (let i = 0; i < months.length; i++) {
+                for (let j = 0; j < posMonths.length; j++) {
+                    if (i == parseInt(posMonths[j])) {
+                        posMonths.splice(j,1,months[i]);
+                    }
+                }  
+            }
+            
+            // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+            barGraph('chart6', posMonths , cantidad, 'xxx');
+        } else {
+            $('#chart6').remove();
+        }
+    })
+    .fail(function (jqXHR) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
+        } else {
+            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+});
 

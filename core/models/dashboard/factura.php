@@ -16,7 +16,8 @@ class Factura extends Validator
     private $entregado = null;
     private $total = null;
     private $cambio = null;
-    private $fecha_registro = null;
+    private $mes1 = null;
+    private $mes2 = null;
 
     /*
     *   Métodos para asignar valores a los atributos. 
@@ -125,6 +126,26 @@ class Factura extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->id_detalle_factura = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setMes1($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->mes1 = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setMes2($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->mes2 = $value;
             return true;
         } else {
             return false;
@@ -290,6 +311,14 @@ class Factura extends Validator
     {
         $sql = 'SELECT id_mesa FROM factura WHERE id_estado_factura = 2';
         return Database::getRows($sql, null);
+    }
+    public function facturaMes()
+    {
+        $sql = 'SELECT extract(month FROM fecha_registro) -1 AS Mes, SUM(total) AS cantidad 
+        FROM factura WHERE extract(month FROM fecha_registro) -1 between ? and ?
+        GROUP BY extract(month FROM fecha_registro) ORDER BY extract(month FROM fecha_registro)';
+        $params = array($this->mes1,$this->mes2);
+        return Database::getRows($sql,$params);
     }
 
 
