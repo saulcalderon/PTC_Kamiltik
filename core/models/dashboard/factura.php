@@ -317,9 +317,16 @@ class Factura extends Validator
         $sql = 'SELECT extract(month FROM fecha_registro)-1 AS Mes, SUM(total) AS cantidad 
         FROM factura WHERE extract(month FROM fecha_registro)-1 between ? and ?
         GROUP BY extract(month FROM fecha_registro) ORDER BY extract(month FROM fecha_registro)';
-        $params = array($this->mes1,$this->mes2);
-        return Database::getRows($sql,$params);
+        $params = array($this->mes1, $this->mes2);
+        return Database::getRows($sql, $params);
     }
 
-
+    public function mejoresProductosMes()
+    {
+        $sql = 'SELECT COUNT(id_producto) as cuenta, nombre_producto FROM detalle_factura INNER JOIN factura fc USING(id_factura) INNER JOIN productos USING(id_producto) 
+        WHERE extract(month FROM fc.fecha_registro)-1 = ? GROUP BY nombre_producto, 
+        extract(month FROM fc.fecha_registro) ORDER BY extract(month FROM fc.fecha_registro), cuenta desc FETCH FIRST 3 ROWS ONLY';
+        $params = array($this->mes1);
+        return Database::getRows($sql, $params);
+    }
 }

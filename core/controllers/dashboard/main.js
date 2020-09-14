@@ -33,6 +33,8 @@ $(document).ready(function () {
     productossucursales();
     // Se llama a la función que muestra una gráfica en la página web.
     productossucursales();
+
+  
 });
 
 // Función que prepara formulario para insertar un registro.
@@ -51,11 +53,11 @@ function openCreateModal() {
 // Función que prepara formulario para insertar un registro.
 function openCreateModal1() {
     // Se limpian los campos del formulario.
-    $('#save-form')[0].reset();
+    $('#save-form1')[0].reset();
     // Se abre la caja de dialogo (modal) que contiene el formulario.
     $('#save-modal1').modal('open');
     // Se asigna el título para la caja de dialogo (modal).
-    $('#modal-title').text('Generar grafico');
+    $('#modal-title1').text('Generar grafico');
     // Se establece el campo de tipo archivo como obligatorio.
     //$( '#archivo_producto' ).prop( 'required', true );
     // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
@@ -65,11 +67,39 @@ function openCreateModal1() {
 // Función que prepara formulario para insertar un registro.
 function openCreateModal2() {
     // Se limpian los campos del formulario.
-    $('#save-form')[0].reset();
+    $('#save-form2')[0].reset();
     // Se abre la caja de dialogo (modal) que contiene el formulario.
     $('#save-modal2').modal('open');
     // Se asigna el título para la caja de dialogo (modal).
-    $('#modal-title').text('Generar grafico');
+    $('#modal-title2').text('Generar grafico');
+    // Se establece el campo de tipo archivo como obligatorio.
+    //$( '#archivo_producto' ).prop( 'required', true );
+    // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
+
+}
+
+// Función que prepara formulario para insertar un registro.
+function openCreateModal3() {
+    // Se limpian los campos del formulario.
+    $('#save-form3')[0].reset();
+    // Se abre la caja de dialogo (modal) que contiene el formulario.
+    $('#save-modal3').modal('open');
+    // Se asigna el título para la caja de dialogo (modal).
+    $('#modal-title3').text('Generar grafico');
+    // Se establece el campo de tipo archivo como obligatorio.
+    //$( '#archivo_producto' ).prop( 'required', true );
+    // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
+
+}
+
+// Función que prepara formulario para insertar un registro.
+function openCreateModal4() {
+    // Se limpian los campos del formulario.
+    $('#save-form4')[0].reset();
+    // Se abre la caja de dialogo (modal) que contiene el formulario.
+    $('#save-modal4').modal('open');
+    // Se asigna el título para la caja de dialogo (modal).
+    $('#modal-title4').text('Generar grafico');
     // Se establece el campo de tipo archivo como obligatorio.
     //$( '#archivo_producto' ).prop( 'required', true );
     // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
@@ -97,7 +127,7 @@ function graficaCategorias() {
                     cantidad.push(row.cantidad);
                 });
                 // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-                barGraph('chart', Tipos, cantidad, 'Tipos de usuarios', 'Cantidad de usuarios por cargo');
+                barGraph('chart', Tipos, cantidad, 'Tipos de usuarios', 'Cantidad de usuarios por cargo(En general)');
             } else {
                 $('#chart').remove();
             }
@@ -196,7 +226,7 @@ function productosproveedores() {
             // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
             if (response.status) {
                 // Se declaran los arreglos para guardar los datos por gráficar.
-               console.log(response.dataset); 
+               //console.log(response.dataset); 
                 let empresa = [];
                 let cantidad = [];
                 // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
@@ -403,3 +433,94 @@ $('#save-form2').submit(function (e) {
     });
 });
 
+$('#save-form3').submit(function (e) { 
+    e.preventDefault();
+
+    let prov = $('#prov-lista').val();
+
+    $.ajax({
+        type: 'post',
+        url: API_PRODUCTOS + 'graph3',
+        data: {
+            proveedor : prov
+        },
+        dataType: 'json'
+        
+    })
+    .done(function (response) {
+        // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+        if (response.status) {
+            // Se declaran los arreglos para guardar los datos por gráficar.
+           //console.log(response.dataset); 
+            let nombre = [];
+            let vendido = [];
+            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+            response.dataset.forEach(function (row) {
+                // Se asignan los datos a los arreglos.
+                nombre.push(row.nombre_producto);
+                vendido.push(row.ventas);
+            });
+
+            // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+            barGraph('chart9', nombre , vendido, 'Ventas: ','fds');
+        } else {
+            $('#chart9').remove();
+            
+            
+        }
+    })
+    .fail(function (jqXHR) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
+        } else {
+            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+});
+
+$('#save-form4').submit(function (e) { 
+    e.preventDefault();
+
+   
+    let numero =  $('#mes1-prod').val();
+
+    $.ajax({
+        type: 'post',
+        url: API_FACTURA + 'graph2',
+        data: {
+            mes : parseInt(numero)
+        },
+        dataType: 'json'
+        
+    })
+    .done(function (response) {
+        // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+        if (response.status) {
+            // Se declaran los arreglos para guardar los datos por gráficar.
+           //console.log(response.dataset); 
+            let nombre = [];
+            let cuenta = [];
+            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+            response.dataset.forEach(function (row) {
+                // Se asignan los datos a los arreglos.
+                nombre.push(row.nombre_producto);
+                cuenta.push(row.cuenta);
+            });
+
+            // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+            barGraph('chart10', nombre , cuenta, 'Ventas: ','fds');
+        } else {
+           console.log('fallo');
+            
+        }
+    })
+    .fail(function (jqXHR) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
+        } else {
+            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+});

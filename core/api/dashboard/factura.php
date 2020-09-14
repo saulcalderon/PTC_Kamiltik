@@ -253,6 +253,17 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No x2';
                 }
                 break;
+            case 'graph2':
+                if ($factura->setMes1($_POST['mes'])) {
+                    if ($result['dataset'] = $factura->mejoresProductosMes()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No x3';
+                    }
+                } else {
+                    $result['exception'] = 'No x2';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }

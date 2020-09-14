@@ -440,7 +440,7 @@ class Productos extends Validator
         return Database::getRows($sql,$params);
     }
 
-    public function productosprecios()
+    public function productosPrecios()
     {
         $sql = 'SELECT nombre_producto,precio_unitario 
         FROM productos 
@@ -455,6 +455,18 @@ class Productos extends Validator
         WHERE id_tipo_producto = ?';
         $params =  array($this->cat);
         return Database::getRows($sql, $params);
+    }
+
+    public function productosTopProv(){
+        $sql = 'SELECT count(df.id_producto) as ventas,nombre_producto FROM detalle_factura df INNER JOIN 
+        productos USING(id_producto) INNER JOIN proveedores USING(id_proveedor) WHERE id_proveedor = ? GROUP BY nombre_producto';
+        $params = array($this->proveedor);
+        return Database::getRows($sql, $params);
+    }
+
+    public function proveedores(){
+        $sql = 'SELECT id_proveedor, empresa FROM proveedores';
+        return Database::getRows($sql, null);
     }
 
 }
