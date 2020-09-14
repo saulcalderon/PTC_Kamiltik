@@ -48,6 +48,33 @@ function openCreateModal() {
     // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
 
 }
+// Función que prepara formulario para insertar un registro.
+function openCreateModal1() {
+    // Se limpian los campos del formulario.
+    $('#save-form')[0].reset();
+    // Se abre la caja de dialogo (modal) que contiene el formulario.
+    $('#save-modal1').modal('open');
+    // Se asigna el título para la caja de dialogo (modal).
+    $('#modal-title').text('Generar grafico');
+    // Se establece el campo de tipo archivo como obligatorio.
+    //$( '#archivo_producto' ).prop( 'required', true );
+    // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
+
+}
+
+// Función que prepara formulario para insertar un registro.
+function openCreateModal2() {
+    // Se limpian los campos del formulario.
+    $('#save-form')[0].reset();
+    // Se abre la caja de dialogo (modal) que contiene el formulario.
+    $('#save-modal2').modal('open');
+    // Se asigna el título para la caja de dialogo (modal).
+    $('#modal-title').text('Generar grafico');
+    // Se establece el campo de tipo archivo como obligatorio.
+    //$( '#archivo_producto' ).prop( 'required', true );
+    // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
+
+}
 
 // Función para graficar la cantidad de productos por categoría.
 function graficaCategorias() {
@@ -235,16 +262,17 @@ let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'A
 $('#save-form').submit(function (e) { 
     e.preventDefault();
 
-
+    let mes1 =  $('#mes1').val();
+    let mes2 =  $('#mes2').val();
 
     $.ajax({
         type: 'post',
-        dataType: 'json',
         url: API_FACTURA + 'graph1',
         data: {
-            mes1 : $('#mesa1').val(),
-            mes2:  $('#mesa2').val()
-        }
+            mes1 : mes1,
+            mes2:  mes2
+        },
+        dataType: 'json'
         
     })
     .done(function (response) {
@@ -270,9 +298,99 @@ $('#save-form').submit(function (e) {
             }
             
             // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-            barGraph('chart6', posMonths , cantidad, 'xxx');
+            barGraph('chart6', posMonths , cantidad, 'Ganancias','Ganancias totales por mes');
         } else {
             $('#chart6').remove();
+            
+            
+        }
+    })
+    .fail(function (jqXHR) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
+        } else {
+            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+});
+
+$('#save-form1').submit(function (e) { 
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: API_PRODUCTOS + 'graph1',
+        data: $('#save-form1').serialize(),
+        dataType: 'json'
+        
+    })
+    .done(function (response) {
+        // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+        if (response.status) {
+            // Se declaran los arreglos para guardar los datos por gráficar.
+           //console.log(response.dataset); 
+            let producto = [];
+            let precio = [];
+            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+            response.dataset.forEach(function (row) {
+                // Se asignan los datos a los arreglos.
+                producto.push(row.nombre_producto);
+                precio.push(row.precio_unitario);
+            });
+
+            // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+            barGraph('chart7', producto , precio, 'precio c/u','precios de productos por rango');
+        } else {
+            $('#chart7').remove();
+            
+            
+        }
+    })
+    .fail(function (jqXHR) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
+        } else {
+            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+});
+
+$('#save-form2').submit(function (e) { 
+    e.preventDefault();
+
+    let cat = $('#cat').val();
+
+    $.ajax({
+        type: 'post',
+        url: API_PRODUCTOS + 'graph2',
+        data: {
+            categoria : cat
+        },
+        dataType: 'json'
+        
+    })
+    .done(function (response) {
+        // Se comprueba si la API ha retornado datos, de lo contrario se remueve la etiqueta canvas asignada para la gráfica.
+        if (response.status) {
+            // Se declaran los arreglos para guardar los datos por gráficar.
+           //console.log(response.dataset); 
+            let nombre = [];
+            let existencia = [];
+            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+            response.dataset.forEach(function (row) {
+                // Se asignan los datos a los arreglos.
+                nombre.push(row.nombre_producto);
+                existencia.push(row.existencias);
+            });
+
+            // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
+            barGraph('chart8', nombre , existencia, 'Existencia: ','fds');
+        } else {
+            $('#chart8').remove();
+            
+            
         }
     })
     .fail(function (jqXHR) {

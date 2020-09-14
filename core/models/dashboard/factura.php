@@ -134,7 +134,7 @@ class Factura extends Validator
 
     public function setMes1($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validate($value)) {
             $this->mes1 = $value;
             return true;
         } else {
@@ -144,7 +144,7 @@ class Factura extends Validator
 
     public function setMes2($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validate($value)) {
             $this->mes2 = $value;
             return true;
         } else {
@@ -314,8 +314,8 @@ class Factura extends Validator
     }
     public function facturaMes()
     {
-        $sql = 'SELECT extract(month FROM fecha_registro) -1 AS Mes, SUM(total) AS cantidad 
-        FROM factura WHERE extract(month FROM fecha_registro) -1 between ? and ?
+        $sql = 'SELECT extract(month FROM fecha_registro)-1 AS Mes, SUM(total) AS cantidad 
+        FROM factura WHERE extract(month FROM fecha_registro)-1 between ? and ?
         GROUP BY extract(month FROM fecha_registro) ORDER BY extract(month FROM fecha_registro)';
         $params = array($this->mes1,$this->mes2);
         return Database::getRows($sql,$params);
