@@ -63,8 +63,8 @@ function fillTableModified(dataset) {
                 <td>${row.cantidad}</td>
                 <td>${row.tipo_producto}</td>
                 <td>
-                <a href="#" onclick="openUpdateModal(${row.id_detalle_factura})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
-                <a href="#" onclick="deleteDetail(${row.id_detalle_factura})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">close</i></a>
+                <a href="#" onclick="openUpdateModal(${row.id_detalle_factura})" class="blue-text tooltipped" data-tooltip="Update"><i class="material-icons">mode_edit</i></a>
+                <a href="#" onclick="deleteDetail(${row.id_detalle_factura})" class="red-text tooltipped" data-tooltip="Delete"><i class="material-icons">close</i></a>
                 </td>
             </tr>
 
@@ -81,9 +81,9 @@ function fillTableModified(dataset) {
     let entregado = $('#entregado').maskMoney('unmasked')[0];
     let cambio = entregado - total;
     if (entregado > total) {
-        $('#cambio').text('Cambio: $ ' + cambio.toFixed(2));
+        $('#cambio').text('Change: $ ' + cambio.toFixed(2));
     } else {
-        $('#cambio').text('Cambio inválido');
+        $('#cambio').text('Invalid change');
     }
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     $('#tbody-details').html(content);
@@ -293,7 +293,7 @@ function actionBill(action) {
                         sweetAlert(1, response.message, null);
                         // Función para esperar 2 segundos para enviar a la página de factura.php
                         setTimeout(() => {
-                            location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura.php';
+                            location.href = 'http://localhost/PTC_Kamiltik/views_en/dashboard/bills.php';
                         }, 2000);
                     } else {
                         sweetAlert(4, response.exception, null);
@@ -320,7 +320,7 @@ function actionBill(action) {
             break;
             // Caso para dejar pendiente la factura.
         default:
-            location.href = 'http://localhost/PTC_Kamiltik/views/dashboard/factura.php';
+            location.href = 'http://localhost/PTC_Kamiltik/views_en/dashboard/bills.php';
             break;
     }
 }
@@ -336,8 +336,8 @@ $('#entregado').on('change keyup', function () {
     let entregado = $('#entregado').maskMoney('unmasked')[0];
     let cambio = entregado - total;
     if (entregado > total) {
-        $('#cambio').text('Cambio: $ ' + cambio.toFixed(2));
+        $('#cambio').text('Change: $ ' + cambio.toFixed(2));
     } else {
-        $('#cambio').text('Cambio inválido');
+        $('#cambio').text('Invalid change');
     }
 });

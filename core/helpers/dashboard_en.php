@@ -98,7 +98,7 @@ class Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="entradas.php" class="white-text"><i class="material-icons white-text">event_note</i>Entries
+                            <a href="entries.php" class="white-text"><i class="material-icons white-text">event_note</i>Entries
                             </a>
                         </li>
                         <li>

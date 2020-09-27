@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboard_en.php');
-Dashboard::headerTemplate('Administrar facturas');
+Dashboard::headerTemplate('Manage Suppliers');
 ?>
 <div class="padd-15">
     <div class="row">
@@ -9,32 +9,32 @@ Dashboard::headerTemplate('Administrar facturas');
             <div class="input-field col s6 m4">
                 <i class="material-icons prefix">search</i>
                 <input id="search" type="text" name="search" />
-                <label for="search">Buscador</label>
+                <label for="search">Search</label>
             </div>
             <div class="input-field col s6 m4">
-                <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar"><i class="material-icons">check_circle</i></button>
+                <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Search"><i class="material-icons">check_circle</i></button>
             </div>
         </form>
         <div class="input-field center-align col s12 m4">
             <!-- Enlace para abrir caja de dialogo (modal) al momento de crear un nuevo registro -->
-            <a href="#" onclick="openCreateModal()" class="btn waves-effect indigo tooltipped" data-tooltip="Crear"><i class="material-icons">add_circle</i></a>
+            <a href="#" onclick="openCreateModal()" class="btn waves-effect indigo tooltipped" data-tooltip="Create"><i class="material-icons">add_circle</i></a>
         </div>
     </div>
 
     <table class="highlight padd-15 pagination responsive-table">
         <thead>
             <tr>
-                <th>CONTACTO</th>
-                <th>EMPRESA</th>
-                <th>DIRECCION</th>
-                <th>TELÉFONO</th>
-                <th>CELULAR</th>
-                <th>CORREO</th>
-                <th>ACCIONES</th>
+                <th>CONTACT</th>
+                <th>COMPANY</th>
+                <th>ADDRESS</th>
+                <th>PHONE</th>
+                <th>CELL PHONE</th>
+                <th>MAIL</th>
+                <th>ACTIONS</th>
             </tr>
         </thead>
         <tbody class="black-text" id="tbody-rows">
-            
+
         </tbody>
     </table>
 
@@ -54,38 +54,38 @@ Dashboard::headerTemplate('Administrar facturas');
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="nombre_contacto" type="text" name="nombre_contacto" class="validate" required />
-                        <label for="nombre_contacto">Nombre</label>
+                        <label for="nombre_contacto">Name</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="nombre_empresa" type="text" name="nombre_empresa" class="validate" required />
-                        <label for="nombre_empresa">Empresa</label>
+                        <label for="nombre_empresa">Company</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="direccion" type="text" name="direccion" class="validate" required />
-                        <label for="direccion">Direccion</label>
+                        <label for="direccion">Address</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="telefono" type="tel" name="telefono" class="validate" pattern="[0-9]{8}" maxlength="8" required />
-                        <label for="telefono">Teléfono</label>
+                        <label for="telefono">Phone</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="celular" type="tel" name="celular" class="validate" pattern="[0-9]{8}" maxlength="8" required />
-                        <label for="celular">Celular</label>
+                        <label for="celular">Cell Phone</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="correo" type="text" name="correo" class="validate" required />
-                        <label for="correo">E-mail</label>
+                        <label for="correo">Mail</label>
                     </div>
 
                 </div>
                 <div class="row center-align">
-                    <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
-                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                    <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancel"><i class="material-icons">cancel</i></a>
+                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Save"><i class="material-icons">save</i></button>
                 </div>
             </form>
         </div>

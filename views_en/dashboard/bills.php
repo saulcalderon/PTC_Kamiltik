@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboard_en.php');
-Dashboard::headerTemplate('Administrar facturas');
+Dashboard::headerTemplate('Manage bills');
 ?>
 <!-- Contenido principal de factura -->
 <div class="padd-15">
@@ -27,11 +27,11 @@ Dashboard::headerTemplate('Administrar facturas');
         <!-- Formulario con botones para determinar la mesa -->
         <form action="detail_bill.php" id="factura-mesa">
             <div id="botones-mesa " class="row">
-                <button type="submit" name="boton" value="1" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Mesa disponible"><i class="material-icons">local_dining</i>1</button>
-                <button type="submit" name="boton" value="2" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Mesa disponible"><i class="material-icons">local_dining</i>2</button>
-                <button type="submit" name="boton" value="3" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Mesa disponible"><i class="material-icons">local_dining</i>3</button>
-                <button type="submit" name="boton" value="4" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Mesa disponible"><i class="material-icons">local_dining</i>4</button>
-                <button type="submit" name="boton" value="5" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Mesa disponible"><i class="material-icons">local_dining</i>5</button>
+                <button type="submit" name="boton" value="1" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Available table"><i class="material-icons">local_dining</i>1</button>
+                <button type="submit" name="boton" value="2" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Available table"><i class="material-icons">local_dining</i>2</button>
+                <button type="submit" name="boton" value="3" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Available table"><i class="material-icons">local_dining</i>3</button>
+                <button type="submit" name="boton" value="4" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Available table"><i class="material-icons">local_dining</i>4</button>
+                <button type="submit" name="boton" value="5" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Available table"><i class="material-icons">local_dining</i>5</button>
             </div>
         </form>
     </div>

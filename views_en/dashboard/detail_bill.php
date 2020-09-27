@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboard_en.php');
-Dashboard::headerTemplate('Administrar noticias');
+Dashboard::headerTemplate('Bill detail');
 ?>
 <!-- Contenido principal para detalle factura -->
 <div class="padd-15">
@@ -86,7 +86,7 @@ Dashboard::headerTemplate('Administrar noticias');
                 <input class="hide" type="text" id="id_detalle" name="id_detalle">
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <label for="cantidad">Quantty</label>
+                        <label for="cantidad">Quantity</label>
                         <input type="number" min="1" name="cantidad" id="cantidad">
                     </div>
                     <div class="input-field col s12 m6">

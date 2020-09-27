@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboard_en.php');
-Dashboard::headerTemplate('Administrar entradas');
+Dashboard::headerTemplate('Manage entries');
 ?>
 <div class="padd-15">
     <div class="row">
@@ -9,15 +9,15 @@ Dashboard::headerTemplate('Administrar entradas');
             <div class="input-field col s6 m4">
                 <i class="material-icons prefix">search</i>
                 <input id="search" type="text" name="search" />
-                <label for="search">Buscador</label>
+                <label for="search">Search</label>
             </div>
             <div class="input-field col s6 m4">
-                <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar"><i class="material-icons">check_circle</i></button>
+                <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Search"><i class="material-icons">check_circle</i></button>
             </div>
         </form>
         <div class="input-field center-align col s12 m4">
             <!-- Enlace para abrir caja de dialogo (modal) al momento de crear un nuevo registro -->
-            <a href="#" onclick="openCreateModal()" class="btn waves-effect indigo tooltipped" data-tooltip="Crear"><i class="material-icons">add_circle</i></a>
+            <a href="#" onclick="openCreateModal()" class="btn waves-effect indigo tooltipped" data-tooltip="Create"><i class="material-icons">add_circle</i></a>
         </div>
     </div>
     <table class="highlight padd-15 pagination responsive-table">
@@ -25,13 +25,13 @@ Dashboard::headerTemplate('Administrar entradas');
             <tr>
                 <th>ID</th>
                 <!--<th>IMAGEN</th>-->
-                <th>AUTORES</th>
-                <th>TÍTULO</th>
-                <th>CONTENIDO</th>
-                <th>FECHA</th>
-                <th>ESTADO</th>
-                <th>CATEGORIA</th>
-                <th>ACCIÓN</th>
+                <th>AUTHOR</th>
+                <th>TITLE</th>
+                <th>CONTENT</th>
+                <th>DATE</th>
+                <th>STATE</th>
+                <th>CATEGORY</th>
+                <th>ACTION</th>
                 <!--<th><a class="tooltipped waves-effect waves-light modal-trigger" data-position="left" data-tooltip="Agregar Producto" href="#modal2"><i class="material-icons green-text text- accent-4">add_box</i></a></th>
                 <th><a class="tooltipped waves-effect waves-light modal-trigger" data-position="left" data-tooltip="Buscar" href="#modal3"><i class="material-icons white-text text- accent-4">search</i></a></th>-->
             </tr>
@@ -55,12 +55,12 @@ Dashboard::headerTemplate('Administrar entradas');
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">note_add</i>
                         <input id="titulo" type="text" name="titulo" class="validate" required />
-                        <label for="titulo">Título</label>
+                        <label for="titulo">Title</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <select id="categoria_entrada" name="categoria_entrada">
                         </select>
-                        <label>Categoría</label>
+                        <label>Category</label>
                     </div>
                     <!--
               	<div class="file-field input-field col s12 m6">
@@ -76,23 +76,23 @@ Dashboard::headerTemplate('Administrar entradas');
                     <div class="input-field col s12 m12">
                         <i class="material-icons prefix">description</i>
                         <input id="contenido" type="text" name="contenido" class="validate" required />
-                        <label for="contenido">Contenido</label>
+                        <label for="contenido">Content</label>
                     </div>
                     
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">time</i>
                         <input id="fecha" type="date" name="fecha" class="validate"/>
-                        <label for="fecha">Fecha de registro</label>
+                        <label for="fecha">Registration date</label>
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">user</i>
                         <input id="autor" type="text" name="autor" class="validate" />
-                        <label for="autor">Autor</label>
+                        <label for="autor">Author</label>
                     </div>
                     <div class="col s12 m6">
                         <p>
                             <div class="switch">
-                                <span>Estado:</span>
+                                <span>State:</span>
                                 <label>
                                     <i class="material-icons">visibility_off</i>
                                     <input id="estado" type="checkbox" name="estado" checked />
@@ -104,8 +104,8 @@ Dashboard::headerTemplate('Administrar entradas');
                     </div>
                 </div>
                 <div class="row center-align">
-                    <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
-                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                    <a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancel"><i class="material-icons">cancel</i></a>
+                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Save"><i class="material-icons">save</i></button>
                 </div>
             </form>
         </div>

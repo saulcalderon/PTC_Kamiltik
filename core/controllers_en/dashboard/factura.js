@@ -23,7 +23,7 @@ function colorMesa(api) {
                         if (botones[i].getAttribute('value') == response.dataset[j].id_mesa){
                             botones[i].classList.remove('green')
                             botones[i].classList.add('gray')
-                            botones[i].setAttribute('data-tooltip', 'Mesa ocupada');
+                            botones[i].setAttribute('data-tooltip', 'Busy table');
                         }
                     }
                 }
@@ -57,7 +57,7 @@ function fillTable(dataset) {
                 <td>${row.cambio}</td>
                 <td>${row.total}</td>
                 <td>
-                <a href="#" onclick="openViewDetails(${row.id_factura})" class="green-text tooltipped" data-tooltip="Ver detalle"><i class="material-icons">assignment</i></a>
+                <a href="#" onclick="openViewDetails(${row.id_factura})" class="green-text tooltipped" data-tooltip="View Detail"><i class="material-icons">assignment</i></a>
                 </td>
             </tr>
 
@@ -119,7 +119,7 @@ $('#search-form').submit(function (event) {
 function openViewDetails(id) {
     // Se abre la caja de dialogo (modal) que contiene el formulario.
     $('#detalle-modal').modal('open');
-    $('#modal-title-2').text('Detalle de factura');
+    $('#modal-title-2').text('Bill detail');
     // Se establece el campo de tipo archivo como obligatorio.
     readRowsModified(API_FACTURA + 'readOneFacturaID', id);
 

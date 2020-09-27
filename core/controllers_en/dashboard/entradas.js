@@ -30,8 +30,8 @@ function fillTable(dataset) {
                 <td><i class="material-icons">${icon}</i></td>
                 <td>${row.categoria}</td>
                 <td>
-                    <a href="#" onclick="openUpdateModal(${row.id_entrada})" class="blue-text tooltipped" data-tooltip="Actualizar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="openDeleteDialog(${row.id_entrada})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
+                    <a href="#" onclick="openUpdateModal(${row.id_entrada})" class="blue-text tooltipped" data-tooltip="Update"><i class="material-icons">mode_edit</i></a>
+                    <a href="#" onclick="openDeleteDialog(${row.id_entrada})" class="red-text tooltipped" data-tooltip="Delete"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
         `;
