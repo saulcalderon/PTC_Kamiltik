@@ -128,13 +128,11 @@ class Validator
         }
     }
 
-    /*
-    *   Método para validar un correo electrónico.
-    *
-    *   Parámetros: $value (dato a validar).
-    *   
-    *   Retorno: booleano (true si el valor es correcto o false en caso contrario).
-    */
+    public function getPasswordError()
+    {
+        return $this->passwordError;
+    }
+
     public function validateEmail($value)
     {
         if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
@@ -264,11 +262,25 @@ class Validator
     public function validatePassword($value)
     {
         // Se verifica que la longitud de la contraseña sea de al menos 6 caracteres.
-        if (strlen($value) >= 6) {
-            return true;
+          // Se verifica que la longitud de la contraseña no exceda de 10 caracteres.
+          if (strlen($value) >= 8 && strlen($value) <= 24) {
+            //Se verifica que la contraseña posea al menos una letra mayuscula
+            if (preg_match('`[A-Z]`',$value)){
+                if (preg_match('`[a-z]`',$value)){
+                    return true;
+                }else{
+                    $this->passwordError = "La clave debe tener al menos una letra minúscula";
+                    return false;
+                }
+            }else{
+                $this->passwordError = "La clave debe tener al menos una letra mayúscula";
+                return false;
+            }  
         } else {
+            $this->passwordError = "La clave debe tener entre 8 y 20 caracteres";
             return false;
         }
+        
     }
 
     /*
