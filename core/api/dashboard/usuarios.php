@@ -147,7 +147,7 @@ if (isset($_GET['action'])) {
                                                     $result['exception'] = Database::getException();
                                                 }
                                             } else {
-                                                $result['exception'] = 'Clave menor a 6 caracteres';
+                                                $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;
                                             }
                                         } else {
                                             $result['exception'] = 'Claves diferentes';
