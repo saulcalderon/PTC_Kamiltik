@@ -39,7 +39,7 @@ class Dashboard
         // Se comprueba si existe una sesión de administrador para mostrar el menú de opciones, de lo contrario se muestra un menú vacío.
         if (isset($_SESSION['id_usuario'])) {
             // Se verifica si la página web actual es diferente a la de Iniciar sesión y a register.php (Crear primer usuario) para no iniciar sesión otra vez, de lo contrario se direcciona a main.php
-            if ($filename != 'index.php' && $filename != 'register.php') {
+            if ($filename != 'index.php' && $filename != 'register.php' && $filename != 'forgot_password.php' && $filename != 'autenticar.php') {
                 // Se llama al método que contiene el código de las cajas de dialogo (modals).
                 self::modals();
                 // Se imprime el código HTML para el encabezado del documento con el menú de opciones.
@@ -119,7 +119,7 @@ class Dashboard
             }
         } else {
             // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a register.php (Crear primer usuario) para direccionar a index.php, de lo contrario se muestra un menú vacío.
-            if ($filename != 'index.php' && $filename != 'register.php') {
+            if ($filename != 'index.php' && $filename != 'register.php' && $filename != 'forgot_password.php' && $filename != 'autenticar.php') {
                 header('location: index.php');
             } else {
                 // Se imprime el código HTML para el encabezado del documento con un menú vacío cuando sea iniciar sesión o registrar el primer usuario.

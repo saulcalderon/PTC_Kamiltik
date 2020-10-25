@@ -26,7 +26,7 @@ Dashboard::headerTemplate('Bienvenido');
                                 <button type="submit" class="btn waves-effect rose-m tooltipped" data-tooltip="Iniciar sesión">Ingresar</button>
                             </div>
                             <div class="col s12 center-align m-15">
-                                <a href="../../views_en/dashboard/index.php">Inglés</a>                               
+                                <a class="modal-trigger" href="#modal1">¿Olvidaste tu contraseña?</a>
                             </div>
                         </form>
                     </div>
@@ -37,6 +37,23 @@ Dashboard::headerTemplate('Bienvenido');
     <a href="../commerce/index.php" class="black-text">
         <h5 class="center m-0"><i class="material-icons">arrow_back</i> Volver al sitio principal </h5>
     </a>
+</div>
+<div id="modal1" class="modal">
+    <div class="modal-content center-align  m-15">
+        <h4>Recuperar contraseña</h4>
+        <p>Por favor ingrese su correo electrónico</p>
+        <form id="recuperar">
+            <div class="row">
+                <div class="input-field col s6 offset-s3  m-15">
+                    <input id="recuperar_mail" type="email" class="validate" name="recuperar_mail">
+                    <label for="recuperar_mail">Correo Electrónico</label>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light  m-15" type="submit">Enviar
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
 </div>
 
 <?php

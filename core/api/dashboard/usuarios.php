@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
                                 if ($usuario->setCorreo($_POST['correo_perfil'])) {
                                     if ($usuario->setTelefono($_POST['telefono_perfil'])) {
                                         if ($usuario->editProfile()) {
-                                            $_SESSION['alias_usuario'] = $usuario->getNombres()." ".$usuario->getApellidos();
+                                            $_SESSION['alias_usuario'] = $usuario->getNombres() . " " . $usuario->getApellidos();
                                             $result['status'] = 1;
                                             $result['message'] = 'Perfil modificado correctamente';
                                         } else {
@@ -136,8 +136,8 @@ if (isset($_GET['action'])) {
                     if ($usuario->setApellidos($_POST['apellido'])) {
                         if ($usuario->setCorreo($_POST['correo'])) {
                             if ($usuario->setTelefono($_POST['telefono'])) {
-                                if($usuario->setIdEstado(isset($_POST['estado'])? 1 : 0)){
-                                    if($usuario->setFechaNacimiento($_POST['fecha'])){
+                                if ($usuario->setIdEstado(isset($_POST['estado']) ? 1 : 0)) {
+                                    if ($usuario->setFechaNacimiento($_POST['fecha'])) {
                                         if ($_POST['clave_usuario'] == $_POST['confirmar_clave']) {
                                             if ($usuario->setClave($_POST['clave_usuario'])) {
                                                 if ($usuario->createUsuario()) {
@@ -152,10 +152,10 @@ if (isset($_GET['action'])) {
                                         } else {
                                             $result['exception'] = 'Claves diferentes';
                                         }
-                                    }else{
+                                    } else {
                                         $result['exception'] = 'Fecha de nacimiento incorrecta';
                                     }
-                                }else{
+                                } else {
                                     $result['exception'] = 'Estado incorrecto';
                                 }
                             } else {
@@ -188,8 +188,8 @@ if (isset($_GET['action'])) {
                     if ($usuario->readOneUsuario()) {
                         if ($usuario->setNombres($_POST['nombre'])) {
                             if ($usuario->setApellidos($_POST['apellido'])) {
-                                if($usuario->setFechaNacimiento($_POST['fecha'])){
-                                    if($usuario->setIdEstado(isset($_POST['estado'])?1:0)){
+                                if ($usuario->setFechaNacimiento($_POST['fecha'])) {
+                                    if ($usuario->setIdEstado(isset($_POST['estado']) ? 1 : 0)) {
                                         if ($usuario->setTelefono($_POST['telefono'])) {
                                             if ($usuario->updateUsuario()) {
                                                 $result['status'] = 1;
@@ -200,10 +200,10 @@ if (isset($_GET['action'])) {
                                         } else {
                                             $result['exception'] = 'Telefono incorrecto';
                                         }
-                                    }else{
+                                    } else {
                                         $result['exception'] = 'Estado incorrecto';
                                     }
-                                }else{
+                                } else {
                                     $result['exception'] = 'Fecha de nacimiento incorrecta';
                                 }
                             } else {
@@ -239,20 +239,20 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se puede eliminar a sí mismo';
                 }
                 break;
-                case 'usuariosrango':
-                    if ($result['dataset'] = $usuario->usuariosrango()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'No hay datos disponibles';
-                    }
-                    break;
-                case 'estadosusuarios':
-                    if ($result['dataset'] = $usuario->estadosusuarios()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'No hay datos disponibles';
-                    }
-                    break;
+            case 'usuariosrango':
+                if ($result['dataset'] = $usuario->usuariosrango()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
+                }
+                break;
+            case 'estadosusuarios':
+                if ($result['dataset'] = $usuario->estadosusuarios()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
+                }
+                break;
             default:
                 exit('Acción no disponible log');
         }
@@ -306,15 +306,111 @@ if (isset($_GET['action'])) {
                 if ($usuario->checkCorreo($_POST['alias'])) {
                     $usuario->setClave($_POST['clave']);
                     if ($usuario->checkPassword($_POST['clave'])) {
-                        $_SESSION['id_usuario'] = $usuario->getId();
+                        $_SESSION['id_usuario_auth'] = $usuario->getId();
                         $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
-                        $result['status'] = 1;
-                        $result['message'] = 'Autenticación correcta';
+
+                        // Se genera un ID aleatorio.
+                        $token = uniqid();
+
+                        $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/autenticar.php?t=" . $token;
+
+                        $body = "Confirme su inicio de sesión en el siguiente link: " . $direccion;
+
+                        $subject = 'Confirmar inicio de sesión';
+                        // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
+
+                        if ($usuario->sendMail($body, $subject)) {
+                            if ($usuario->tokenAuth($token)) {
+                                $_SESSION['tiempo1'] = time();
+                                $result['status'] = 1;
+                                $result['message'] = 'Se ha enviado un correo para validar su sesión.';
+                            } else {
+                                $result['exception'] = "Hubo un error al enviar el correo.";
+                            }
+                        } else {
+                            $result['exception'] = "Hubo un error al enviar el correo.";
+                        }
+
                     } else {
                         $result['exception'] = 'Clave incorrecta';
                     }
                 } else {
                     $result['exception'] = 'Alias incorrecto';
+                }
+                break;
+            case 'recuperar':
+                $_POST = $usuario->validateForm($_POST);
+                if ($usuario->checkCorreo($_POST['recuperar_mail'])) {
+                    // Se genera un ID aleatorio.
+                    $token = uniqid();
+
+                    $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/forgot_password.php?t=" . $token;
+
+                    $body = "Restablezca su contraseña haciendo click en el siguiente enlace: " . $direccion;
+
+                    $subject = 'Restaurar contraseña -Kamiltik';
+                    // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
+                    if ($usuario->sendMail($body, $subject)) {
+                        if ($usuario->tokenClave($token)) {
+                            $_SESSION['correo'] = $usuario->getCorreo();
+                            $result['status'] = 1;
+                            $result['message'] = 'Hemos enviado un correo para que restablezca su contraseña.';
+                        } else {
+                            $result['exception'] = 'Hubo un error al enviar el correo.';
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo un error al enviar el correo.';
+                    }
+                } else {
+                    $result['exception'] = 'Correo no registrado';
+                }
+                break;
+                // Se verifica el token con el guardado de la base, luego se elimina.
+            case 'nuevaClave':
+                $_POST = $usuario->validateForm($_POST);
+                if ($usuario->checkCorreo($_SESSION['correo'])) {
+                    if ($usuario->setTokenClave($_POST['token_clave'])) {
+                        if ($usuario->verifyTokenClave()) {
+                            if ($_POST['nueva_clave'] === $_POST['nueva_clave_2']) {
+                                if ($usuario->setClave($_POST['nueva_clave'])) {
+                                    if ($usuario->changePassword2()) {
+                                        $usuario->deleteTokenClave();
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Contraseña actualizada correctamente.';
+                                    } else {
+                                        $result['exception'] =  'Fallo en el cambio de contraseña';
+                                    }
+                                } else {
+                                    $result['exception'] =  'Fallo en el cambio de contraseña';
+                                }
+                            } else {
+                                $result['exception'] =  'Contraseñas diferentes';
+                            }
+                        } else {
+                            $result['exception'] =  'Cambio de contraseña inválido';
+                        }
+                    } else {
+                        $result['exception'] =  'Cambio de contraseña inválido';
+                    }
+                } else {
+                    $result['exception'] =  'Correo inexistente';
+                }
+                break;
+                // Se verifica el token con el de la base, se acepta la sesión o la sesión es denegada.
+            case 'auth':
+                $_POST = $usuario->validateForm($_POST);
+                if ($usuario->setTokenClave($_POST['token_clave'])) {
+                    if ($usuario->verifyTokenAuth(filter_var($_POST['auth'], FILTER_VALIDATE_BOOLEAN), $_SESSION['id_usuario_auth'])) {
+                        $usuario->deleteTokenAuth($_SESSION['id_usuario_auth']);
+                        $_SESSION['id_usuario'] =  $_SESSION['id_usuario_auth'];
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión verificada.';
+                    } else {
+                        $usuario->deleteTokenAuth($_SESSION['id_usuario_auth']);
+                        $result['message'] = 'Sesión denegada. Si aceptó la sesión y fue negada la dirección expiró, vuelva a intentarlo.';
+                    }
+                } else {
+                    $result['exception'] = 'Hubo un error al verificar su inicio de sesión, vuelva a intentarlo.';
                 }
                 break;
             default:

@@ -15,6 +15,8 @@ class Usuarios extends Validator
     private $idCargo = null;
     private $idEstado = true;
     private $idTipoUsuario = null;
+    //Tokens
+    private $token_clave = null;
 
     /*
     *   Métodos para asignar valores a los atributos.
@@ -118,6 +120,18 @@ class Usuarios extends Validator
             return false;
         }
     }
+
+     // Métodos para verificación de tokens
+
+     public function setTokenClave($value)
+     {
+         if (strlen($value) == 13) {
+             $this->token_clave = $value;
+             return true;
+         } else {
+             return false;
+         }
+     }
 
     /*
     *   Métodos para obtener valores de los atributos.
@@ -313,4 +327,128 @@ class Usuarios extends Validator
         $params = null;
         return Database::getRows($sql,$params);
     }
+    // Se agrega el token generado y su hora de vencimiento al usuarios.
+    public function tokenClave($token)
+    {
+        $sql = "UPDATE usuarios SET token_clave = ?, vcto_token = now()::time + INTERVAL '5 min' WHERE correo = ?";
+        $params = array($token, $this->correo);
+        return Database::executeRow($sql, $params);
+    }
+    // Se verifica el token generado y se comprueba si el token es correcto y si no ha expirado.
+    public function verifyTokenClave()
+    {
+        $sql = "SELECT token_clave, now()::time < vcto_token AS tiempo FROM usuarios WHERE correo = ?";
+        $params = array($this->correo);
+        if ($data = Database::getRow($sql, $params)) {
+            if ($data['token_clave'] == $this->token_clave && $data['tiempo']) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    // Se actualiza la contraseña.
+    public function changePassword2()
+    {
+        $hash = password_hash($this->clave, PASSWORD_DEFAULT);
+        $sql = 'UPDATE usuarios SET clave = ? WHERE correo = ?';
+        $params = array($hash, $this->correo);
+        return Database::executeRow($sql, $params);
+    }
+    // Se elimina el token y su hora de vencimiento de la base.
+    public function deleteTokenClave()
+    {
+        $sql = "UPDATE usuarios SET token_clave = null, vcto_token = null WHERE correo = ?";
+        $params = array($this->correo);
+        return Database::executeRow($sql, $params);
+    }
+    // Función para enviar un correo. Parametros : Cuerpo del correo, Asunto.
+    public function sendMail($body, $subject)
+    {
+        require '../../../libraries/phpmailer52/class.phpmailer.php';
+        require '../../../libraries/phpmailer52/class.smtp.php';
+
+        $mail = new PHPMailer;
+
+        $mail->CharSet = 'UTF-8';
+        //Tell PHPMailer to use SMTP
+        $mail->isSMTP();
+
+        //Set the hostname of the mail server
+        $mail->Host = 'smtp.gmail.com';
+
+        //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+        $mail->Port = 465;
+
+        $mail->SMTPSecure = 'ssl';
+
+        //Whether to use SMTP authentication
+        $mail->SMTPAuth = true;
+
+        //Username to use for SMTP authentication - use full email address for gmail
+        $mail->Username = 'kamiltik.thecoffeecup@gmail.com';
+
+        //Password to use for SMTP authentication
+        $mail->Password = 'Kamiltik12';
+
+        //Set who the message is to be sent from
+        $mail->setFrom('kamiltik.thecoffeecup@gmail.com', 'Kamiltik');
+
+        //Set who the message is to be sent to
+        $mail->addAddress($this->correo, $this->nombres . ' ' . $this->apellidos);
+
+        //Set the subject line
+        $mail->Subject = $subject;
+
+        //Replace the plain text body with one created manually
+        $mail->Body = $body;
+        //send the message, check for error
+
+        if ($mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // Se verifica el token generado y se comprueba si ha aceptado o denegado la sesión.
+    public function verifyTokenAuth($bool, $id)
+    {
+        if ($bool) {
+            $sql = "UPDATE usuarios SET auth_verificado = true WHERE id_usuario = ?";
+            $params = array($id);
+            Database::executeRow($sql, $params);
+
+            $sql = "SELECT token_clave, now()::time < vcto_token AS tiempo, auth_verificado FROM usuarios WHERE id_usuario = ?";
+            $params = array($id);
+            if ($data = Database::getRow($sql, $params)) {
+                if ($data['token_clave'] == $this->token_clave && $data['tiempo'] && $data['auth_verificado']) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    // Se agrega el token generado y su hora de vencimiento al usuarios.
+    public function tokenAuth($token)
+    {
+        $sql = "UPDATE usuarios SET token_clave = ?, vcto_token = now()::time + INTERVAL '5 min', auth_verificado = false WHERE correo = ?";
+        $params = array($token, $this->correo);
+        return Database::executeRow($sql, $params);
+    }
+    // Se elimina el token y su hora de vencimiento de la base.
+    public function deleteTokenAuth($id)
+    {
+        $sql = "UPDATE usuarios SET token_clave = null, vcto_token = null, auth_verificado = null WHERE id_usuario = ?";
+        $params = array($id);
+        return Database::executeRow($sql, $params);
+    }
 }
+
+

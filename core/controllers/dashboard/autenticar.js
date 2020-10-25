@@ -1,54 +1,28 @@
-// Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_USUARIOS = '../../core/api/dashboard/usuarios.php?action=';
+const API_USUARIOS = "../../core/api/dashboard/usuarios.php?action=";
 
-// Método que se ejecuta cuando el documento está listo.
-$(document).ready(function () {
-    // Se llama a la función que verifica la existencia de usuarios. Se encuentra en el archivo account.js
-    checkUsuarios();
-});
 
-// Evento para validar el usuario al momento de iniciar sesión.
-$('#sesion-form').submit(function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    $.ajax({
-            type: 'post',
-            url: API_USUARIOS + 'login',
-            data: $('#sesion-form').serialize(),
-            dataType: 'json'
-        })
-        .done(function (response) {
-            // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
-            if (response.status) {
-                sweetAlert(1, response.message);
-            } else {
-                sweetAlert(2, response.exception, null);
-            }
-        })
-        .fail(function (jqXHR) {
-            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-            if (jqXHR.status == 200) {
-                console.log(jqXHR.responseText);
-            } else {
-                console.log(jqXHR.status + ' ' + jqXHR.statusText);
-            }
-        });
-});
-
-$('#recuperar').submit(function (e) {
+$('#accepted').click(function (e) {
     e.preventDefault();
+    let params = new URLSearchParams(location.search);
+    const t = params.get('t');
     $.ajax({
             type: 'post',
-            url: API_USUARIOS + 'recuperar',
-            data: $('#recuperar').serialize(),
+            url: API_USUARIOS + 'auth',
+            data: {
+                auth: true,
+                token_clave: t
+            },
             dataType: 'json'
         })
         .done(function (response) {
             // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
             if (response.status) {
-                sweetAlert(1, response.message, null);
+                sweetAlert(1, response.message, 'main.php');
+                // setTimeout(() => {
+                //     location.href = 'http://localhost/Cuzcatlan-eCommerce/views/dashboard/index.php';
+                // }, 3000);
             } else {
-                sweetAlert(2, response.exception, null);
+                sweetAlert(1, response.message, 'index.php');
             }
         })
         .fail(function (jqXHR) {
@@ -60,3 +34,41 @@ $('#recuperar').submit(function (e) {
             }
         });
 });
+
+
+$('#denied').click(function (e) {
+    e.preventDefault();
+    let params = new URLSearchParams(location.search);
+    const t = params.get('t');
+    $.ajax({
+            type: 'post',
+            url: API_USUARIOS + 'auth',
+            data: {
+                auth: false,
+                token_clave: t
+            },
+            dataType: 'json'
+        })
+        .done(function (response) {
+            // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
+            if (response.status) {
+                sweetAlert(1, response.message, 'main.php');
+                // setTimeout(() => {
+                //     location.href = 'http://localhost/Cuzcatlan-eCommerce/views/dashboard/index.php';
+                // }, 3000);
+            } else {
+                sweetAlert(1, response.message, 'index.php');
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
+});
+
+
+

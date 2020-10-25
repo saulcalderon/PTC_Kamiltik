@@ -53,7 +53,7 @@ class Validator
     {
         foreach ($fields as $index => $value) {
             $value = trim($value);
-            $fields[$index] = $value;
+            $fields[$index] = strip_tags($value);
         }
         return $fields;
     }
