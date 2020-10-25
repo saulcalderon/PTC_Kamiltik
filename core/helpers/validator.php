@@ -267,7 +267,17 @@ class Validator
             //Se verifica que la contraseña posea al menos una letra mayuscula
             if (preg_match('`[A-Z]`',$value)){
                 if (preg_match('`[a-z]`',$value)){
-                    return true;
+                    if (preg_match('`[0-9]`',$value)){
+                        if (preg_match('`[~!@#$%^&*]`',$value)) {
+                            return true; 
+                        } else {
+                            $this->passwordError = "La clave debe tener al menos un caracter especial";
+                            return false;
+                        }
+                    }else {
+                        $this->passwordError = "La clave debe tener al menos un caracter numérico";
+                        return false;
+                    }
                 }else{
                     $this->passwordError = "La clave debe tener al menos una letra minúscula";
                     return false;
@@ -280,7 +290,6 @@ class Validator
             $this->passwordError = "La clave debe tener entre 8 y 20 caracteres";
             return false;
         }
-        
     }
 
     /*
