@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
-            case 'editProfile':
+                case 'editProfile':
                 if ($usuario->setId($_SESSION['id_usuario'])) {
                     if ($usuario->readOneUsuario()) {
                         $_POST = $usuario->validateForm($_POST);
@@ -70,7 +70,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
-            case 'password':
+                case 'password':
                 if ($usuario->setId($_SESSION['id_usuario'])) {
                     $_POST = $usuario->validateForm($_POST);
                     if ($_POST['clave_actual_1'] == $_POST['clave_actual_2']) {
@@ -85,7 +85,7 @@ if (isset($_GET['action'])) {
                                             $result['exception'] = Database::getException();
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave nueva menor a 6 caracteres';
+                                        $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;
                                     }
                                 } else {
                                     $result['exception'] = 'Claves nuevas diferentes';
@@ -94,7 +94,7 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'Clave actual incorrecta';
                             }
                         } else {
-                            $result['exception'] = 'Clave actual menor a 6 caracteres';
+                             $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;;
                         }
                     } else {
                         $result['exception'] = 'Claves actuales diferentes';
@@ -147,7 +147,7 @@ if (isset($_GET['action'])) {
                                                     $result['exception'] = Database::getException();
                                                 }
                                             } else {
-                                                $result['exception'] = 'Clave menor a 6 caracteres';
+                                                $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;
                                             }
                                         } else {
                                             $result['exception'] = 'Claves diferentes';
