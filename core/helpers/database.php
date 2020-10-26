@@ -17,10 +17,10 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'dbkamiltik';
+        $database = 'dbkamiltik4';
         $username = 'postgres';
         // Cambiar dependiendo del usuario de la pc.
-        $password = 'viernes';
+        $password = 'Lula12';
         // Se controlan las excepciones al momento de establecer conexión con el servidor de base de datos.
         try {
             // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
