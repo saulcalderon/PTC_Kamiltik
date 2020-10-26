@@ -6,7 +6,7 @@ Dashboard::headerTemplate('Administrar usuarios');
 <div class="padd-15">
     <div class="row">
         <!-- Formulario de búsqueda -->
-        <form method="post" id="search-form">
+        <form autocomplete="off" method="post" id="search-form">
             <div class="input-field col s6 m4">
                 <i class="material-icons prefix">search</i>
                 <input id="search" type="text" name="search" />
@@ -58,7 +58,7 @@ Dashboard::headerTemplate('Administrar usuarios');
     <div class="modal-content">
         <h4 id="modal-title" class="center-align"></h4>
         <!-- Formulario para crear o actualizar un registro -->
-        <form method="post" id="save-form">
+        <form autocomplete="off" method="post" id="save-form">
             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
             <input class="hide" type="text" id="id_usuario" name="id_usuario" />
             <div class="row">

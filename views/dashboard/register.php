@@ -4,7 +4,7 @@ Dashboard::headerTemplate('Primer uso');
 ?>
 
 <!-- Formulario para registrar al primer usuario del dashboard -->
-<form method="post" id="register-form">
+<form autocomplete="off" method="post" id="register-form">
     <div class="row">
         <div class="input-field col s12 m6">
             <i class="material-icons prefix">person</i>

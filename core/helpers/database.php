@@ -20,11 +20,11 @@ class Database
         $database = 'dbkamiltik3';
         $username = 'postgres';
         // Cambiar dependiendo del usuario de la pc.
-        $password = '131416';
+        $password = 'Lula12';
         // Se controlan las excepciones al momento de establecer conexión con el servidor de base de datos.
         try {
             // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
-            self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5433', $username, $password);
+            self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
             
         } catch(PDOException $error) {
             // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.

@@ -11,7 +11,7 @@ Dashboard::headerTemplate('Bienvenido');
                     <h4 class="center">Inicio de Sesión</h4>
                     <div class="row">
                         <!-- Formulario para iniciar sesión -->
-                        <form method="post" id="sesion-form">
+                        <form autocomplete="off" method="post" id="sesion-form">
                             <div class="input-field col s12 m10 offset-m1 m-15">
                                 <i class="material-icons prefix">account_circle</i>
                                 <input id="alias" type="text" name="alias" class="validate" required />
@@ -42,7 +42,7 @@ Dashboard::headerTemplate('Bienvenido');
     <div class="modal-content center-align  m-15">
         <h4>Recuperar contraseña</h4>
         <p>Por favor ingrese su correo electrónico</p>
-        <form id="recuperar">
+        <form autocomplete="off" id="recuperar">
             <div class="row">
                 <div class="input-field col s6 offset-s3  m-15">
                     <input id="recuperar_mail" type="email" class="validate" name="recuperar_mail">

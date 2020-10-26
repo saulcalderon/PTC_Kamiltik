@@ -6,7 +6,7 @@ Dashboard::headerTemplate('Administrar facturas');
 <div class="padd-15">
     <div class="row">
         <!-- Formulario de búsqueda -->
-        <form method="post" id="search-form">
+        <form autocomplete="off" method="post" id="search-form">
             <div class="input-field col s6 m4">
                 <i class="material-icons prefix">search</i>
                 <input id="fecha" type="date" name="fecha" class="validate" required />
@@ -25,7 +25,7 @@ Dashboard::headerTemplate('Administrar facturas');
     <div class="card padd-15">
         <h5 class="m-10">Elija una mesa</h5>
         <!-- Formulario con botones para determinar la mesa -->
-        <form action="detalle.php" id="factura-mesa">
+        <form autocomplete="off" action="detalle.php" id="factura-mesa">
             <div id="botones-mesa   " class="row">
                 <button type="submit" name="boton" value="1" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Mesa disponible"><i class="material-icons">local_dining</i>1</button>
                 <button type="submit" name="boton" value="2" class="btn btn-d waves-effect green mesa tooltipped" data-tooltip="Mesa disponible"><i class="material-icons">local_dining</i>2</button>

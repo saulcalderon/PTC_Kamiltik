@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
-                case 'editProfile':
+            case 'editProfile':
                 if ($usuario->setId($_SESSION['id_usuario'])) {
                     if ($usuario->readOneUsuario()) {
                         $_POST = $usuario->validateForm($_POST);
@@ -70,22 +70,26 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
-                case 'password':
+            case 'password':
                 if ($usuario->setId($_SESSION['id_usuario'])) {
                     $_POST = $usuario->validateForm($_POST);
                     if ($_POST['clave_actual_1'] == $_POST['clave_actual_2']) {
                         if ($usuario->setClave($_POST['clave_actual_1'])) {
                             if ($usuario->checkPassword($_POST['clave_actual_1'])) {
                                 if ($_POST['clave_nueva_1'] == $_POST['clave_nueva_2']) {
-                                    if ($usuario->setClave($_POST['clave_nueva_1'])) {
-                                        if ($usuario->changePassword()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Contraseña cambiada correctamente';
+                                    if ($_POST['clave_nueva_1'] != $_POST['clave_actual_1']) {
+                                        if ($usuario->setClave($_POST['clave_nueva_1'])) {
+                                            if ($usuario->changePassword()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Contraseña cambiada correctamente';
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
                                         } else {
-                                            $result['exception'] = Database::getException();
+                                            $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;
                                         }
                                     } else {
-                                        $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;
+                                        $result['exception'] = 'La nueva clave no puede ser igual a la anterior.';
                                     }
                                 } else {
                                     $result['exception'] = 'Claves nuevas diferentes';
@@ -94,7 +98,7 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'Clave actual incorrecta';
                             }
                         } else {
-                             $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;;
+                            $result['exception'] = $usuario->getPasswordError(); //getPasswordError para validar contraseña;;
                         }
                     } else {
                         $result['exception'] = 'Claves actuales diferentes';
@@ -276,11 +280,15 @@ if (isset($_GET['action'])) {
                             if ($usuario->setTelefono($_POST['telefono'])) {
                                 if ($_POST['clave1'] == $_POST['clave2']) {
                                     if ($usuario->setClave($_POST['clave1'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Usuario registrado correctamente';
+                                        if (!$usuario->readAllUsuarios()) {
+                                            if ($usuario->createUsuario()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Usuario registrado correctamente';
+                                            } else {
+                                                $result['exception'] = 'No';
+                                            }
                                         } else {
-                                            $result['exception'] = Database::getException();
+                                            $result['exception'] = 'Existe al menos un usuario registrado';
                                         }
                                     } else {
                                         $result['exception'] = 'Clave menor a 6 caracteres';
@@ -330,7 +338,6 @@ if (isset($_GET['action'])) {
                         } else {
                             $result['exception'] = "Hubo un error al enviar el correo.";
                         }
-
                     } else {
                         $result['exception'] = 'Clave incorrecta';
                     }

@@ -142,7 +142,7 @@ Dashboard::headerTemplate('Inicio');
     <div class="modal-content">
         <h4 id="modal-title" class="center-align"></h4>
         <!-- Formulario para generar un grafico parametrizado -->
-        <form method="post" id="save-form" enctype="multipart/form-data">
+        <form autocomplete="off" method="post" id="save-form" enctype="multipart/form-data">
             <!-- Campo oculto para asignar el id del registro al momento de modificar 
                 <input class="hide" type="text" id="" name="">-->
             <!-- Campos para generar el grafico -->
@@ -187,7 +187,7 @@ Dashboard::headerTemplate('Inicio');
     <div class="modal-content">
         <h4 id="modal-title1" class="center-align"></h4>
         <!-- Formulario para generar un grafico parametrizado -->
-        <form method="post" id="save-form1" enctype="multipart/form-data">
+        <form autocomplete="off" method="post" id="save-form1" enctype="multipart/form-data">
             <!-- Campo oculto para asignar el id del registro al momento de modificar 
                 <input class="hide" type="text" id="" name="">-->
             <!-- Campos para generar el grafico -->
@@ -221,7 +221,7 @@ Dashboard::headerTemplate('Inicio');
     <div class="modal-content">
         <h4 id="modal-title2" class="center-align"></h4>
         <!-- Formulario para generar un grafico parametrizado -->
-        <form method="post" id="save-form2" enctype="multipart/form-data">
+        <form autocomplete="off" method="post" id="save-form2" enctype="multipart/form-data">
             <!-- Campo oculto para asignar el id del registro al momento de modificar 
                 <input class="hide" type="text" id="" name="">-->
             <!-- Campos para generar el grafico -->
@@ -257,7 +257,7 @@ Dashboard::headerTemplate('Inicio');
     <div class="modal-content">
         <h4 id="modal-title3" class="center-align"></h4>
         <!-- Formulario para generar un grafico parametrizado -->
-        <form method="post" id="save-form3" enctype="multipart/form-data">
+        <form autocomplete="off" method="post" id="save-form3" enctype="multipart/form-data">
             <!-- Campo oculto para asignar el id del registro al momento de modificar 
                 <input class="hide" type="text" id="" name="">-->
             <!-- Campos para generar el grafico -->
@@ -293,7 +293,7 @@ Dashboard::headerTemplate('Inicio');
     <div class="modal-content">
         <h4 id="modal-title4" class="center-align"></h4>
         <!-- Formulario para generar un grafico parametrizado -->
-        <form method="post" id="save-form4" enctype="multipart/form-data">
+        <form autocomplete="off" method="post" id="save-form4" enctype="multipart/form-data">
             <!-- Campo oculto para asignar el id del registro al momento de modificar 
                 <input class="hide" type="text" id="" name="">-->
             <!-- Campos para generar el grafico -->

@@ -20,7 +20,7 @@ Dashboard::headerTemplate('Administrar noticias');
                     <h6 class="margin-10">Total: $<span id="total-factura"></span></h6>
                     <h6 id="cambio" class="margin-10">Cambio: $</h6>
                     <!-- Formulario para insertar lo entregado por el cliente -->
-                    <form action="" method="post">
+                    <form autocomplete="off" action="" method="post">
                         <div class="input-field col s12">
                             <input id="entregado" name="entregado" type="text" maxlength="8" class="validate" placeholder="Ej: $12.00" required>
                             <label for="entregado">Entregado por cliente</label>
@@ -41,7 +41,7 @@ Dashboard::headerTemplate('Administrar noticias');
             <div class="card padd-15">
                 <h5>Elija un producto</h5>
                 <!-- Formulario para agregar productos -->
-                <form id="addProduct">
+                <form autocomplete="off" id="addProduct">
                     <div class="row">
                         <input type="hidden" id="id_factura" name="id_factura">
                         <input type="hidden" id="mesa_form" name="mesa_form">
@@ -82,7 +82,7 @@ Dashboard::headerTemplate('Administrar noticias');
         <h4 id="content" class="center"></h4>
         <div class="container">
             <!-- Formulario para modificar la cantidad del detalle -->
-            <form method="post" id="updateForm">
+            <form autocomplete="off" method="post" id="updateForm">
                 <input class="hide" type="text" id="id_detalle" name="id_detalle">
                 <div class="row">
                     <div class="input-field col s12 m6">
