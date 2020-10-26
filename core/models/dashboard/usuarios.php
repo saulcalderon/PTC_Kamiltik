@@ -15,6 +15,13 @@ class Usuarios extends Validator
     private $idCargo = null;
     private $idEstado = true;
     private $idTipoUsuario = null;
+
+    //Propiedades de las conexiones de los usuarios
+    private $idConexion = null;
+    private $ip = null;
+    private $hostname = null;
+    private $estadoConexion = null;
+
     //Tokens
     private $token_clave = null;
 
@@ -117,6 +124,46 @@ class Usuarios extends Validator
             return true;
         }
         else{
+            return false;
+        }
+    }
+
+    //Métodos para guardar las conexiones conexión
+
+    public function setIdConexion($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idConexion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIp($value)
+    {
+        if ($this->ip = $value) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setHostname($value)
+    {
+        if ($this->idConexion = $value) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setEstadoConexion($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estadoConexion = $value;
+            return true;
+        } else {
             return false;
         }
     }
@@ -449,6 +496,103 @@ class Usuarios extends Validator
         $params = array($id);
         return Database::executeRow($sql, $params);
     }
+
+        //Hacer una funcion para administrar los dispositivos (update) (Listo)
+        public function updateDispositivo()
+        {
+            $estado = $this->estadoConexion;
+            if ($estado == 1) {
+                $estado = true;
+            } else {
+                $estado = false;
+            }
+    
+            $host = $this->hostname;
+            print_r($host);
+            $sql = 'UPDATE conexiones SET estado = ? WHERE id_usuario = ? AND host = ?';
+            $params = array($estado, $this->id, $host);
+            print_r($params);
+            return Database::executeRow($sql, $params);
+        }
+        //Funcion para ver todos los dispositivos (Read) (Listo)
+    
+        public function readAllDispositivos()
+        {
+            $sqlD = 'SELECT id_conexiones, host, estado FROM conexiones WHERE id_usuario = ?';
+            $paramsD = array($this->id);
+            $var = Database::getRows($sqlD, $paramsD);
+            return $var;
+        }
+    
+        public function readOneDispositivo()
+        {
+            $sql = 'SELECT host, estado FROM conexiones WHERE id_usuario = ? AND id_conexiones = ?';
+            $params = array($this->id, $this->idConexion);
+            return Database::getRow($sql, $params);
+        }
+    
+        //Funcion para verificar si existen dispositivos, si no, agregar uno. Luego Evaluar si este dispositivo existe, 
+        //que coincida con el nombre provisto anteriormente, si no, avisar que hay una sesión abierta. (Listo)
+    
+        public function checkDispositivo()
+        {
+            //Verificar si existen dispositivos antes 
+            $sql = 'SELECT COUNT(*) FROM conexiones';
+            $existen = Database::getRow($sql, null);
+            //Si existen dispositivos se evalua que el del cliente coincida con el registrado a su ID
+            if ($existen != 0) {
+    
+                $ipe = gethostbyname('localhost');
+                $dispositivo = gethostname();
+    
+                $sql2 = 'SELECT ip, host, estado FROM conexiones WHERE id_usuario = ? AND ip = ? AND host = ? AND estado =?';
+                $params2 = array($this->id, $ipe, $dispositivo, true);
+                $data = Database::getRows($sql2, $params2);
+                if ($data == true) {
+                    return true;
+                } else {
+                    //Por cada estado se hará un update para tornarlo falso, luego se ejecutara la nueva consulta de arriba
+                    $sql3 = 'UPDATE conexiones SET estado = false WHERE id_usuario = ?';
+                    $params3 = array($this->id);
+                    $respuesta = Database::executeRow($sql3, $params3);
+                    if ($respuesta) {
+                        //Actualizar la sesión actual a verdadero para logearse
+                        $sql4 = 'UPDATE conexiones SET estado = true WHERE id_usuario = ? AND ip =? AND host = ? ';
+                        $params4 = array($this->id, $ipe, $dispositivo);
+                        $respuesta2 = Database::executeRow($sql4, $params4);
+    
+                        //Si no existe, se creará un registro de este dispositivo
+                        if ($respuesta2 != 1) {
+                            return true;
+                        } else {
+                            $sql5 = 'INSERT INTO conexiones(host, ip, estado, id_usuario) VALUES (?,?,?,?)';
+                            $params5 = array($dispositivo, $ipe, true, $this->id);
+                            $resultado = Database::executeRow($sql5, $params5);
+                            if ($resultado) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
+            }
+        }
+    
+        //Terminar
+        public function insertDispositivo()
+        {
+            $sql = "INSERT INTO conexiones(host, ip, estado, id_usuario) VALUES(?,?,?,?)";
+            $params = array(gethostname(), gethostbyname("localhost"), false, $this->id);
+            $datos = Database::executeRow($sql, $params);
+        }
+
+
+
 }
 
 

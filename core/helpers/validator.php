@@ -288,7 +288,7 @@ class Validator
             }  
         } else {
             $this->passwordError = "La clave debe tener entre 8 y 20 caracteres";
-            return false;
+            return $this->passwordError;
         }
     }
 

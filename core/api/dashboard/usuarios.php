@@ -257,6 +257,41 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
+
+                //Conexiones
+
+
+
+            case 'updateDispositivo':
+                $_POST = $usuario->validateForm($_POST);
+                if ($usuario->setId($_POST['id_administrador'])) {
+                    if ($usuario->readOneDispositivo()) {
+                        if ($usuario->setEstadoConexion(isset($_POST['estado']) ? 1 : 2)) {
+                            if ($usuario->updateDispositivo()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Dispositivo modificado correctamente';
+                            }
+                        } else {
+                            $result['exception'] = 'Estado inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Usuario inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Usuario incorrecto';
+                }
+                break;
+
+            case 'readAllDispositivos':
+                if ($result['dataset'] = $usuario->readAllDispositivos()) {
+                    $result['status'] = 1;
+                    //print_r($_GET['action']);
+                    //print_r($result['dataset']);
+                } else {
+                    $result['exception'] = 'No hay dispositivos registrados';
+                }
+                break;
+
             default:
                 exit('Acción no disponible log');
         }
@@ -314,29 +349,33 @@ if (isset($_GET['action'])) {
                 if ($usuario->checkCorreo($_POST['alias'])) {
                     $usuario->setClave($_POST['clave']);
                     if ($usuario->checkPassword($_POST['clave'])) {
-                        $_SESSION['id_usuario_auth'] = $usuario->getId();
-                        $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
+                        if ($usuario->checkDispositivo()) {
+                            $_SESSION['id_usuario_auth'] = $usuario->getId();
+                            $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
 
-                        // Se genera un ID aleatorio.
-                        $token = uniqid();
+                            // Se genera un ID aleatorio.
+                            $token = uniqid();
 
-                        $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/autenticar.php?t=" . $token;
+                            $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/autenticar.php?t=" . $token;
 
-                        $body = "Confirme su inicio de sesión en el siguiente link: " . $direccion;
+                            $body = "Confirme su inicio de sesión en el siguiente link: " . $direccion;
 
-                        $subject = 'Confirmar inicio de sesión';
-                        // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
+                            $subject = 'Confirmar inicio de sesión';
+                            // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
 
-                        if ($usuario->sendMail($body, $subject)) {
-                            if ($usuario->tokenAuth($token)) {
-                                $_SESSION['tiempo1'] = time();
-                                $result['status'] = 1;
-                                $result['message'] = 'Se ha enviado un correo para validar su sesión.';
+                            if ($usuario->sendMail($body, $subject)) {
+                                if ($usuario->tokenAuth($token)) {
+                                    $_SESSION['tiempo1'] = time();
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Se ha enviado un correo para validar su sesión.';
+                                } else {
+                                    $result['exception'] = "Hubo un error al enviar el correo.";
+                                }
                             } else {
                                 $result['exception'] = "Hubo un error al enviar el correo.";
                             }
                         } else {
-                            $result['exception'] = "Hubo un error al enviar el correo.";
+                            $result['exception'] = 'Problemas con sus dispositivos';
                         }
                     } else {
                         $result['exception'] = 'Clave incorrecta';
