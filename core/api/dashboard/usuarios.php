@@ -266,6 +266,41 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
+
+                //Conexiones
+
+
+
+            case 'updateDispositivo':
+                $_POST = $usuario->validateForm($_POST);
+                if ($usuario->setId($_POST['id_administrador'])) {
+                    if ($usuario->readOneDispositivo()) {
+                        if ($usuario->setEstadoConexion(isset($_POST['estado']) ? 1 : 2)) {
+                            if ($usuario->updateDispositivo()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Dispositivo modificado correctamente';
+                            }
+                        } else {
+                            $result['exception'] = 'Estado inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Usuario inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Usuario incorrecto';
+                }
+                break;
+
+            case 'readAllDispositivos':
+                if ($result['dataset'] = $usuario->readAllDispositivos()) {
+                    $result['status'] = 1;
+                    //print_r($_GET['action']);
+                    //print_r($result['dataset']);
+                } else {
+                    $result['exception'] = 'No hay dispositivos registrados';
+                }
+                break;
+
             default:
                 exit('Acción no disponible log');
         }
@@ -320,61 +355,88 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->checkCorreo($_POST['alias'])) {
-                    $usuario->setClave($_POST['clave']);
-                    if ($usuario->checkPassword($_POST['clave'])) {
-                        $_SESSION['id_usuario_auth'] = $usuario->getId();
-                        $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
+                if (isset($_COOKIE["block" . 'usuario'])) {
+                    $result['exception'] = 'Su cuenta está bloqueada por un minuto';
+                } else {
+                    if ($usuario->checkCorreo($_POST['alias'])) {
+                        $usuario->setClave($_POST['clave']);
+                        if ($usuario->checkPassword($_POST['clave'])) {
+                            if ($usuario->checkDispositivo()) {
+                                $_SESSION['id_usuario_auth'] = $usuario->getId();
+                                $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
 
-                        // Se genera un ID aleatorio.
-                        $token = uniqid();
+                                // Se genera un ID aleatorio.
+                                $token = uniqid();
 
-                        if ($usuario->checkPasswordExpiration($_POST['alias'])) {
+                                if ($usuario->checkPasswordExpiration($_POST['alias'])) {
 
-                            $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/autenticar.php?t=" . $token;
+                                    $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/autenticar.php?t=" . $token;
 
-                            $body = "Confirme su inicio de sesión en el siguiente link: " . $direccion;
+                                    $body = "Confirme su inicio de sesión en el siguiente link: " . $direccion;
 
-                            $subject = 'Confirmar inicio de sesión';
-                            // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
+                                    $subject = 'Confirmar inicio de sesión';
+                                    // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
 
-                            if ($usuario->sendMail($body, $subject)) {
-                                if ($usuario->tokenAuth($token)) {
-                                    $_SESSION['tiempo1'] = time();
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Se ha enviado un correo para validar su sesión.';
+                                    if ($usuario->sendMail($body, $subject)) {
+                                        if ($usuario->tokenAuth($token)) {
+                                            $_SESSION['tiempo1'] = time();
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Se ha enviado un correo para validar su sesión.';
+                                        } else {
+                                            $result['exception'] = "Hubo un error al enviar el correo.";
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Problemas con sus dispositivos';
+                                    }
                                 } else {
-                                    $result['exception'] = "Hubo un error al enviar el correo.";
+
+                                    $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/forgot_password.php?t=" . $token;
+
+                                    $body = "Su contraseña ha expirado por motivos de seguridad, por favor cambiarla en el siguiente link: " . $direccion;
+
+                                    $subject = 'Restauración de contraseña vencida';
+                                    // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
+
+                                    if ($usuario->sendMail($body, $subject)) {
+                                        if ($usuario->tokenClave($token)) {
+                                            $_SESSION['correo'] = $usuario->getCorreo();
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Hemos enviado un correo para que restablezca su contraseña por expiración de 90 días.';
+                                        } else {
+                                            $result['exception'] = 'Hubo un error al enviar el correo.';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Hubo un error al enviar el correo.';
+                                    }
                                 }
                             } else {
-                                $result['exception'] = "Hubo un error al enviar el correo.";
+                                $result['exception'] = 'Alias incorrecto';
+                            }
+                            //Bloqueo de usuario por intentos, utilizando cookies
+                            if ($result['status'] != 1) {
+                                if (isset($_COOKIE['usuario'])) {
+                                    //print($_COOKIE);
+
+                                    $cont =  $_COOKIE['usuario'];
+                                    $cont++;
+                                    setcookie('usuario', $cont, time() + 120);
+
+                                    //print($_COOKIE);
+                                    //Contador para evaluar los tres intentos del usuario
+                                    if ($cont >= 3) {
+                                        //Se setea el tiempo que va a bloquearse el inicio de sesión en segundos, en este caso 60 segundos
+                                        setcookie("block" . 'usuario', $cont, time() + 60);
+                                    }
+                                } else {
+                                    setcookie('usuario', 1, time() + 120);
+                                }
                             }
                         } else {
-
-                            $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/forgot_password.php?t=" . $token;
-
-                            $body = "Su contraseña ha expirado por motivos de seguridad, por favor cambiarla en el siguiente link: " . $direccion;
-
-                            $subject = 'Restauración de contraseña vencida';
-                            // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
-
-                            if ($usuario->sendMail($body, $subject)) {
-                                if ($usuario->tokenClave($token)) {
-                                    $_SESSION['correo'] = $usuario->getCorreo();
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Hemos enviado un correo para que restablezca su contraseña por expiración de 90 días.';
-                                } else {
-                                    $result['exception'] = 'Hubo un error al enviar el correo.';
-                                }
-                            } else {
-                                $result['exception'] = 'Hubo un error al enviar el correo.';
-                            }
+                            $result['exception'] = 'Clave incorrecta';
                         }
                     } else {
-                        $result['exception'] = 'Clave incorrecta';
+                        $result['exception'] = 'Alias incorrecto';
                     }
-                } else {
-                    $result['exception'] = 'Alias incorrecto';
                 }
                 break;
             case 'recuperar':

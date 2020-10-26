@@ -15,6 +15,13 @@ class Usuarios extends Validator
     private $idCargo = null;
     private $idEstado = true;
     private $idTipoUsuario = null;
+
+    //Propiedades de las conexiones de los usuarios
+    private $idConexion = null;
+    private $ip = null;
+    private $hostname = null;
+    private $estadoConexion = null;
+
     //Tokens
     private $token_clave = null;
 
@@ -111,27 +118,67 @@ class Usuarios extends Validator
         }
     }
 
-    public function setIdEstado($value){
-        if($this->validateBoolean($value)){
+    public function setIdEstado($value)
+    {
+        if ($this->validateBoolean($value)) {
             $this->idEstado = $value;
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-     // Métodos para verificación de tokens
+    //Métodos para guardar las conexiones conexión
 
-     public function setTokenClave($value)
-     {
-         if (strlen($value) == 13) {
-             $this->token_clave = $value;
-             return true;
-         } else {
-             return false;
-         }
-     }
+    public function setIdConexion($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idConexion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIp($value)
+    {
+        if ($this->ip = $value) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setHostname($value)
+    {
+        if ($this->idConexion = $value) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setEstadoConexion($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estadoConexion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Métodos para verificación de tokens
+
+    public function setTokenClave($value)
+    {
+        if (strlen($value) == 13) {
+            $this->token_clave = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /*
     *   Métodos para obtener valores de los atributos.
@@ -176,7 +223,8 @@ class Usuarios extends Validator
         return $this->clave;
     }
 
-    public function getIdEstado(){
+    public function getIdEstado()
+    {
         return $this->idEstado;
     }
 
@@ -243,12 +291,12 @@ class Usuarios extends Validator
 
     public function createUsuario()
     {
-        
+
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
         $sql = "INSERT INTO usuarios(nombre, apellido, correo, telefono, clave, fecha_nacimiento, id_tipo_usuario, id_estado, vcto_clave)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, now()::timestamp + INTERVAL '90' day)";
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->telefono, $hash, $this->fechaNacimiento, 1, $this->idEstado, );
+        $params = array($this->nombres, $this->apellidos, $this->correo, $this->telefono, $hash, $this->fechaNacimiento, 1, $this->idEstado,);
         return Database::executeRow($sql, $params);
     }
 
@@ -306,17 +354,17 @@ class Usuarios extends Validator
         $params = array($this->idTipoUsuario);
         return Database::getRows($sql, $params);
     }
-     /*
+    /*
     *  Métedos para generar gráficas
     */
     //metodo para ver los detos de los cargos en total que existen 
     public function usuariosrango()
     {
-            $sql = ' SELECT tipo_usuario, COUNT(id_usuario) cantidad 
+        $sql = ' SELECT tipo_usuario, COUNT(id_usuario) cantidad 
             FROM usuarios INNER JOIN tipo_usuario USING (id_tipo_usuario)
             GROUP BY id_tipo_usuario, tipo_usuario';
-            $params = null;
-            return Database::getRows($sql,$params);
+        $params = null;
+        return Database::getRows($sql, $params);
     }
     //metodo para ver la cantidad de usuarios en total que hay con su estado
     public function estadosusuarios()
@@ -325,7 +373,7 @@ class Usuarios extends Validator
         FROM usuarios 
         GROUP BY id_estado';
         $params = null;
-        return Database::getRows($sql,$params);
+        return Database::getRows($sql, $params);
     }
     // Se agrega el token generado y su hora de vencimiento al usuarios.
     public function tokenClave($token)
@@ -450,7 +498,8 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    public function checkPasswordExpiration($correo){
+    public function checkPasswordExpiration($correo)
+    {
         $sql = "SELECT now()::timestamp < vcto_clave AS tiempo FROM usuarios WHERE correo = ?";
         $params = array($correo);
         if ($data = Database::getRow($sql, $params)) {
@@ -459,9 +508,99 @@ class Usuarios extends Validator
             } else {
                 return false;
             }
-            
         }
     }
+    //Hacer una funcion para administrar los dispositivos (update) (Listo)
+    public function updateDispositivo()
+    {
+        $estado = $this->estadoConexion;
+        if ($estado == 1) {
+            $estado = true;
+        } else {
+            $estado = false;
+        }
+
+        $host = $this->hostname;
+        print_r($host);
+        $sql = 'UPDATE conexiones SET estado = ? WHERE id_usuario = ? AND host = ?';
+        $params = array($estado, $this->id, $host);
+        print_r($params);
+        return Database::executeRow($sql, $params);
+    }
+    //Funcion para ver todos los dispositivos (Read) (Listo)
+
+    public function readAllDispositivos()
+    {
+        $sqlD = 'SELECT id_conexiones, host, estado FROM conexiones WHERE id_usuario = ?';
+        $paramsD = array($this->id);
+        $var = Database::getRows($sqlD, $paramsD);
+        return $var;
+    }
+
+    public function readOneDispositivo()
+    {
+        $sql = 'SELECT host, estado FROM conexiones WHERE id_usuario = ? AND id_conexiones = ?';
+        $params = array($this->id, $this->idConexion);
+        return Database::getRow($sql, $params);
+    }
+
+    //Funcion para verificar si existen dispositivos, si no, agregar uno. Luego Evaluar si este dispositivo existe, 
+    //que coincida con el nombre provisto anteriormente, si no, avisar que hay una sesión abierta. (Listo)
+
+    public function checkDispositivo()
+    {
+        //Verificar si existen dispositivos antes 
+        $sql = 'SELECT COUNT(*) FROM conexiones';
+        $existen = Database::getRow($sql, null);
+        //Si existen dispositivos se evalua que el del cliente coincida con el registrado a su ID
+        if ($existen != 0) {
+
+            $ipe = gethostbyname('localhost');
+            $dispositivo = gethostname();
+
+            $sql2 = 'SELECT ip, host, estado FROM conexiones WHERE id_usuario = ? AND ip = ? AND host = ? AND estado =?';
+            $params2 = array($this->id, $ipe, $dispositivo, true);
+            $data = Database::getRows($sql2, $params2);
+            if ($data == true) {
+                return true;
+            } else {
+                //Por cada estado se hará un update para tornarlo falso, luego se ejecutara la nueva consulta de arriba
+                $sql3 = 'UPDATE conexiones SET estado = false WHERE id_usuario = ?';
+                $params3 = array($this->id);
+                $respuesta = Database::executeRow($sql3, $params3);
+                if ($respuesta) {
+                    //Actualizar la sesión actual a verdadero para logearse
+                    $sql4 = 'UPDATE conexiones SET estado = true WHERE id_usuario = ? AND ip =? AND host = ? ';
+                    $params4 = array($this->id, $ipe, $dispositivo);
+                    $respuesta2 = Database::executeRow($sql4, $params4);
+
+                    //Si no existe, se creará un registro de este dispositivo
+                    if ($respuesta2 != 1) {
+                        return true;
+                    } else {
+                        $sql5 = 'INSERT INTO conexiones(host, ip, estado, id_usuario) VALUES (?,?,?,?)';
+                        $params5 = array($dispositivo, $ipe, true, $this->id);
+                        $resultado = Database::executeRow($sql5, $params5);
+                        if ($resultado) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //Terminar
+    public function insertDispositivo()
+    {
+        $sql = "INSERT INTO conexiones(host, ip, estado, id_usuario) VALUES(?,?,?,?)";
+        $params = array(gethostname(), gethostbyname("localhost"), false, $this->id);
+        $datos = Database::executeRow($sql, $params);
+    }
 }
-
-

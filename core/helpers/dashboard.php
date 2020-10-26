@@ -58,6 +58,7 @@ class Dashboard
                                         <li><a href="#" onclick="openModalProfile()"><i class="material-icons">face</i>Editar perfil</a></li>
                                         <li><a href="#password-modal" class="modal-trigger"><i class="material-icons">lock</i>Cambiar clave</a></li>
                                         <li><a href="../../views_en/dashboard/main.php"><i class="material-icons left">language</i>Inglés</a></li>
+                                        <li><a href="../../views/dashboard/conexiones.php"><i class="material-icons">device_hub</i>Dispositivos vinculados</a></li>
                                         <li><a href="#" onclick="signOff()"><i class="material-icons">clear</i>Salir</a></li>
                                     </ul>
                             </div>
