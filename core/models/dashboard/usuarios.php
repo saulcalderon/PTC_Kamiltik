@@ -214,7 +214,7 @@ class Usuarios extends Validator
     public function changePassword()
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE usuarios SET clave = ? WHERE id_usuario = ?';
+        $sql = "UPDATE usuarios SET clave = ?, vcto_clave = now()::timestamp + INTERVAL '90' day WHERE id_usuario = ?";
         $params = array($hash, $this->id);
         return Database::executeRow($sql, $params);
     }
@@ -246,9 +246,9 @@ class Usuarios extends Validator
         
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO usuarios(nombre, apellido, correo, telefono, clave, fecha_nacimiento, id_tipo_usuario, id_estado)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->telefono, $hash, $this->fechaNacimiento, 1, $this->idEstado);
+        $sql = "INSERT INTO usuarios(nombre, apellido, correo, telefono, clave, fecha_nacimiento, id_tipo_usuario, id_estado, vcto_clave)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, now()::timestamp + INTERVAL '90' day)";
+        $params = array($this->nombres, $this->apellidos, $this->correo, $this->telefono, $hash, $this->fechaNacimiento, 1, $this->idEstado, );
         return Database::executeRow($sql, $params);
     }
 
@@ -353,7 +353,7 @@ class Usuarios extends Validator
     public function changePassword2()
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE usuarios SET clave = ? WHERE correo = ?';
+        $sql = "UPDATE usuarios SET clave = ?, vcto_clave = now()::timestamp + INTERVAL '90' day WHERE correo = ?";
         $params = array($hash, $this->correo);
         return Database::executeRow($sql, $params);
     }
@@ -448,6 +448,19 @@ class Usuarios extends Validator
         $sql = "UPDATE usuarios SET token_clave = null, vcto_token = null, auth_verificado = null WHERE id_usuario = ?";
         $params = array($id);
         return Database::executeRow($sql, $params);
+    }
+
+    public function checkPasswordExpiration($correo){
+        $sql = "SELECT now()::timestamp < vcto_clave AS tiempo FROM usuarios WHERE correo = ?";
+        $params = array($correo);
+        if ($data = Database::getRow($sql, $params)) {
+            if ($data['tiempo']) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        }
     }
 }
 
