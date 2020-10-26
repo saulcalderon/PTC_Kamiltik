@@ -346,43 +346,67 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->checkCorreo($_POST['alias'])) {
-                    $usuario->setClave($_POST['clave']);
-                    if ($usuario->checkPassword($_POST['clave'])) {
-                        if ($usuario->checkDispositivo()) {
-                            $_SESSION['id_usuario_auth'] = $usuario->getId();
-                            $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
+                if (isset($_COOKIE["block" . 'usuario'])) {
+                    $result['exception'] = 'Su cuenta está bloqueada por un minuto';
+                } else {
+                    if ($usuario->checkCorreo($_POST['alias'])) {
+                        $usuario->setClave($_POST['clave']);
+                        if ($usuario->checkPassword($_POST['clave'])) {
+                            if ($usuario->checkDispositivo()) {
+                                $_SESSION['id_usuario_auth'] = $usuario->getId();
+                                $_SESSION['alias_usuario'] = $usuario->getNombres() . ' ' . $usuario->getApellidos();
 
-                            // Se genera un ID aleatorio.
-                            $token = uniqid();
+                                // Se genera un ID aleatorio.
+                                $token = uniqid();
 
-                            $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/autenticar.php?t=" . $token;
+                                $direccion = "http://localhost/PTC_Kamiltik/views/dashboard/autenticar.php?t=" . $token;
 
-                            $body = "Confirme su inicio de sesión en el siguiente link: " . $direccion;
+                                $body = "Confirme su inicio de sesión en el siguiente link: " . $direccion;
 
-                            $subject = 'Confirmar inicio de sesión';
-                            // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
+                                $subject = 'Confirmar inicio de sesión';
+                                // Se envia el mail con la dirección y el token, se guarda el token en la base de datos.
 
-                            if ($usuario->sendMail($body, $subject)) {
-                                if ($usuario->tokenAuth($token)) {
-                                    $_SESSION['tiempo1'] = time();
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Se ha enviado un correo para validar su sesión.';
+                                if ($usuario->sendMail($body, $subject)) {
+                                    if ($usuario->tokenAuth($token)) {
+                                        $_SESSION['tiempo1'] = time();
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Se ha enviado un correo para validar su sesión.';
+                                    } else {
+                                        $result['exception'] = "Hubo un error al enviar el correo.";
+                                    }
                                 } else {
                                     $result['exception'] = "Hubo un error al enviar el correo.";
                                 }
                             } else {
-                                $result['exception'] = "Hubo un error al enviar el correo.";
+                                $result['exception'] = 'Problemas con sus dispositivos';
                             }
                         } else {
-                            $result['exception'] = 'Problemas con sus dispositivos';
+                            $result['exception'] = 'Clave incorrecta';
                         }
                     } else {
-                        $result['exception'] = 'Clave incorrecta';
+                        $result['exception'] = 'Alias incorrecto';
                     }
-                } else {
-                    $result['exception'] = 'Alias incorrecto';
+                    //Bloqueo de usuario por intentos, utilizando cookies
+                    if ($result['status'] != 1) {
+                        if (isset($_COOKIE['usuario'])) {
+                            //print($_COOKIE);
+
+                            $cont =  $_COOKIE['usuario'];
+                            $cont++;
+                            setcookie('usuario', $cont, time() + 120);
+
+                            //print($_COOKIE);
+                            //Contador para evaluar los tres intentos del usuario
+                            if ($cont >= 3) {
+                                //Se setea el tiempo que va a bloquearse el inicio de sesión en segundos, en este caso 60 segundos
+                                setcookie("block" . 'usuario', $cont, time() + 60);
+                            }
+                        } else {
+                            setcookie('usuario', 1, time() + 120);
+                        }
+                    }
                 }
+
                 break;
             case 'recuperar':
                 $_POST = $usuario->validateForm($_POST);
