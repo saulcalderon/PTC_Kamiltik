@@ -176,7 +176,7 @@ class Database
                 self::$error = 'Registro ocupado, no se puede eliminar';
                 break;
             default:
-                self::$error = $message;
+                self::$error = 'Error fatal';
         }
     }
 

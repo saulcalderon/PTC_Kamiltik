@@ -358,6 +358,7 @@ if (isset($_GET['action'])) {
                 if (isset($_COOKIE["block" . 'usuario'])) {
                     $result['exception'] = 'Su cuenta está bloqueada por un minuto';
                 } else {
+
                     if ($usuario->checkCorreo($_POST['alias'])) {
                         $usuario->setClave($_POST['clave']);
                         if ($usuario->checkPassword($_POST['clave'])) {
@@ -412,32 +413,33 @@ if (isset($_GET['action'])) {
                             } else {
                                 $result['exception'] = 'Alias incorrecto';
                             }
-                            //Bloqueo de usuario por intentos, utilizando cookies
-                            if ($result['status'] != 1) {
-                                if (isset($_COOKIE['usuario'])) {
-                                    //print($_COOKIE);
-
-                                    $cont =  $_COOKIE['usuario'];
-                                    $cont++;
-                                    setcookie('usuario', $cont, time() + 120);
-
-                                    //print($_COOKIE);
-                                    //Contador para evaluar los tres intentos del usuario
-                                    if ($cont >= 3) {
-                                        //Se setea el tiempo que va a bloquearse el inicio de sesión en segundos, en este caso 60 segundos
-                                        setcookie("block" . 'usuario', $cont, time() + 60);
-                                    }
-                                } else {
-                                    setcookie('usuario', 1, time() + 120);
-                                }
-                            }
                         } else {
                             $result['exception'] = 'Clave incorrecta';
                         }
                     } else {
                         $result['exception'] = 'Alias incorrecto';
                     }
+                    //Bloqueo de usuario por intentos, utilizando cookies
+                    if ($result['status'] != 1) {
+                        if (isset($_COOKIE['usuario'])) {
+                            // print_r($_COOKIE);
+
+                            $cont =  $_COOKIE['usuario'];
+                            $cont++;
+                            setcookie('usuario', $cont, time() + 120);
+
+                            //print($_COOKIE);
+                            //Contador para evaluar los tres intentos del usuario
+                            if ($cont >= 3) {
+                                //Se setea el tiempo que va a bloquearse el inicio de sesión en segundos, en este caso 60 segundos
+                                setcookie("block" . 'usuario', $cont, time() + 60);
+                            }
+                        } else {
+                            setcookie('usuario', 1, time() + 120);
+                        }
+                    }
                 }
+
                 break;
             case 'recuperar':
                 $_POST = $usuario->validateForm($_POST);
